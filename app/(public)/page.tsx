@@ -2,59 +2,159 @@ import { Suspense } from "react";
 
 import Link from "next/link";
 
-import { AuthButton } from "@/components/auth-button";
-import { DeployButton } from "@/components/deploy-button";
-import { EnvVarWarning } from "@/components/env-var-warning";
-import { Hero } from "@/components/hero";
+import { Camera, Heart, Users } from "lucide-react";
+
 import { ThemeSwitcher } from "@/components/theme-switcher";
-import { ConnectSupabaseSteps } from "@/components/tutorial/connect-supabase-steps";
-import { SignUpUserSteps } from "@/components/tutorial/sign-up-user-steps";
-import { hasEnvVars } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center">
-      <div className="flex w-full flex-1 flex-col items-center gap-20">
-        <nav className="flex h-16 w-full justify-center border-b border-b-foreground/10">
-          <div className="flex w-full max-w-5xl items-center justify-between p-3 px-5 text-sm">
-            <div className="flex items-center gap-5 font-semibold">
-              <Link href={"/"}>Next.js Supabase Starter</Link>
-              <div className="flex items-center gap-2">
-                <DeployButton />
-              </div>
-            </div>
-            {!hasEnvVars ? (
-              <EnvVarWarning />
-            ) : (
-              <Suspense>
-                <AuthButton />
-              </Suspense>
-            )}
-          </div>
-        </nav>
-        <div className="flex max-w-5xl flex-1 flex-col gap-20 p-5">
-          <Hero />
-          <main className="flex flex-1 flex-col gap-6 px-4">
-            <h2 className="mb-4 text-xl font-medium">Next steps</h2>
-            {hasEnvVars ? <SignUpUserSteps /> : <ConnectSupabaseSteps />}
-          </main>
+    <main className="flex min-h-screen flex-col">
+      {/* 헤더 */}
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center justify-between">
+          <Link href="/" className="flex items-center space-x-2">
+            <span className="text-2xl font-bold text-brand-primary">
+              하루모아
+            </span>
+          </Link>
+
+          <nav className="flex items-center gap-4">
+            <Button variant="ghost" asChild>
+              <Link href="/auth/login">로그인</Link>
+            </Button>
+            <Button
+              asChild
+              className="bg-brand-primary hover:bg-brand-primary/90"
+            >
+              <Link href="/auth/sign-up">시작하기</Link>
+            </Button>
+          </nav>
+        </div>
+      </header>
+
+      {/* 히어로 섹션 */}
+      <section className="container flex flex-1 flex-col items-center justify-center space-y-8 py-20 text-center md:py-32">
+        <div className="space-y-4">
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+            습관을 함께, <span className="text-brand-primary">하루모아</span>
+          </h1>
+          <p className="mx-auto max-w-[700px] text-lg text-muted-foreground md:text-xl">
+            혼자서는 어려운 습관 만들기, 이제 친구들과 함께해보세요.
+            <br />
+            매일의 작은 실천이 모여 큰 변화를 만듭니다.
+          </p>
         </div>
 
-        <footer className="mx-auto flex w-full items-center justify-center gap-8 border-t py-16 text-center text-xs">
-          <p>
-            Powered by{" "}
-            <a
-              href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-              target="_blank"
-              className="font-bold hover:underline"
-              rel="noreferrer"
-            >
-              Supabase
-            </a>
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <Button
+            size="lg"
+            asChild
+            className="bg-brand-primary hover:bg-brand-primary/90"
+          >
+            <Link href="/auth/sign-up">무료로 시작하기</Link>
+          </Button>
+          <Button size="lg" variant="outline" asChild>
+            <Link href="#features">기능 알아보기</Link>
+          </Button>
+        </div>
+      </section>
+
+      {/* 기능 소개 섹션 */}
+      <section id="features" className="container space-y-12 py-20 md:py-32">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            하루모아의 특별한 기능
+          </h2>
+          <p className="mx-auto mt-4 max-w-[600px] text-muted-foreground md:text-lg">
+            함께하는 습관 만들기를 위한 모든 것
           </p>
-          <ThemeSwitcher />
-        </footer>
-      </div>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-3">
+          {/* 기능 카드 1: 그룹 습관 */}
+          <Card className="border-2 transition-all hover:border-brand-primary hover:shadow-lg">
+            <CardHeader>
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-brand-primary/10">
+                <Users className="h-7 w-7 text-brand-primary" />
+              </div>
+              <CardTitle className="text-2xl">그룹 습관 만들기</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                친구들과 함께 습관 그룹을 만들고, 같은 목표를 향해 나아가세요.
+                함께하면 더 쉽고 재미있습니다.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* 기능 카드 2: 데일리 인증 */}
+          <Card className="border-2 transition-all hover:border-brand-primary hover:shadow-lg">
+            <CardHeader>
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-brand-primary/10">
+                <Camera className="h-7 w-7 text-brand-primary" />
+              </div>
+              <CardTitle className="text-2xl">데일리 인증</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                매일 사진으로 습관 실천을 인증하세요. 나의 성장 과정을 기록하고
+                친구들과 공유할 수 있습니다.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* 기능 카드 3: 응원 시스템 */}
+          <Card className="border-2 transition-all hover:border-brand-primary hover:shadow-lg">
+            <CardHeader>
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-brand-primary/10">
+                <Heart className="h-7 w-7 text-brand-primary" />
+              </div>
+              <CardTitle className="text-2xl">응원하고 격려하기</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                친구들의 인증에 좋아요와 댓글로 응원을 보내세요. 서로 격려하며
+                함께 성장하는 즐거움을 경험하세요.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* CTA 섹션 */}
+      <section className="border-t bg-muted/50">
+        <div className="container flex flex-col items-center justify-center space-y-6 py-20 text-center md:py-32">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            지금 바로 시작하세요
+          </h2>
+          <p className="max-w-[600px] text-muted-foreground md:text-lg">
+            하루모아와 함께 습관을 만들고, 목표를 달성하세요.
+            <br />
+            가입은 무료이며, 바로 시작할 수 있습니다.
+          </p>
+          <Button
+            size="lg"
+            asChild
+            className="bg-brand-primary hover:bg-brand-primary/90"
+          >
+            <Link href="/auth/sign-up">무료로 시작하기</Link>
+          </Button>
+        </div>
+      </section>
+
+      {/* 푸터 */}
+      <footer className="border-t">
+        <div className="container flex flex-col items-center justify-between gap-4 py-8 md:flex-row">
+          <p className="text-sm text-muted-foreground">
+            © 2026 하루모아. All rights reserved.
+          </p>
+          <Suspense fallback={<div className="h-9 w-9" />}>
+            <ThemeSwitcher />
+          </Suspense>
+        </div>
+      </footer>
     </main>
   );
 }
