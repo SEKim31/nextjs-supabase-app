@@ -1,0 +1,319 @@
+{
+  "tasks": [
+    {
+      "id": "c4869a64-a021-4fc8-93e7-c1c1fd673050",
+      "name": "라우트 디렉토리 및 페이지 골격 생성",
+      "description": "Next.js App Router 기반으로 14개 페이지의 빈 껍데기 파일을 생성합니다. 각 페이지는 기본 placeholder 컴포넌트만 포함합니다.\\n\\n생성할 라우트:\\n- /app/(public)/page.tsx - 랜딩 페이지\\n- /app/(protected)/dashboard/page.tsx - 대시보드\\n- /app/(protected)/groups/page.tsx - 그룹 목록\\n- /app/(protected)/groups/new/page.tsx - 그룹 생성\\n- /app/(protected)/groups/[id]/page.tsx - 그룹 상세\\n- /app/(protected)/missions/new/page.tsx - 미션 생성\\n- /app/(protected)/missions/[id]/page.tsx - 미션 상세\\n- /app/(protected)/missions/[id]/verify/page.tsx - 미션 인증\\n- /app/(protected)/stats/page.tsx - 통계\\n- /app/(protected)/settings/page.tsx - 설정\\n- /app/(protected)/settings/profile/page.tsx - 프로필 수정\\n- /app/(protected)/settings/notifications/page.tsx - 알림 설정\\n- /app/(protected)/profile/page.tsx - 프로필 설정(최초)\\n- /app/invite/[token]/page.tsx - 초대 링크",
+      "notes": "기존 /app/page.tsx는 (public) 그룹으로 이동됩니다. 기존 /app/protected/page.tsx는 유지하되 나중에 dashboard로 리다이렉트하도록 수정합니다.",
+      "status": "pending",
+      "dependencies": [],
+      "createdAt": "2026-01-11T13:20:28.029Z",
+      "updatedAt": "2026-01-11T13:20:28.029Z",
+      "relatedFiles": [
+        {
+          "path": "app/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "(public) 그룹으로 이동"
+        },
+        {
+          "path": "app/(public)/page.tsx",
+          "type": "CREATE",
+          "description": "랜딩 페이지"
+        },
+        {
+          "path": "app/(protected)/dashboard/page.tsx",
+          "type": "CREATE",
+          "description": "대시보드"
+        },
+        {
+          "path": "app/(protected)/groups/page.tsx",
+          "type": "CREATE",
+          "description": "그룹 목록"
+        },
+        {
+          "path": "app/invite/[token]/page.tsx",
+          "type": "CREATE",
+          "description": "초대 링크"
+        }
+      ],
+      "implementationGuide": "1. /app/(public)/ 디렉토리 생성\\n2. 기존 /app/page.tsx 내용을 /app/(public)/page.tsx로 이동\\n3. /app/(protected)/ 하위에 dashboard, groups, missions, stats, settings, profile 디렉토리 생성\\n4. 각 디렉토리에 page.tsx 파일 생성 (placeholder 컴포넌트)\\n5. /app/invite/[token]/ 디렉토리 생성\\n\\n각 페이지는 다음 형식으로 생성:\\n```\\nexport default function PageName() {\\n  return <div className=\"p-4\"><h1>페이지 이름</h1></div>;\\n}\\n```",
+      "verificationCriteria": "1. npm run build 성공\\n2. 모든 페이지 라우트가 브라우저에서 접근 가능\\n3. 기존 인증 페이지(/auth/*)가 정상 작동\\n4. npm run check-all 통과",
+      "analysisResult": "하루모아(HaruMoa) Phase 1: 애플리케이션 골격 구축을 위한 작업 분할입니다. 목표는 Next.js App Router 기반 14개 페이지 라우팅 구조, TypeScript 타입/인터페이스, 공통 유틸리티를 구현하는 것입니다. 기존 프로젝트 구조(protected/, auth/, components/ui/)를 유지하면서 확장합니다."
+    },
+    {
+      "id": "0b49b29f-c8b1-4737-9183-bd59e545bfe1",
+      "name": "공통 레이아웃 컴포넌트 구현",
+      "description": "하루모아 앱의 공통 레이아웃 컴포넌트를 구현합니다: Header(헤더), BottomTabBar(하단 탭바). 기존 protected/layout.tsx를 확장하여 모바일 친화적인 레이아웃을 구성합니다.",
+      "notes": "shadcn/ui 컴포넌트(Button, Badge 등)를 활용합니다. 반응형 디자인으로 데스크톱에서는 사이드바로 전환 가능하도록 확장성을 고려합니다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "c4869a64-a021-4fc8-93e7-c1c1fd673050"
+        }
+      ],
+      "createdAt": "2026-01-11T13:20:28.029Z",
+      "updatedAt": "2026-01-11T13:20:28.029Z",
+      "relatedFiles": [
+        {
+          "path": "components/layout/header.tsx",
+          "type": "CREATE",
+          "description": "헤더 컴포넌트"
+        },
+        {
+          "path": "components/layout/bottom-tab-bar.tsx",
+          "type": "CREATE",
+          "description": "하단 탭바 컴포넌트"
+        },
+        {
+          "path": "app/(protected)/layout.tsx",
+          "type": "CREATE",
+          "description": "보호된 라우트 레이아웃"
+        }
+      ],
+      "implementationGuide": "1. /components/layout/ 디렉토리 생성\\n2. Header 컴포넌트 생성:\\n   - 로고 (하루모아)\\n   - 알림 아이콘 (Bell)\\n   - lucide-react 아이콘 사용\\n3. BottomTabBar 컴포넌트 생성:\\n   - 4개 탭: 홈(Home), 그룹(Users), 통계(BarChart), 설정(Settings)\\n   - 현재 경로에 따른 활성 상태 표시\\n   - usePathname() 훅 사용\\n4. /app/(protected)/layout.tsx 수정:\\n   - Header와 BottomTabBar 통합\\n   - 모바일 반응형 레이아웃\\n\\n컴포넌트 인터페이스:\\n- Header: 로고, 알림 아이콘\\n- BottomTabBar: tabs 배열(href, icon, label)\\n\\n스타일링: Tailwind CSS, cn() 유틸리티 사용",
+      "verificationCriteria": "1. Header가 모든 보호된 페이지에 표시됨\\n2. BottomTabBar가 하단에 고정되어 표시됨\\n3. 탭 클릭 시 해당 페이지로 이동\\n4. 현재 페이지에 해당하는 탭이 활성화 상태로 표시\\n5. npm run check-all 통과",
+      "analysisResult": "하루모아(HaruMoa) Phase 1: 애플리케이션 골격 구축을 위한 작업 분할입니다. 목표는 Next.js App Router 기반 14개 페이지 라우팅 구조, TypeScript 타입/인터페이스, 공통 유틸리티를 구현하는 것입니다. 기존 프로젝트 구조(protected/, auth/, components/ui/)를 유지하면서 확장합니다."
+    },
+    {
+      "id": "2a32126d-61cd-4133-983a-1a7a36c84852",
+      "name": "TypeScript Enum 및 상수 타입 정의",
+      "description": "하루모아 앱에서 사용할 Enum 타입과 상수를 정의합니다.\\n\\n정의할 Enum:\\n- RelationshipType: 그룹 관계 유형 (COUPLE, FAMILY, FRIENDS, OTHER)\\n- RepeatType: 미션 반복 유형 (DAILY, SPECIFIC_DAYS)\\n- VerificationType: 인증 타입 (PHOTO, TEXT, CHECKLIST)\\n- NotificationType: 알림 유형 (CHEER, REMINDER)\\n\\n추가 상수:\\n- 관계 유형별 라벨/아이콘 매핑\\n- 인증 타입별 라벨 매핑",
+      "notes": "TypeScript의 as const 패턴을 사용하여 타입 안전성을 확보합니다. Supabase에서 사용할 값은 소문자 스네이크 케이스를 사용합니다.",
+      "status": "pending",
+      "dependencies": [],
+      "createdAt": "2026-01-11T13:20:28.029Z",
+      "updatedAt": "2026-01-11T13:20:28.029Z",
+      "relatedFiles": [
+        {
+          "path": "lib/types/enums.ts",
+          "type": "CREATE",
+          "description": "Enum 타입 정의"
+        },
+        {
+          "path": "lib/types/index.ts",
+          "type": "CREATE",
+          "description": "타입 re-export"
+        }
+      ],
+      "implementationGuide": "1. /lib/types/ 디렉토리 생성\\n2. /lib/types/enums.ts 파일 생성:\\n\\n```typescript\\nexport const RelationshipType = {\\n  COUPLE: 'couple',\\n  FAMILY: 'family',\\n  FRIENDS: 'friends',\\n  OTHER: 'other',\\n} as const;\\nexport type RelationshipType = typeof RelationshipType[keyof typeof RelationshipType];\\n\\nexport const RELATIONSHIP_LABELS: Record<RelationshipType, string> = {\\n  couple: '커플',\\n  family: '가족',\\n  friends: '친구',\\n  other: '기타',\\n};\\n```\\n\\n같은 패턴으로 RepeatType, VerificationType, NotificationType 정의\\n\\n3. /lib/types/index.ts에서 re-export",
+      "verificationCriteria": "1. 모든 Enum 타입이 정의됨\\n2. 각 Enum에 대한 라벨 매핑 객체 존재\\n3. TypeScript 컴파일 오류 없음\\n4. npm run typecheck 통과",
+      "analysisResult": "하루모아(HaruMoa) Phase 1: 애플리케이션 골격 구축을 위한 작업 분할입니다. 목표는 Next.js App Router 기반 14개 페이지 라우팅 구조, TypeScript 타입/인터페이스, 공통 유틸리티를 구현하는 것입니다. 기존 프로젝트 구조(protected/, auth/, components/ui/)를 유지하면서 확장합니다."
+    },
+    {
+      "id": "90aa9e04-c5d9-480f-b77d-b70de7df514e",
+      "name": "데이터베이스 인터페이스 타입 정의",
+      "description": "PRD의 데이터 모델을 기반으로 TypeScript 인터페이스를 정의합니다.\\n\\n정의할 인터페이스:\\n- User: 사용자 정보\\n- Group: 그룹 정보\\n- GroupMember: 그룹 멤버\\n- GroupInvite: 초대 링크\\n- Mission: 미션 정보\\n- Verification: 인증 기록\\n- Cheer: 응원 기록\\n- Notification: 알림",
+      "notes": "Supabase에서 자동 생성되는 타입(supabase gen types)과 호환되도록 필드명은 snake_case를 사용합니다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "2a32126d-61cd-4133-983a-1a7a36c84852"
+        }
+      ],
+      "createdAt": "2026-01-11T13:20:28.029Z",
+      "updatedAt": "2026-01-11T13:20:28.029Z",
+      "relatedFiles": [
+        {
+          "path": "lib/types/database.ts",
+          "type": "CREATE",
+          "description": "데이터베이스 인터페이스"
+        },
+        {
+          "path": "lib/types/index.ts",
+          "type": "TO_MODIFY",
+          "description": "타입 re-export 추가"
+        }
+      ],
+      "implementationGuide": "1. /lib/types/database.ts 파일 생성\\n\\n```typescript\\nimport { RelationshipType, RepeatType, VerificationType, NotificationType } from './enums';\\n\\nexport interface User {\\n  id: string;\\n  email: string;\\n  nickname: string | null;\\n  profile_image_url: string | null;\\n  created_at: string;\\n  updated_at: string;\\n}\\n\\nexport interface Group {\\n  id: string;\\n  name: string;\\n  description: string | null;\\n  relationship_type: RelationshipType;\\n  owner_id: string;\\n  created_at: string;\\n  updated_at: string;\\n}\\n```\\n\\n모든 테이블에 대해 인터페이스 정의\\n\\n2. 관계 타입 정의 (조인 결과용):\\n- GroupWithMembers\\n- MissionWithVerifications\\n- VerificationWithCheers\\n\\n3. /lib/types/index.ts에 export 추가",
+      "verificationCriteria": "1. 8개 테이블에 대한 인터페이스 정의\\n2. 관계 타입(WithXxx) 정의\\n3. Enum 타입과 올바르게 연결됨\\n4. npm run typecheck 통과",
+      "analysisResult": "하루모아(HaruMoa) Phase 1: 애플리케이션 골격 구축을 위한 작업 분할입니다. 목표는 Next.js App Router 기반 14개 페이지 라우팅 구조, TypeScript 타입/인터페이스, 공통 유틸리티를 구현하는 것입니다. 기존 프로젝트 구조(protected/, auth/, components/ui/)를 유지하면서 확장합니다."
+    },
+    {
+      "id": "b302fbbb-82d9-46ea-a3dc-6b21dff3a66d",
+      "name": "API 요청/응답 타입 정의",
+      "description": "API 호출 시 사용할 요청/응답 타입을 정의합니다.\\n\\n정의할 타입:\\n- API 응답 래퍼 (ApiResponse<T>)\\n- 페이지네이션 응답 (PaginatedResponse<T>)\\n- 에러 응답 (ApiError)\\n- 각 엔티티별 Create/Update DTO",
+      "notes": "DTO 타입은 Zod 스키마와 연동하여 사용됩니다. Omit, Pick 유틸리티 타입을 활용합니다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "90aa9e04-c5d9-480f-b77d-b70de7df514e"
+        }
+      ],
+      "createdAt": "2026-01-11T13:20:28.029Z",
+      "updatedAt": "2026-01-11T13:20:28.029Z",
+      "relatedFiles": [
+        {
+          "path": "lib/types/api.ts",
+          "type": "CREATE",
+          "description": "API 타입"
+        },
+        {
+          "path": "lib/types/index.ts",
+          "type": "TO_MODIFY",
+          "description": "타입 re-export 추가"
+        }
+      ],
+      "implementationGuide": "1. /lib/types/api.ts 파일 생성\\n\\n```typescript\\nexport interface ApiResponse<T> {\\n  data: T | null;\\n  error: ApiError | null;\\n}\\n\\nexport interface ApiError {\\n  message: string;\\n  code?: string;\\n}\\n\\nexport interface PaginatedResponse<T> {\\n  data: T[];\\n  total: number;\\n  page: number;\\n  limit: number;\\n  hasMore: boolean;\\n}\\n```\\n\\n2. DTO 타입 정의:\\n- CreateGroupDto, UpdateGroupDto\\n- CreateMissionDto, UpdateMissionDto\\n- CreateVerificationDto\\n- UpdateProfileDto\\n\\n3. /lib/types/index.ts에 export 추가",
+      "verificationCriteria": "1. 공통 응답 타입 정의 (ApiResponse, PaginatedResponse)\\n2. 주요 엔티티별 DTO 정의\\n3. 데이터베이스 인터페이스와 호환\\n4. npm run typecheck 통과",
+      "analysisResult": "하루모아(HaruMoa) Phase 1: 애플리케이션 골격 구축을 위한 작업 분할입니다. 목표는 Next.js App Router 기반 14개 페이지 라우팅 구조, TypeScript 타입/인터페이스, 공통 유틸리티를 구현하는 것입니다. 기존 프로젝트 구조(protected/, auth/, components/ui/)를 유지하면서 확장합니다."
+    },
+    {
+      "id": "b9e3cfae-2a59-4cc7-8f16-ac6032d4b7b7",
+      "name": "Zod 유효성 검사 스키마 정의",
+      "description": "폼 검증을 위한 Zod 스키마를 정의합니다.\\n\\n정의할 스키마:\\n- 인증: loginSchema, signUpSchema\\n- 프로필: profileSchema, updateProfileSchema\\n- 그룹: createGroupSchema, updateGroupSchema\\n- 미션: createMissionSchema, updateMissionSchema\\n- 인증(verification): createVerificationSchema",
+      "notes": "한글 에러 메시지를 사용합니다. 스키마에서 infer로 타입을 추출하여 DTO 타입과 연동합니다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "2a32126d-61cd-4133-983a-1a7a36c84852"
+        }
+      ],
+      "createdAt": "2026-01-11T13:20:28.029Z",
+      "updatedAt": "2026-01-11T13:20:28.029Z",
+      "relatedFiles": [
+        {
+          "path": "lib/validations/auth.ts",
+          "type": "CREATE",
+          "description": "인증 스키마"
+        },
+        {
+          "path": "lib/validations/profile.ts",
+          "type": "CREATE",
+          "description": "프로필 스키마"
+        },
+        {
+          "path": "lib/validations/group.ts",
+          "type": "CREATE",
+          "description": "그룹 스키마"
+        },
+        {
+          "path": "lib/validations/mission.ts",
+          "type": "CREATE",
+          "description": "미션 스키마"
+        },
+        {
+          "path": "lib/validations/index.ts",
+          "type": "CREATE",
+          "description": "스키마 re-export"
+        }
+      ],
+      "implementationGuide": "1. zod 패키지 설치: npm install zod\\n2. /lib/validations/ 디렉토리 생성\\n3. /lib/validations/auth.ts:\\n```typescript\\nimport { z } from 'zod';\\n\\nexport const loginSchema = z.object({\\n  email: z.string().email('유효한 이메일을 입력하세요'),\\n  password: z.string().min(6, '비밀번호는 6자 이상이어야 합니다'),\\n});\\n\\nexport type LoginInput = z.infer<typeof loginSchema>;\\n```\\n\\n4. /lib/validations/profile.ts\\n5. /lib/validations/group.ts\\n6. /lib/validations/mission.ts\\n7. /lib/validations/index.ts에서 re-export",
+      "verificationCriteria": "1. zod 패키지 설치됨\\n2. 모든 스키마가 정의됨\\n3. 각 스키마에서 타입 추출 가능 (z.infer)\\n4. 한글 에러 메시지 포함\\n5. npm run check-all 통과",
+      "analysisResult": "하루모아(HaruMoa) Phase 1: 애플리케이션 골격 구축을 위한 작업 분할입니다. 목표는 Next.js App Router 기반 14개 페이지 라우팅 구조, TypeScript 타입/인터페이스, 공통 유틸리티를 구현하는 것입니다. 기존 프로젝트 구조(protected/, auth/, components/ui/)를 유지하면서 확장합니다."
+    },
+    {
+      "id": "443e0045-25c2-4b59-934f-5de17a998d4f",
+      "name": "날짜/시간 유틸리티 함수 작성",
+      "description": "날짜 및 시간 처리를 위한 유틸리티 함수를 작성합니다.\\n\\n구현할 함수:\\n- formatDate(date): YYYY-MM-DD 형식\\n- formatDateTime(date): YYYY-MM-DD HH:mm 형식\\n- formatRelativeTime(date): 방금 전, N분 전, N시간 전, N일 전\\n- isToday(date): 오늘인지 확인\\n- isThisWeek(date): 이번 주인지 확인\\n- getWeekDates(): 이번 주 날짜 배열\\n- getMonthDates(year, month): 해당 월 날짜 배열",
+      "notes": "date-fns의 한국어 로케일(ko)을 사용합니다. 타임존은 클라이언트 로컬 기준으로 처리합니다.",
+      "status": "pending",
+      "dependencies": [],
+      "createdAt": "2026-01-11T13:20:28.029Z",
+      "updatedAt": "2026-01-11T13:20:28.029Z",
+      "relatedFiles": [
+        {
+          "path": "lib/utils/date.ts",
+          "type": "CREATE",
+          "description": "날짜 유틸리티"
+        },
+        {
+          "path": "lib/utils/index.ts",
+          "type": "CREATE",
+          "description": "유틸리티 re-export"
+        }
+      ],
+      "implementationGuide": "1. date-fns 패키지 설치: npm install date-fns\\n2. /lib/utils/ 디렉토리 생성\\n3. /lib/utils/date.ts 파일 생성:\\n\\n```typescript\\nimport { format, formatDistanceToNow, isToday as isTodayFns, startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns';\\nimport { ko } from 'date-fns/locale';\\n\\nexport function formatDate(date: Date | string): string {\\n  return format(new Date(date), 'yyyy-MM-dd');\\n}\\n\\nexport function formatRelativeTime(date: Date | string): string {\\n  return formatDistanceToNow(new Date(date), { addSuffix: true, locale: ko });\\n}\\n```\\n\\n4. /lib/utils/index.ts에서 re-export",
+      "verificationCriteria": "1. date-fns 패키지 설치됨\\n2. 모든 날짜 함수가 정의됨\\n3. 한국어 상대 시간 표시 (예: 3분 전)\\n4. npm run typecheck 통과",
+      "analysisResult": "하루모아(HaruMoa) Phase 1: 애플리케이션 골격 구축을 위한 작업 분할입니다. 목표는 Next.js App Router 기반 14개 페이지 라우팅 구조, TypeScript 타입/인터페이스, 공통 유틸리티를 구현하는 것입니다. 기존 프로젝트 구조(protected/, auth/, components/ui/)를 유지하면서 확장합니다."
+    },
+    {
+      "id": "24aa4d60-5568-4992-b97b-5304d96d7229",
+      "name": "스트릭 계산 유틸리티 함수 작성",
+      "description": "연속 달성(스트릭) 계산을 위한 유틸리티 함수를 작성합니다.\\n\\n구현할 함수:\\n- calculateCurrentStreak(verifications): 현재 연속 달성 일수\\n- calculateLongestStreak(verifications): 최장 연속 달성 일수\\n- getStreakDates(verifications): 스트릭 기간의 시작/끝 날짜",
+      "notes": "스트릭 계산은 날짜 기준으로 하루에 여러 번 인증해도 1일로 계산합니다. 타임존 처리에 주의합니다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "443e0045-25c2-4b59-934f-5de17a998d4f"
+        }
+      ],
+      "createdAt": "2026-01-11T13:20:28.029Z",
+      "updatedAt": "2026-01-11T13:20:28.029Z",
+      "relatedFiles": [
+        {
+          "path": "lib/utils/streak.ts",
+          "type": "CREATE",
+          "description": "스트릭 계산 유틸리티"
+        },
+        {
+          "path": "lib/utils/index.ts",
+          "type": "TO_MODIFY",
+          "description": "유틸리티 re-export 추가"
+        }
+      ],
+      "implementationGuide": "1. /lib/utils/streak.ts 파일 생성:\\n\\n```typescript\\nimport { differenceInDays, startOfDay, isYesterday, isToday } from 'date-fns';\\n\\ninterface VerificationDate {\\n  verified_at: string;\\n}\\n\\nexport function calculateCurrentStreak(verifications: VerificationDate[]): number {\\n  if (verifications.length === 0) return 0;\\n  \\n  // 날짜별로 정렬 (최신순)\\n  const sorted = [...verifications].sort(\\n    (a, b) => new Date(b.verified_at).getTime() - new Date(a.verified_at).getTime()\\n  );\\n  \\n  // 오늘 또는 어제부터 시작하는지 확인\\n  const latestDate = new Date(sorted[0].verified_at);\\n  if (!isToday(latestDate) && !isYesterday(latestDate)) return 0;\\n  \\n  // 연속 일수 계산\\n  let streak = 1;\\n  for (let i = 1; i < sorted.length; i++) {\\n    const diff = differenceInDays(\\n      startOfDay(new Date(sorted[i-1].verified_at)),\\n      startOfDay(new Date(sorted[i].verified_at))\\n    );\\n    if (diff === 1) streak++;\\n    else break;\\n  }\\n  return streak;\\n}\\n```\\n\\n2. calculateLongestStreak, getStreakDates 함수 구현\\n3. /lib/utils/index.ts에 export 추가",
+      "verificationCriteria": "1. 현재 스트릭 계산 정확\\n2. 최장 스트릭 계산 정확\\n3. 빈 배열 입력 시 0 반환\\n4. npm run typecheck 통과",
+      "analysisResult": "하루모아(HaruMoa) Phase 1: 애플리케이션 골격 구축을 위한 작업 분할입니다. 목표는 Next.js App Router 기반 14개 페이지 라우팅 구조, TypeScript 타입/인터페이스, 공통 유틸리티를 구현하는 것입니다. 기존 프로젝트 구조(protected/, auth/, components/ui/)를 유지하면서 확장합니다."
+    },
+    {
+      "id": "2ff3f46c-3514-43a4-a858-1e2650115abc",
+      "name": "초대 토큰 및 이미지 URL 유틸리티 작성",
+      "description": "초대 링크 토큰 생성/검증 및 이미지 URL 처리 유틸리티를 작성합니다.\\n\\n구현할 함수:\\n- 초대 토큰: generateInviteToken(), isTokenExpired(expiresAt)\\n- 이미지 URL: getStorageUrl(bucket, path), getProfileImageUrl(url), getVerificationImageUrl(url)",
+      "notes": "crypto.randomUUID()는 Node.js 및 최신 브라우저에서 지원됩니다. 기본 프로필 이미지 파일은 Phase 2에서 추가합니다.",
+      "status": "pending",
+      "dependencies": [],
+      "createdAt": "2026-01-11T13:20:28.029Z",
+      "updatedAt": "2026-01-11T13:20:28.029Z",
+      "relatedFiles": [
+        {
+          "path": "lib/utils/invite.ts",
+          "type": "CREATE",
+          "description": "초대 토큰 유틸리티"
+        },
+        {
+          "path": "lib/utils/image.ts",
+          "type": "CREATE",
+          "description": "이미지 URL 유틸리티"
+        },
+        {
+          "path": "lib/utils/index.ts",
+          "type": "TO_MODIFY",
+          "description": "유틸리티 re-export 추가"
+        }
+      ],
+      "implementationGuide": "1. /lib/utils/invite.ts 파일 생성:\\n\\n```typescript\\nexport function generateInviteToken(): string {\\n  return crypto.randomUUID();\\n}\\n\\nexport function isTokenExpired(expiresAt: string): boolean {\\n  return new Date(expiresAt) < new Date();\\n}\\n\\nexport function getInviteExpiryDate(): Date {\\n  const date = new Date();\\n  date.setDate(date.getDate() + 7); // 7일 후\\n  return date;\\n}\\n```\\n\\n2. /lib/utils/image.ts 파일 생성:\\n\\n```typescript\\nconst SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;\\nconst DEFAULT_PROFILE_IMAGE = '/images/default-profile.png';\\n\\nexport function getStorageUrl(bucket: string, path: string): string {\\n  return \\`\\${SUPABASE_URL}/storage/v1/object/public/\\${bucket}/\\${path}\\`;\\n}\\n\\nexport function getProfileImageUrl(url: string | null): string {\\n  return url || DEFAULT_PROFILE_IMAGE;\\n}\\n```\\n\\n3. /lib/utils/index.ts에 export 추가",
+      "verificationCriteria": "1. 초대 토큰 생성 (UUID 형식)\\n2. 토큰 만료 검사 정확\\n3. Supabase Storage URL 생성 정확\\n4. 기본 프로필 이미지 폴백\\n5. npm run typecheck 통과",
+      "analysisResult": "하루모아(HaruMoa) Phase 1: 애플리케이션 골격 구축을 위한 작업 분할입니다. 목표는 Next.js App Router 기반 14개 페이지 라우팅 구조, TypeScript 타입/인터페이스, 공통 유틸리티를 구현하는 것입니다. 기존 프로젝트 구조(protected/, auth/, components/ui/)를 유지하면서 확장합니다."
+    },
+    {
+      "id": "17118283-2e27-435c-b24a-27070cb7328d",
+      "name": "에러 핸들링 유틸리티 작성",
+      "description": "Supabase 및 API 에러를 처리하기 위한 유틸리티를 작성합니다.\\n\\n구현할 함수:\\n- handleSupabaseError(error): 에러 메시지 추출\\n- isAuthError(error): 인증 에러인지 확인\\n- getErrorMessage(error): 사용자 친화적 에러 메시지",
+      "notes": "Supabase 에러 코드는 공식 문서를 참조합니다. 한글 에러 메시지를 제공하여 사용자 경험을 향상시킵니다.",
+      "status": "pending",
+      "dependencies": [],
+      "createdAt": "2026-01-11T13:20:28.029Z",
+      "updatedAt": "2026-01-11T13:20:28.029Z",
+      "relatedFiles": [
+        {
+          "path": "lib/utils/error.ts",
+          "type": "CREATE",
+          "description": "에러 핸들링 유틸리티"
+        },
+        {
+          "path": "lib/utils/index.ts",
+          "type": "TO_MODIFY",
+          "description": "유틸리티 re-export 추가"
+        },
+        {
+          "path": "lib/utils.ts",
+          "type": "REFERENCE",
+          "description": "기존 cn 함수 참조"
+        }
+      ],
+      "implementationGuide": "1. /lib/utils/error.ts 파일 생성:\\n\\n```typescript\\nimport { AuthError, PostgrestError } from '@supabase/supabase-js';\\n\\nexport interface AppError {\\n  message: string;\\n  code?: string;\\n}\\n\\nexport function handleSupabaseError(error: AuthError | PostgrestError | null): AppError | null {\\n  if (!error) return null;\\n  return {\\n    message: error.message,\\n    code: 'code' in error ? error.code : undefined,\\n  };\\n}\\n\\nexport function isAuthError(error: unknown): error is AuthError {\\n  return error instanceof AuthError;\\n}\\n\\nconst ERROR_MESSAGES: Record<string, string> = {\\n  'invalid_credentials': '이메일 또는 비밀번호가 올바르지 않습니다.',\\n  'email_not_confirmed': '이메일 인증이 필요합니다.',\\n  'user_already_exists': '이미 가입된 이메일입니다.',\\n  '23505': '중복된 데이터입니다.',\\n};\\n\\nexport function getErrorMessage(error: AppError): string {\\n  if (error.code && ERROR_MESSAGES[error.code]) {\\n    return ERROR_MESSAGES[error.code];\\n  }\\n  return error.message || '오류가 발생했습니다.';\\n}\\n```\\n\\n2. /lib/utils/index.ts에 export 추가\\n3. 기존 /lib/utils.ts의 cn 함수를 /lib/utils/index.ts에서 re-export",
+      "verificationCriteria": "1. Supabase 에러 처리 함수 정의\\n2. 인증 에러 타입 가드 정의\\n3. 한글 에러 메시지 매핑\\n4. 기존 cn 함수와 호환\\n5. npm run check-all 통과",
+      "analysisResult": "하루모아(HaruMoa) Phase 1: 애플리케이션 골격 구축을 위한 작업 분할입니다. 목표는 Next.js App Router 기반 14개 페이지 라우팅 구조, TypeScript 타입/인터페이스, 공통 유틸리티를 구현하는 것입니다. 기존 프로젝트 구조(protected/, auth/, components/ui/)를 유지하면서 확장합니다."
+    }
+  ]
+}
