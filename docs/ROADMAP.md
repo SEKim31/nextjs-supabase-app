@@ -74,31 +74,31 @@
 
 > **목표**: 모든 페이지 UI를 하드코딩된 더미 데이터로 완성
 
-- **Task 004: 공통 컴포넌트 라이브러리 구현** - 우선순위
-  - shadcn/ui 기반 확장 컴포넌트 구현
-    - Avatar (프로필 이미지)
-    - Card (그룹 카드, 미션 카드, 인증 피드 카드)
-    - Badge (관계 유형, 인증 상태)
-    - Calendar (월간 캘린더)
-    - Progress (달성률 바)
-    - Tabs (하단 탭바)
-  - 커스텀 컴포넌트 구현
-    - CheerButton (응원 버튼 - "최고야!")
-    - StreakBadge (연속 달성 배지)
-    - MissionCard (미션 카드)
-    - VerificationFeed (인증 피드)
-    - GroupCard (그룹 카드)
-    - StatChart (주간 달성률 차트)
+- **Task 004: 공통 컴포넌트 라이브러리 구현** ✅ - 완료
+  - ✅ shadcn/ui 기반 확장 컴포넌트 구현
+    - ✅ Avatar (프로필 이미지)
+    - ✅ Card (그룹 카드, 미션 카드, 인증 피드 카드)
+    - ✅ Badge (관계 유형, 인증 상태)
+    - ✅ Calendar (월간 캘린더)
+    - ✅ Progress (달성률 바)
+    - ✅ Tabs (하단 탭바)
+  - ✅ 커스텀 컴포넌트 구현
+    - ✅ CheerButton (응원 버튼 - "최고야!")
+    - ✅ StreakBadge (연속 달성 배지)
+    - ✅ MissionCard (미션 카드)
+    - ✅ VerificationFeed (인증 피드)
+    - ✅ GroupCard (그룹 카드)
+    - ✅ StatChart (주간 달성률 차트)
   - **관련 기능**: F001, F004, F005, F006
   - **산출물**: `/components/ui/`, `/components/common/`
 
-- **Task 005: 더미 데이터 생성 및 관리**
-  - Mock 사용자 데이터 (3-5명)
-  - Mock 그룹 데이터 (2-3개 그룹)
-  - Mock 미션 데이터 (그룹당 3-5개)
-  - Mock 인증 데이터 (최근 7일치)
-  - Mock 응원 데이터
-  - Mock 알림 데이터
+- **Task 005: 더미 데이터 생성 및 관리** ✅ - 완료
+  - ✅ Mock 사용자 데이터 (5명)
+  - ✅ Mock 그룹 데이터 (3개 그룹)
+  - ✅ Mock 미션 데이터 (그룹당 4개, 총 12개)
+  - ✅ Mock 인증 데이터 (최근 7일치)
+  - ✅ Mock 응원 데이터
+  - ✅ Mock 알림 데이터
   - **관련 기능**: 전체
   - **산출물**: `/lib/mocks/`
 
@@ -505,7 +505,7 @@ Task 001 (라우팅)
 
 ---
 
-**문서 버전**: v1.1
+**문서 버전**: v1.2
 **최종 업데이트**: 2026-01-11
-**📊 진행 상황**: Phase 1 완료, Phase 2 진행 예정 (3/28 Tasks 완료)
+**📊 진행 상황**: Phase 1 완료, Phase 2 진행 중 (4/28 Tasks 완료)
 **작성자**: Claude Code
