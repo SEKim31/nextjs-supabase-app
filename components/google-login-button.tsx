@@ -31,16 +31,23 @@ function GoogleIcon({ className }: { className?: string }) {
 
 interface GoogleLoginButtonProps {
   className?: string;
+  /** 에러 발생 시 호출되는 콜백 */
+  onError?: (message: string) => void;
 }
 
-export function GoogleLoginButton({ className }: GoogleLoginButtonProps) {
+export function GoogleLoginButton({
+  className,
+  onError,
+}: GoogleLoginButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleGoogleLogin = async () => {
     const supabase = createClient();
     setIsLoading(true);
+    setError(null);
 
-    const { error } = await supabase.auth.signInWithOAuth({
+    const { error: authError } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         // 콜백 URL 지정 (PKCE 흐름)
@@ -48,23 +55,35 @@ export function GoogleLoginButton({ className }: GoogleLoginButtonProps) {
       },
     });
 
-    if (error) {
-      console.error("Google 로그인 에러:", error);
+    if (authError) {
+      // 개발 환경에서만 콘솔 로깅
+      if (process.env.NODE_ENV === "development") {
+        console.error("[Google Login Error]", authError);
+      }
+
+      const errorMessage = "로그인에 실패했습니다. 다시 시도해주세요.";
+      setError(errorMessage);
+      onError?.(errorMessage);
       setIsLoading(false);
     }
     // 성공 시 자동으로 Google 로그인 페이지로 리다이렉트됨
   };
 
   return (
-    <Button
-      type="button"
-      variant="outline"
-      className={className}
-      onClick={handleGoogleLogin}
-      disabled={isLoading}
-    >
-      <GoogleIcon className="mr-2 h-4 w-4" />
-      {isLoading ? "로딩 중..." : "Google로 계속하기"}
-    </Button>
+    <div className="w-full">
+      <Button
+        type="button"
+        variant="outline"
+        className={className}
+        onClick={handleGoogleLogin}
+        disabled={isLoading}
+      >
+        <GoogleIcon className="mr-2 h-4 w-4" />
+        {isLoading ? "로딩 중..." : "Google로 계속하기"}
+      </Button>
+      {error && (
+        <p className="mt-2 text-center text-sm text-destructive">{error}</p>
+      )}
+    </div>
   );
 }

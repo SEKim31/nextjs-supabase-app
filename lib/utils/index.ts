@@ -4,3 +4,4 @@ export * from "./streak";
 export * from "./invite";
 export * from "./image";
 export * from "./error";
+export * from "./rate-limit";

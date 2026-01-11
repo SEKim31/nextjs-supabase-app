@@ -2,6 +2,10 @@ import { type NextRequest } from "next/server";
 
 import { updateSession } from "@/lib/supabase/proxy";
 
+/**
+ * Next.js Proxy
+ * 모든 요청에서 세션 검증, Rate Limiting, 인증 체크를 수행합니다.
+ */
 export async function proxy(request: NextRequest) {
   return await updateSession(request);
 }
