@@ -33,7 +33,6 @@ npm run typecheck      # TypeScript 타입 체크
 npm run check-all      # 모든 검사 통합 실행 (권장)
 ```
 
-
 ## ⚡ 자주 사용하는 명령어
 
 ```bash
@@ -88,23 +87,50 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 - lucide-react 아이콘
 - next-themes로 다크모드 지원
 
+## 코드 스타일 가이드
+
+### Prettier 설정
+
+- 세미콜론: 사용
+- 따옴표: 큰따옴표 (`"`)
+- 들여쓰기: 2칸
+- Tailwind 클래스 자동 정렬 (`prettier-plugin-tailwindcss`)
+
+### import 순서 규칙
+
+ESLint `import-x/order` 규칙에 따라 자동 정렬됩니다:
+
+1. React, Next.js
+2. 외부 패키지 (npm)
+3. 내부 모듈 (`@/`)
+4. 상대 경로
+5. 타입 import
+
+### 설정 파일
+
+- `.prettierrc` - Prettier 설정
+- `.prettierignore` - Prettier 제외 파일
+- `.editorconfig` - 에디터 설정
+- `eslint.config.mjs` - ESLint Flat Config
 
 ### Supabase 클라이언트 사용 시 주의사항
 
 1. **Server Components/Route Handlers**:
+
    ```typescript
    import { createClient } from "@/lib/supabase/server";
 
    export default async function ServerComponent() {
      // 매번 새로 생성 (전역 변수 X)
      const supabase = await createClient();
-     const { data } = await supabase.from('table').select();
+     const { data } = await supabase.from("table").select();
    }
    ```
 
 2. **Client Components**:
+
    ```typescript
-   'use client';
+   "use client";
    import { createClient } from "@/lib/supabase/client";
 
    export default function ClientComponent() {
@@ -125,6 +151,7 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 ## MCP 서버 설정
 
 프로젝트는 다음 MCP 서버를 사용합니다:
+
 - **supabase**: Supabase 데이터베이스 연동
 - **playwright**: 브라우저 자동화
 - **context7**: 문서 검색
@@ -134,6 +161,7 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 ## Git Hooks
 
 프로젝트는 Husky를 사용하여 커밋 전 자동 검증을 수행합니다:
+
 - **pre-commit**: 스테이지된 파일에 대해 ESLint + Prettier 자동 실행
 - 커밋 전 자동으로 코드 품질 검사 및 포맷팅 수행
 
