@@ -1,9 +1,8 @@
 "use client";
 
-// 새 미션 생성 페이지
 import { useEffect } from "react";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Camera, CheckSquare, ChevronLeft, FileText } from "lucide-react";
@@ -23,6 +22,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { getMockMissionById } from "@/lib/mocks/missions";
 import {
   DAY_LABELS,
   DayOfWeek,
@@ -32,8 +32,8 @@ import {
   VerificationType,
 } from "@/lib/types/enums";
 import {
-  createMissionSchema,
-  type CreateMissionInput,
+  updateMissionSchema,
+  type UpdateMissionInput,
 } from "@/lib/validations/mission";
 
 // 인증 타입별 아이콘 매핑
@@ -46,45 +46,61 @@ const VERIFICATION_ICONS_MAP = {
 // 요일 배열 (월~일 순서)
 const DAYS_ORDER: DayOfWeek[] = [1, 2, 3, 4, 5, 6, 0];
 
-export default function NewMissionPage() {
+/**
+ * 미션 수정 페이지
+ * 기존 미션 데이터를 불러와 수정할 수 있는 폼 제공
+ */
+export default function EditMissionPage() {
+  const params = useParams();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const groupId = searchParams.get("groupId");
+  const missionId = params.id as string;
 
   // react-hook-form 초기화
-  const form = useForm<CreateMissionInput>({
-    resolver: zodResolver(createMissionSchema),
+  const form = useForm<UpdateMissionInput>({
+    resolver: zodResolver(updateMissionSchema),
     defaultValues: {
-      group_id: groupId || "",
       title: "",
       description: "",
       repeat_type: RepeatType.DAILY,
       repeat_days: null,
       verification_type: VerificationType.PHOTO,
+      is_active: true,
     },
   });
 
-  // groupId가 없으면 groups 페이지로 리다이렉트
+  // 미션 데이터 로드
   useEffect(() => {
-    if (!groupId) {
+    const mission = getMockMissionById(missionId);
+
+    if (!mission) {
+      // 미션이 없으면 목록으로 이동
       router.push("/groups");
+      return;
     }
-  }, [groupId, router]);
+
+    // 폼에 기존 데이터 설정
+    form.reset({
+      title: mission.title,
+      description: mission.description,
+      repeat_type: mission.repeat_type,
+      repeat_days: mission.repeat_days,
+      verification_type: mission.verification_type,
+      is_active: mission.is_active,
+    });
+  }, [missionId, router, form]);
 
   // 반복 유형 변경 감지
   const repeatType = form.watch("repeat_type");
 
   // 폼 제출 핸들러
-  const onSubmit = (data: CreateMissionInput) => {
+  const onSubmit = (data: UpdateMissionInput) => {
     // TODO: 실제 API 호출 로직 추가
     // eslint-disable-next-line no-console
-    console.log("미션 생성 데이터:", data);
-    router.push(`/groups/${groupId}`);
-  };
+    console.log("미션 수정 데이터:", { missionId, ...data });
 
-  if (!groupId) {
-    return null;
-  }
+    // 미션 상세 페이지로 이동
+    router.push(`/missions/${missionId}`);
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -99,7 +115,7 @@ export default function NewMissionPage() {
           >
             <ChevronLeft className="h-5 w-5" />
           </Button>
-          <h1 className="text-lg font-semibold">새 미션 만들기</h1>
+          <h1 className="text-lg font-semibold">미션 수정</h1>
         </div>
       </header>
 
@@ -273,7 +289,7 @@ export default function NewMissionPage() {
               size="lg"
               disabled={form.formState.isSubmitting}
             >
-              미션 만들기
+              수정 완료
             </Button>
           </form>
         </Form>
