@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
+import { signUpSchema } from "@/lib/validations/auth";
 
 export function SignUpForm({
   className,
@@ -29,25 +30,44 @@ export function SignUpForm({
   const [repeatPassword, setRepeatPassword] = useState("");
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<{
+    email?: string[];
+    password?: string[];
+    confirmPassword?: string[];
+  }>({});
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    const supabase = createClient();
-    setIsLoading(true);
-    setError(null);
 
-    if (password !== repeatPassword) {
-      setError("비밀번호가 일치하지 않습니다");
+    // 필드 에러 및 API 에러 초기화
+    setError(null);
+    setFieldErrors({});
+    setIsLoading(true);
+
+    // Zod 스키마 검증
+    const result = signUpSchema.safeParse({
+      email,
+      password,
+      confirmPassword: repeatPassword,
+    });
+
+    if (!result.success) {
+      // 클라이언트 측 검증 실패
+      const errors = result.error.flatten().fieldErrors;
+      setFieldErrors(errors);
       setIsLoading(false);
       return;
     }
 
+    // Supabase 회원가입 처리
+    const supabase = createClient();
+
     try {
       const { error } = await supabase.auth.signUp({
-        email,
-        password,
+        email: result.data.email,
+        password: result.data.password,
         options: {
           emailRedirectTo: `${window.location.origin}/dashboard`,
         },
@@ -55,7 +75,12 @@ export function SignUpForm({
       if (error) throw error;
       router.push("/auth/sign-up-success");
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "An error occurred");
+      // API 에러 처리
+      setError(
+        error instanceof Error
+          ? error.message
+          : "회원가입 중 오류가 발생했습니다"
+      );
     } finally {
       setIsLoading(false);
     }
@@ -94,10 +119,22 @@ export function SignUpForm({
                   id="email"
                   type="email"
                   placeholder="example@email.com"
-                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  aria-invalid={!!fieldErrors.email}
+                  aria-describedby={
+                    fieldErrors.email ? "email-error" : undefined
+                  }
                 />
+                {fieldErrors.email && (
+                  <p
+                    id="email-error"
+                    role="alert"
+                    className="text-sm text-destructive"
+                  >
+                    {fieldErrors.email[0]}
+                  </p>
+                )}
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
@@ -106,10 +143,22 @@ export function SignUpForm({
                 <Input
                   id="password"
                   type="password"
-                  required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  aria-invalid={!!fieldErrors.password}
+                  aria-describedby={
+                    fieldErrors.password ? "password-error" : undefined
+                  }
                 />
+                {fieldErrors.password && (
+                  <p
+                    id="password-error"
+                    role="alert"
+                    className="text-sm text-destructive"
+                  >
+                    {fieldErrors.password[0]}
+                  </p>
+                )}
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
@@ -118,10 +167,24 @@ export function SignUpForm({
                 <Input
                   id="repeat-password"
                   type="password"
-                  required
                   value={repeatPassword}
                   onChange={(e) => setRepeatPassword(e.target.value)}
+                  aria-invalid={!!fieldErrors.confirmPassword}
+                  aria-describedby={
+                    fieldErrors.confirmPassword
+                      ? "confirm-password-error"
+                      : undefined
+                  }
                 />
+                {fieldErrors.confirmPassword && (
+                  <p
+                    id="confirm-password-error"
+                    role="alert"
+                    className="text-sm text-destructive"
+                  >
+                    {fieldErrors.confirmPassword[0]}
+                  </p>
+                )}
               </div>
               <div className="flex items-center space-x-2">
                 <Checkbox
@@ -138,10 +201,14 @@ export function SignUpForm({
                   서비스 이용약관 및 개인정보처리방침에 동의합니다
                 </Label>
               </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
+              {error && (
+                <p role="alert" className="text-sm text-destructive">
+                  {error}
+                </p>
+              )}
               <Button
                 type="submit"
-                className="w-full"
+                className="w-full bg-[#FF9F40] hover:bg-[#FF9F40]/90"
                 disabled={isLoading || !agreedToTerms}
               >
                 {isLoading ? "계정 생성 중..." : "회원가입"}

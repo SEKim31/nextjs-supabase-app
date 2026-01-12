@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
+import { loginSchema } from "@/lib/validations/auth";
 
 export function LoginForm({
   className,
@@ -26,24 +27,47 @@ export function LoginForm({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<{
+    email?: string[];
+    password?: string[];
+  }>({});
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const supabase = createClient();
-    setIsLoading(true);
+
+    // 필드 에러 및 API 에러 초기화
     setError(null);
+    setFieldErrors({});
+    setIsLoading(true);
+
+    // Zod 스키마 검증
+    const result = loginSchema.safeParse({ email, password });
+
+    if (!result.success) {
+      // 클라이언트 측 검증 실패
+      const errors = result.error.flatten().fieldErrors;
+      setFieldErrors(errors);
+      setIsLoading(false);
+      return;
+    }
+
+    // Supabase 로그인 처리
+    const supabase = createClient();
 
     try {
       const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+        email: result.data.email,
+        password: result.data.password,
       });
       if (error) throw error;
       router.push("/dashboard");
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "An error occurred");
+      // API 에러 처리
+      setError(
+        error instanceof Error ? error.message : "로그인 중 오류가 발생했습니다"
+      );
     } finally {
       setIsLoading(false);
     }
@@ -80,10 +104,22 @@ export function LoginForm({
                   id="email"
                   type="email"
                   placeholder="example@email.com"
-                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  aria-invalid={!!fieldErrors.email}
+                  aria-describedby={
+                    fieldErrors.email ? "email-error" : undefined
+                  }
                 />
+                {fieldErrors.email && (
+                  <p
+                    id="email-error"
+                    role="alert"
+                    className="text-sm text-destructive"
+                  >
+                    {fieldErrors.email[0]}
+                  </p>
+                )}
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
@@ -98,13 +134,33 @@ export function LoginForm({
                 <Input
                   id="password"
                   type="password"
-                  required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  aria-invalid={!!fieldErrors.password}
+                  aria-describedby={
+                    fieldErrors.password ? "password-error" : undefined
+                  }
                 />
+                {fieldErrors.password && (
+                  <p
+                    id="password-error"
+                    role="alert"
+                    className="text-sm text-destructive"
+                  >
+                    {fieldErrors.password[0]}
+                  </p>
+                )}
               </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              {error && (
+                <p role="alert" className="text-sm text-destructive">
+                  {error}
+                </p>
+              )}
+              <Button
+                type="submit"
+                className="w-full bg-[#FF9F40] hover:bg-[#FF9F40]/90"
+                disabled={isLoading}
+              >
                 {isLoading ? "로그인 중..." : "로그인"}
               </Button>
             </div>
