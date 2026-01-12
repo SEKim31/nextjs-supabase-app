@@ -1,292 +1,107 @@
 {
   "tasks": [
     {
-      "id": "34d55441-e808-4390-8bb3-165079481158",
-      "name": "통계 페이지 컴포넌트 구조 생성",
-      "description": "통계 페이지의 _components 폴더와 index.ts를 생성하고, 헤더 컴포넌트(StatsHeader)를 구현합니다. 페이지 제목과 부제목을 표시합니다.",
-      "notes": "dashboard/_components/dashboard-header.tsx 패턴 참조. 간단한 헤더 구조 유지.",
+      "id": "0861e997-b0d3-4357-9f56-ef8bf3c8dd82",
+      "name": "Switch 컴포넌트 설치",
+      "description": "shadcn/ui의 Switch 컴포넌트를 프로젝트에 설치합니다. 알림 설정 페이지에서 토글 기능을 위해 필요한 컴포넌트입니다.",
+      "notes": "shadcn CLI를 사용하여 자동 설치",
       "status": "completed",
       "dependencies": [],
-      "createdAt": "2026-01-12T14:17:00.830Z",
-      "updatedAt": "2026-01-12T14:19:40.446Z",
+      "createdAt": "2026-01-12T14:44:54.139Z",
+      "updatedAt": "2026-01-12T14:48:27.183Z",
       "relatedFiles": [
         {
-          "path": "app/(protected)/stats/_components/",
+          "path": "components/ui/switch.tsx",
           "type": "CREATE",
-          "description": "컴포넌트 폴더 생성"
-        },
-        {
-          "path": "app/(protected)/stats/_components/index.ts",
-          "type": "CREATE",
-          "description": "통합 export 파일"
-        },
-        {
-          "path": "app/(protected)/stats/_components/stats-header.tsx",
-          "type": "CREATE",
-          "description": "헤더 컴포넌트"
-        },
-        {
-          "path": "app/(protected)/dashboard/_components/dashboard-header.tsx",
-          "type": "REFERENCE",
-          "description": "헤더 패턴 참조"
+          "description": "Switch 컴포넌트 파일"
         }
       ],
-      "implementationGuide": "1. app/(protected)/stats/_components/ 폴더 생성\\n2. index.ts 파일 생성 (모든 컴포넌트 export)\\n3. stats-header.tsx 구현:\\n   - Props: title, subtitle (optional)\\n   - 기본값: title='통계', subtitle='미션 달성 현황을 확인하세요'\\n   - Tailwind: text-2xl font-bold, text-muted-foreground\\n4. index.ts에서 StatsHeader export",
-      "verificationCriteria": "1. _components 폴더와 index.ts가 정상 생성됨\\n2. StatsHeader 컴포넌트가 제목과 부제목을 올바르게 표시\\n3. TypeScript 타입 에러 없음\\n4. npm run check-all 통과",
-      "analysisResult": "Task 012: 통계 페이지 UI 구현. 하루모아 앱의 통계 페이지를 더미 데이터를 활용하여 구현. 오늘의 현황 요약, 주간 달성률 그래프(그룹별), 월간 캘린더(인증일 하이라이트), 개인 스트릭, 그룹별 누적 통계를 포함. 기존 공통 컴포넌트(StatChart, StreakBadge, Calendar)와 Mock 데이터(MOCK_WEEKLY_STATS, MOCK_USER_STREAKS, getMockTodayStatus) 재사용.",
-      "summary": "통계 페이지 컴포넌트 구조가 성공적으로 생성되었습니다. _components 폴더, stats-header.tsx 헤더 컴포넌트, index.ts barrel 파일이 모두 구현되었으며, TypeScript 타입 체크와 npm run check-all 검사를 통과했습니다.",
-      "completedAt": "2026-01-12T14:19:40.445Z"
+      "implementationGuide": "1. 터미널에서 npx shadcn@latest add switch 실행\\n2. components/ui/switch.tsx 파일 생성 확인\\n3. 컴포넌트 import 테스트",
+      "verificationCriteria": "components/ui/switch.tsx 파일이 존재하고, Switch 컴포넌트가 정상적으로 export되는지 확인",
+      "analysisResult": "Task 013: 설정 페이지 UI 구현 - 하루모아 앱의 설정 메인 페이지, 알림 설정 페이지, 로그아웃/계정 탈퇴 다이얼로그 구현. 모바일 퍼스트 레이아웃, shadcn/ui 컴포넌트 활용, 더미 데이터 기반 UI 완성.",
+      "summary": "shadcn/ui Switch 컴포넌트가 정상적으로 설치되었습니다. components/ui/switch.tsx 파일이 생성되었고, Radix UI 기반의 Switch 컴포넌트가 올바르게 export됩니다.",
+      "completedAt": "2026-01-12T14:48:27.181Z"
     },
     {
-      "id": "c58cc265-fd40-4980-842b-10988ff7f066",
-      "name": "오늘의 현황 요약 카드 구현",
-      "description": "오늘의 미션 완료 현황을 보여주는 TodayOverviewCard 컴포넌트를 구현합니다. 완료/전체 미션 수, 달성률 프로그레스 바를 표시합니다.",
-      "notes": "lib/mocks/index.ts의 getMockTodayStatus() 함수 사용 예정. Progress 컴포넌트는 components/ui/progress.tsx 사용.",
+      "id": "d847a3ad-47cf-43f3-9eed-41675a91293b",
+      "name": "설정 메인 페이지 UI 구현",
+      "description": "설정 메인 페이지(/app/(protected)/settings/page.tsx)를 구현합니다. 프로필 정보 표시, 메뉴 링크(프로필 수정, 알림 설정), 로그아웃 버튼, 계정 탈퇴 링크를 포함합니다.",
+      "notes": "기존 LogoutButton 컴포넌트는 AlertDialog가 없어서 직접 구현. 메뉴 아이템은 Link 컴포넌트 또는 button으로 구현하고 ChevronRight 아이콘으로 화살표 표시",
       "status": "completed",
       "dependencies": [
         {
-          "taskId": "34d55441-e808-4390-8bb3-165079481158"
+          "taskId": "0861e997-b0d3-4357-9f56-ef8bf3c8dd82"
         }
       ],
-      "createdAt": "2026-01-12T14:17:00.830Z",
-      "updatedAt": "2026-01-12T14:25:35.892Z",
+      "createdAt": "2026-01-12T14:44:54.139Z",
+      "updatedAt": "2026-01-12T14:54:51.657Z",
       "relatedFiles": [
         {
-          "path": "app/(protected)/stats/_components/today-overview-card.tsx",
-          "type": "CREATE",
-          "description": "오늘의 현황 카드 컴포넌트"
-        },
-        {
-          "path": "components/ui/card.tsx",
-          "type": "REFERENCE",
-          "description": "Card 컴포넌트"
-        },
-        {
-          "path": "components/ui/progress.tsx",
-          "type": "REFERENCE",
-          "description": "Progress 컴포넌트"
-        },
-        {
-          "path": "lib/mocks/index.ts",
-          "type": "REFERENCE",
-          "description": "getMockTodayStatus 함수",
-          "lineStart": 209,
-          "lineEnd": 232
-        }
-      ],
-      "implementationGuide": "1. today-overview-card.tsx 생성\\n2. Props 인터페이스:\\n   interface TodayOverviewCardProps {\\n     completedMissions: number;\\n     totalMissions: number;\\n     completionRate: number;\\n   }\\n3. UI 구조:\\n   - Card 컴포넌트 사용\\n   - CardHeader: '오늘의 현황' 제목\\n   - CardContent:\\n     - 완료된 미션 X개 / 전체 Y개 텍스트\\n     - Progress 컴포넌트로 달성률 시각화 (value={completionRate * 100})\\n     - 퍼센트 표시 (Math.round(completionRate * 100) + '%')\\n4. index.ts에 export 추가",
-      "verificationCriteria": "1. TodayOverviewCard가 props를 받아 올바르게 렌더링\\n2. Progress 바가 completionRate에 따라 적절히 표시\\n3. 0% ~ 100% 범위에서 정상 동작\\n4. TypeScript 타입 에러 없음",
-      "analysisResult": "Task 012: 통계 페이지 UI 구현. 하루모아 앱의 통계 페이지를 더미 데이터를 활용하여 구현. 오늘의 현황 요약, 주간 달성률 그래프(그룹별), 월간 캘린더(인증일 하이라이트), 개인 스트릭, 그룹별 누적 통계를 포함. 기존 공통 컴포넌트(StatChart, StreakBadge, Calendar)와 Mock 데이터(MOCK_WEEKLY_STATS, MOCK_USER_STREAKS, getMockTodayStatus) 재사용.",
-      "summary": "TodayOverviewCard 컴포넌트가 성공적으로 구현되었습니다. Card, Progress 컴포넌트를 활용하여 완료된 미션 수, 전체 미션 수, 달성률을 시각적으로 표시합니다. 0-100% 범위에서 정상 동작하며 TypeScript 타입 체크 통과.",
-      "completedAt": "2026-01-12T14:25:35.735Z"
-    },
-    {
-      "id": "b45a726b-7d35-4315-9b0d-6a5c2bf7cd03",
-      "name": "주간 달성률 차트 섹션 구현",
-      "description": "그룹별 주간 달성률을 탭으로 전환하며 볼 수 있는 WeeklyChartSection 컴포넌트를 구현합니다. 기존 StatChart 컴포넌트를 재사용합니다.",
-      "notes": "MOCK_WEEKLY_STATS 데이터 구조 참조. StatChart는 value를 0-100 범위로 받음. weeklyRates는 0-1 범위이므로 *100 변환 필요.",
-      "status": "completed",
-      "dependencies": [
-        {
-          "taskId": "34d55441-e808-4390-8bb3-165079481158"
-        }
-      ],
-      "createdAt": "2026-01-12T14:17:00.830Z",
-      "updatedAt": "2026-01-12T14:25:37.598Z",
-      "relatedFiles": [
-        {
-          "path": "app/(protected)/stats/_components/weekly-chart-section.tsx",
-          "type": "CREATE",
-          "description": "주간 차트 섹션 컴포넌트"
-        },
-        {
-          "path": "components/common/stat-chart.tsx",
-          "type": "REFERENCE",
-          "description": "StatChart 컴포넌트 재사용"
-        },
-        {
-          "path": "components/ui/tabs.tsx",
-          "type": "REFERENCE",
-          "description": "Tabs 컴포넌트"
-        },
-        {
-          "path": "lib/mocks/index.ts",
-          "type": "REFERENCE",
-          "description": "MOCK_WEEKLY_STATS 데이터",
-          "lineStart": 139,
-          "lineEnd": 161
-        }
-      ],
-      "implementationGuide": "1. weekly-chart-section.tsx 생성\\n2. Props 인터페이스:\\n   interface WeeklyChartSectionProps {\\n     groupStats: Array<{\\n       groupId: string;\\n       groupName: string;\\n       weeklyRates: number[];\\n       totalVerifications: number;\\n       totalCheers: number;\\n     }>;\\n   }\\n3. UI 구조:\\n   - Card 컴포넌트로 감싸기\\n   - CardHeader: '주간 달성률' 제목\\n   - Tabs 컴포넌트로 그룹별 탭 (TabsList + TabsTrigger)\\n   - TabsContent 내부에 StatChart 배치\\n   - StatChart data 변환: weeklyRates를 {label: '월'~'일', value: rate*100} 형태로\\n   - 요일 라벨: ['일', '월', '화', '수', '목', '금', '토']\\n4. 첫 번째 그룹을 기본 선택 탭으로 설정 (defaultValue)\\n5. index.ts에 export 추가",
-      "verificationCriteria": "1. 그룹별 탭이 정상적으로 전환됨\\n2. StatChart가 weeklyRates 데이터를 올바르게 표시\\n3. 요일 라벨이 일~토 순서로 표시\\n4. 탭 클릭 시 해당 그룹 차트로 전환\\n5. TypeScript 타입 에러 없음",
-      "analysisResult": "Task 012: 통계 페이지 UI 구현. 하루모아 앱의 통계 페이지를 더미 데이터를 활용하여 구현. 오늘의 현황 요약, 주간 달성률 그래프(그룹별), 월간 캘린더(인증일 하이라이트), 개인 스트릭, 그룹별 누적 통계를 포함. 기존 공통 컴포넌트(StatChart, StreakBadge, Calendar)와 Mock 데이터(MOCK_WEEKLY_STATS, MOCK_USER_STREAKS, getMockTodayStatus) 재사용.",
-      "summary": "WeeklyChartSection 컴포넌트가 성공적으로 구현되었습니다. Tabs로 그룹별 전환, StatChart로 주간 달성률 표시, weeklyRates 0-1 범위를 0-100으로 변환하여 처리. 요일 라벨(일~토) 표시 및 그룹별 통계 정보 포함.",
-      "completedAt": "2026-01-12T14:25:37.435Z"
-    },
-    {
-      "id": "1b8865f6-32a3-4206-902f-9d918b43cbbe",
-      "name": "월간 캘린더 섹션 구현",
-      "description": "월간 캘린더에 인증일을 하이라이트하여 표시하는 MonthlyCalendarSection 컴포넌트를 구현합니다. react-day-picker 기반 Calendar 컴포넌트를 활용합니다.",
-      "notes": "MOCK_VERIFICATIONS에서 verified_at 날짜 추출하여 사용. Calendar 컴포넌트는 react-day-picker 기반으로 modifiers prop 지원.",
-      "status": "completed",
-      "dependencies": [
-        {
-          "taskId": "34d55441-e808-4390-8bb3-165079481158"
-        }
-      ],
-      "createdAt": "2026-01-12T14:17:00.830Z",
-      "updatedAt": "2026-01-12T14:25:39.275Z",
-      "relatedFiles": [
-        {
-          "path": "app/(protected)/stats/_components/monthly-calendar-section.tsx",
-          "type": "CREATE",
-          "description": "월간 캘린더 섹션 컴포넌트"
-        },
-        {
-          "path": "components/ui/calendar.tsx",
-          "type": "REFERENCE",
-          "description": "Calendar 컴포넌트"
-        },
-        {
-          "path": "lib/mocks/verifications.ts",
-          "type": "REFERENCE",
-          "description": "MOCK_VERIFICATIONS 인증 날짜 데이터"
-        }
-      ],
-      "implementationGuide": "1. monthly-calendar-section.tsx 생성\\n2. Props 인터페이스:\\n   interface MonthlyCalendarSectionProps {\\n     verificationDates: Date[];\\n   }\\n3. UI 구조:\\n   - Card 컴포넌트로 감싸기\\n   - CardHeader: '월간 인증 현황' 제목\\n   - CardContent: Calendar 컴포넌트\\n4. Calendar 설정:\\n   - mode='multiple' (여러 날짜 선택 표시)\\n   - selected={verificationDates}\\n   - modifiers={{ verified: verificationDates }}\\n   - modifiersClassNames={{ verified: 'bg-brand-primary/20 text-brand-primary font-semibold' }}\\n   - 또는 단순히 selected로 인증일 하이라이트\\n5. useState로 현재 보는 달 관리 (optional)\\n6. index.ts에 export 추가",
-      "verificationCriteria": "1. Calendar가 현재 월을 올바르게 표시\\n2. 인증일에 하이라이트 스타일이 적용됨\\n3. 월 네비게이션(이전/다음 달)이 정상 동작\\n4. TypeScript 타입 에러 없음",
-      "analysisResult": "Task 012: 통계 페이지 UI 구현. 하루모아 앱의 통계 페이지를 더미 데이터를 활용하여 구현. 오늘의 현황 요약, 주간 달성률 그래프(그룹별), 월간 캘린더(인증일 하이라이트), 개인 스트릭, 그룹별 누적 통계를 포함. 기존 공통 컴포넌트(StatChart, StreakBadge, Calendar)와 Mock 데이터(MOCK_WEEKLY_STATS, MOCK_USER_STREAKS, getMockTodayStatus) 재사용.",
-      "summary": "MonthlyCalendarSection 컴포넌트가 성공적으로 구현되었습니다. react-day-picker 기반 Calendar로 인증일 하이라이트 표시, mode=\"multiple\" 설정으로 여러 날짜 선택, 월 네비게이션 정상 동작. TypeScript 타입 체크 통과.",
-      "completedAt": "2026-01-12T14:25:39.103Z"
-    },
-    {
-      "id": "8eda60e4-10ff-43c4-ad5d-582fff115d85",
-      "name": "개인 스트릭 섹션 구현",
-      "description": "개인의 연속 달성 스트릭을 강조하여 표시하는 StreakSection 컴포넌트를 구현합니다. 기존 StreakBadge 컴포넌트를 재사용합니다.",
-      "notes": "MOCK_USER_STREAKS 데이터에서 현재 사용자(MOCK_USER_IDS.USER_1) 데이터 사용. StreakBadge는 streak=0이면 null 반환하므로 별도 처리 필요.",
-      "status": "completed",
-      "dependencies": [
-        {
-          "taskId": "34d55441-e808-4390-8bb3-165079481158"
-        }
-      ],
-      "createdAt": "2026-01-12T14:17:00.830Z",
-      "updatedAt": "2026-01-12T14:30:34.249Z",
-      "relatedFiles": [
-        {
-          "path": "app/(protected)/stats/_components/streak-section.tsx",
-          "type": "CREATE",
-          "description": "스트릭 섹션 컴포넌트"
-        },
-        {
-          "path": "components/common/streak-badge.tsx",
-          "type": "REFERENCE",
-          "description": "StreakBadge 컴포넌트 재사용"
-        },
-        {
-          "path": "lib/mocks/index.ts",
-          "type": "REFERENCE",
-          "description": "MOCK_USER_STREAKS 데이터",
-          "lineStart": 166,
-          "lineEnd": 202
-        }
-      ],
-      "implementationGuide": "1. streak-section.tsx 생성\\n2. Props 인터페이스:\\n   interface StreakSectionProps {\\n     currentStreak: number;\\n     longestStreak: number;\\n     totalVerifications: number;\\n   }\\n3. UI 구조:\\n   - Card 컴포넌트로 감싸기\\n   - CardHeader: '나의 기록' 제목\\n   - CardContent:\\n     - StreakBadge size='lg' 중앙 배치\\n     - 아래에 추가 통계:\\n       - 최장 기록: longestStreak일\\n       - 총 인증 수: totalVerifications회\\n     - flex/grid 레이아웃으로 정렬\\n4. 스트릭 0일인 경우 격려 메시지 표시 ('오늘부터 시작해보세요!')\\n5. index.ts에 export 추가",
-      "verificationCriteria": "1. StreakBadge가 currentStreak 값으로 올바르게 표시\\n2. 최장 기록과 총 인증 수가 표시됨\\n3. streak=0인 경우 격려 메시지 표시\\n4. TypeScript 타입 에러 없음",
-      "analysisResult": "Task 012: 통계 페이지 UI 구현. 하루모아 앱의 통계 페이지를 더미 데이터를 활용하여 구현. 오늘의 현황 요약, 주간 달성률 그래프(그룹별), 월간 캘린더(인증일 하이라이트), 개인 스트릭, 그룹별 누적 통계를 포함. 기존 공통 컴포넌트(StatChart, StreakBadge, Calendar)와 Mock 데이터(MOCK_WEEKLY_STATS, MOCK_USER_STREAKS, getMockTodayStatus) 재사용.",
-      "summary": "StreakSection 컴포넌트 구현 완료. Card 내 StreakBadge(lg) 중앙 배치, 최장 기록/총 인증 수 통계 표시(Award, TrendingUp 아이콘), streak=0일 때 Flame 아이콘과 '오늘부터 시작해보세요!' 격려 메시지. TypeScript 타입 안전, index.ts export 추가됨.",
-      "completedAt": "2026-01-12T14:30:34.249Z"
-    },
-    {
-      "id": "0086c7ed-4368-4837-9642-de49490f49f8",
-      "name": "그룹별 누적 통계 섹션 구현",
-      "description": "그룹별 누적 인증 수와 응원 수를 카드 형태로 표시하는 GroupStatsSection 컴포넌트를 구현합니다.",
-      "notes": "MOCK_WEEKLY_STATS에서 totalVerifications, totalCheers 데이터 사용. Badge로 관계 유형 표시는 optional (그룹 데이터 추가 필요 시).",
-      "status": "completed",
-      "dependencies": [
-        {
-          "taskId": "34d55441-e808-4390-8bb3-165079481158"
-        }
-      ],
-      "createdAt": "2026-01-12T14:17:00.830Z",
-      "updatedAt": "2026-01-12T14:30:35.641Z",
-      "relatedFiles": [
-        {
-          "path": "app/(protected)/stats/_components/group-stats-section.tsx",
-          "type": "CREATE",
-          "description": "그룹별 통계 섹션 컴포넌트"
-        },
-        {
-          "path": "components/ui/card.tsx",
-          "type": "REFERENCE",
-          "description": "Card 컴포넌트"
-        },
-        {
-          "path": "lib/mocks/index.ts",
-          "type": "REFERENCE",
-          "description": "MOCK_WEEKLY_STATS 데이터",
-          "lineStart": 139,
-          "lineEnd": 161
-        }
-      ],
-      "implementationGuide": "1. group-stats-section.tsx 생성\\n2. Props 인터페이스:\\n   interface GroupStatsSectionProps {\\n     groupStats: Array<{\\n       groupId: string;\\n       groupName: string;\\n       totalVerifications: number;\\n       totalCheers: number;\\n     }>;\\n   }\\n3. UI 구조:\\n   - 전체 제목: '그룹별 통계' (Card 바깥 또는 CardHeader)\\n   - 그룹별 작은 카드 (grid grid-cols-1 gap-3):\\n     - 그룹 이름 (font-semibold)\\n     - 총 인증 수: X회 (CheckCircle 아이콘)\\n     - 총 응원 수: Y회 (Heart 아이콘)\\n   - Lucide 아이콘 사용: CheckCircle, Heart\\n4. 그룹이 없는 경우 '아직 그룹이 없습니다' 메시지\\n5. index.ts에 export 추가",
-      "verificationCriteria": "1. 그룹별 카드가 올바르게 렌더링\\n2. 인증 수와 응원 수가 아이콘과 함께 표시\\n3. 빈 그룹 목록 처리가 적절함\\n4. TypeScript 타입 에러 없음",
-      "analysisResult": "Task 012: 통계 페이지 UI 구현. 하루모아 앱의 통계 페이지를 더미 데이터를 활용하여 구현. 오늘의 현황 요약, 주간 달성률 그래프(그룹별), 월간 캘린더(인증일 하이라이트), 개인 스트릭, 그룹별 누적 통계를 포함. 기존 공통 컴포넌트(StatChart, StreakBadge, Calendar)와 Mock 데이터(MOCK_WEEKLY_STATS, MOCK_USER_STREAKS, getMockTodayStatus) 재사용.",
-      "summary": "GroupStatsSection 컴포넌트 구현 완료. 그룹별 카드에 그룹명, CheckCircle 아이콘으로 인증 수, Heart 아이콘(fill-red-500)으로 응원 수 표시. 빈 그룹 시 '아직 그룹이 없습니다' 메시지. TypeScript 타입 안전, index.ts export 추가됨.",
-      "completedAt": "2026-01-12T14:30:35.473Z"
-    },
-    {
-      "id": "ffc90743-6963-440e-b937-da8a698199d2",
-      "name": "통계 페이지 통합 및 완성",
-      "description": "모든 섹션 컴포넌트를 통합하여 통계 페이지(page.tsx)를 완성합니다. Mock 데이터를 연동하고 전체 레이아웃을 구성합니다.",
-      "notes": "dashboard/page.tsx 패턴 참조. space-y-6으로 섹션 간격 유지. pb-6으로 하단 여백 확보 (하단 탭바 고려).",
-      "status": "completed",
-      "dependencies": [
-        {
-          "taskId": "c58cc265-fd40-4980-842b-10988ff7f066"
-        },
-        {
-          "taskId": "b45a726b-7d35-4315-9b0d-6a5c2bf7cd03"
-        },
-        {
-          "taskId": "1b8865f6-32a3-4206-902f-9d918b43cbbe"
-        },
-        {
-          "taskId": "8eda60e4-10ff-43c4-ad5d-582fff115d85"
-        },
-        {
-          "taskId": "0086c7ed-4368-4837-9642-de49490f49f8"
-        }
-      ],
-      "createdAt": "2026-01-12T14:17:00.830Z",
-      "updatedAt": "2026-01-12T14:33:26.862Z",
-      "relatedFiles": [
-        {
-          "path": "app/(protected)/stats/page.tsx",
+          "path": "app/(protected)/settings/page.tsx",
           "type": "TO_MODIFY",
-          "description": "통계 페이지 메인 파일"
+          "description": "설정 메인 페이지 파일 - 현재 껍데기만 존재"
         },
         {
-          "path": "app/(protected)/stats/_components/index.ts",
+          "path": "lib/mocks/users.ts",
           "type": "REFERENCE",
-          "description": "컴포넌트 import"
+          "description": "getCurrentMockUser() 함수 참조"
         },
         {
-          "path": "lib/mocks/index.ts",
+          "path": "app/(protected)/missions/[id]/page.tsx",
           "type": "REFERENCE",
-          "description": "Mock 데이터"
+          "description": "AlertDialog 사용 패턴 참조",
+          "lineStart": 152,
+          "lineEnd": 172
         },
         {
-          "path": "app/(protected)/dashboard/page.tsx",
+          "path": "components/profile/profile-edit-form.tsx",
           "type": "REFERENCE",
-          "description": "페이지 패턴 참조"
+          "description": "뒤로가기 링크 패턴 참조",
+          "lineStart": 144,
+          "lineEnd": 151
         }
       ],
-      "implementationGuide": "1. app/(protected)/stats/page.tsx 수정\\n2. 'use client' 디렉티브 추가\\n3. Import:\\n   - _components에서 모든 섹션 컴포넌트\\n   - lib/mocks에서 필요한 데이터/함수\\n4. 데이터 준비:\\n   - getMockTodayStatus(MOCK_USER_IDS.USER_1) 호출\\n   - MOCK_WEEKLY_STATS를 배열로 변환: Object.values(MOCK_WEEKLY_STATS)\\n   - MOCK_USER_STREAKS[MOCK_USER_IDS.USER_1] 사용\\n   - MOCK_VERIFICATIONS에서 날짜 추출\\n5. 레이아웃:\\n   - StatsHeader\\n   - div className='space-y-6 pb-6'\\n     - div className='px-4': TodayOverviewCard\\n     - div className='px-4': WeeklyChartSection\\n     - div className='px-4': MonthlyCalendarSection\\n     - div className='px-4': StreakSection\\n     - div className='px-4': GroupStatsSection\\n6. npm run check-all 및 npm run build 통과 확인",
-      "verificationCriteria": "1. 모든 섹션이 올바른 순서로 렌더링\\n2. Mock 데이터가 각 컴포넌트에 올바르게 전달\\n3. 모바일 뷰에서 레이아웃이 적절함\\n4. npm run check-all 통과\\n5. npm run build 성공\\n6. 브라우저에서 /stats 페이지 정상 표시",
-      "analysisResult": "Task 012: 통계 페이지 UI 구현. 하루모아 앱의 통계 페이지를 더미 데이터를 활용하여 구현. 오늘의 현황 요약, 주간 달성률 그래프(그룹별), 월간 캘린더(인증일 하이라이트), 개인 스트릭, 그룹별 누적 통계를 포함. 기존 공통 컴포넌트(StatChart, StreakBadge, Calendar)와 Mock 데이터(MOCK_WEEKLY_STATS, MOCK_USER_STREAKS, getMockTodayStatus) 재사용.",
-      "summary": "통계 페이지 통합 완료. 6개 섹션 컴포넌트(StatsHeader, TodayOverviewCard, WeeklyChartSection, MonthlyCalendarSection, StreakSection, GroupStatsSection) 통합. Mock 데이터 연동(getMockTodayStatus, MOCK_WEEKLY_STATS, MOCK_USER_STREAKS, MOCK_VERIFICATIONS). space-y-6/pb-6 레이아웃, px-4 패딩 적용. npm run build 성공.",
-      "completedAt": "2026-01-12T14:33:26.861Z"
+      "implementationGuide": "1. Client Component로 구현 (use client)\\n2. 상태 관리: isLogoutDialogOpen, isDeleteAccountDialogOpen\\n3. 더미 데이터: getCurrentMockUser()로 현재 사용자 정보 조회\\n4. UI 구성:\\n   - 프로필 섹션: Avatar + 닉네임 + 이메일 (Card)\\n   - 메뉴 섹션: 프로필 수정(User 아이콘), 알림 설정(Bell 아이콘) 링크\\n   - 계정 섹션: 로그아웃(LogOut 아이콘), 계정 탈퇴(UserX 아이콘)\\n5. AlertDialog 패턴 적용 (missions/[id]/page.tsx 참고)\\n6. 로그아웃 시 alert로 더미 처리, 계정 탈퇴도 동일",
+      "verificationCriteria": "1. 프로필 정보(아바타, 닉네임, 이메일)가 정상 표시\\n2. 프로필 수정, 알림 설정 링크 클릭 시 해당 페이지로 이동\\n3. 로그아웃 클릭 시 확인 다이얼로그 표시\\n4. 계정 탈퇴 클릭 시 확인 다이얼로그 표시\\n5. 모바일 퍼스트 레이아웃 적용 (p-4 패딩)",
+      "analysisResult": "Task 013: 설정 페이지 UI 구현 - 하루모아 앱의 설정 메인 페이지, 알림 설정 페이지, 로그아웃/계정 탈퇴 다이얼로그 구현. 모바일 퍼스트 레이아웃, shadcn/ui 컴포넌트 활용, 더미 데이터 기반 UI 완성.",
+      "summary": "설정 메인 페이지 UI 구현 완료. Client Component로 구현, getCurrentMockUser()로 사용자 정보 표시, Avatar/닉네임/이메일 프로필 섹션, 프로필 수정/알림 설정 Link 메뉴, 로그아웃/계정 탈퇴 AlertDialog 구현. 모바일 퍼스트 레이아웃(p-4), hover 효과, destructive 스타일 적용.",
+      "completedAt": "2026-01-12T14:54:51.656Z"
+    },
+    {
+      "id": "73587c5a-bcd1-4ba1-b8ea-792213dedeb6",
+      "name": "알림 설정 페이지 UI 구현",
+      "description": "알림 설정 페이지(/app/(protected)/settings/notifications/page.tsx)를 구현합니다. 푸시 알림 권한 토글과 알림 타입별 토글(응원, 리마인더, 그룹 활동)을 포함합니다.",
+      "notes": "실제 푸시 알림 연동은 Phase 5에서 구현 예정. 현재는 UI와 상태 관리만 더미로 구현",
+      "status": "completed",
+      "dependencies": [
+        {
+          "taskId": "0861e997-b0d3-4357-9f56-ef8bf3c8dd82"
+        }
+      ],
+      "createdAt": "2026-01-12T14:44:54.139Z",
+      "updatedAt": "2026-01-12T14:54:51.750Z",
+      "relatedFiles": [
+        {
+          "path": "app/(protected)/settings/notifications/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "알림 설정 페이지 파일 - 현재 껍데기만 존재"
+        },
+        {
+          "path": "components/ui/switch.tsx",
+          "type": "DEPENDENCY",
+          "description": "Switch 컴포넌트 사용"
+        },
+        {
+          "path": "lib/types/enums.ts",
+          "type": "REFERENCE",
+          "description": "NotificationType enum 참조"
+        }
+      ],
+      "implementationGuide": "1. Client Component로 구현 (use client)\\n2. 상태 관리: pushEnabled, cheerNotification, reminderNotification, groupActivityNotification (모두 boolean, 기본값 true)\\n3. UI 구성:\\n   - 뒤로가기 링크: ChevronLeft + 설정으로 돌아가기\\n   - 헤더: 알림 설정 제목 + 설명\\n   - 푸시 알림 섹션(Card): 전체 푸시 알림 Switch\\n   - 알림 유형 섹션(Card): 응원 알림, 미션 리마인더, 그룹 활동 알림 각각 Switch\\n4. 전체 푸시가 꺼지면 하위 알림들 disabled 처리\\n5. Switch 컴포넌트 사용: checked, onCheckedChange, disabled props",
+      "verificationCriteria": "1. 뒤로가기 링크 클릭 시 /settings로 이동\\n2. 푸시 알림 토글 on/off 동작\\n3. 푸시 알림 off 시 하위 토글들 비활성화\\n4. 각 알림 유형별 토글 독립적으로 동작\\n5. 모바일 퍼스트 레이아웃 적용",
+      "analysisResult": "Task 013: 설정 페이지 UI 구현 - 하루모아 앱의 설정 메인 페이지, 알림 설정 페이지, 로그아웃/계정 탈퇴 다이얼로그 구현. 모바일 퍼스트 레이아웃, shadcn/ui 컴포넌트 활용, 더미 데이터 기반 UI 완성.",
+      "summary": "알림 설정 페이지 UI 구현 완료. Client Component로 구현, 4개 boolean 상태(pushEnabled, cheerNotification, reminderNotification, groupActivityNotification) 관리. 뒤로가기 링크, 푸시 알림 마스터 토글, 알림 유형별 토글(응원/리마인더/그룹활동) 구현. 마스터 토글 off 시 하위 토글 disabled 및 opacity-50 처리.",
+      "completedAt": "2026-01-12T14:54:51.749Z"
     }
   ]
 }
