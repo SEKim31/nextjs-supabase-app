@@ -1,0 +1,212 @@
+{
+  "tasks": [
+    {
+      "id": "23eba043-fc28-47ad-95af-ee88de27bf66",
+      "name": "그룹 목록 페이지 UI 구현",
+      "description": "사용자가 참여 중인 그룹 목록을 표시하는 페이지 UI 구현. 기존 GroupCard 컴포넌트를 재사용하고, 그룹이 없을 때는 EmptyGroupState를 표시. 새 그룹 생성을 위한 플로팅 버튼 추가.",
+      "notes": "EmptyGroupState는 /app/(protected)/dashboard/_components/에서 import. GroupCard는 /components/common/에서 import.",
+      "status": "completed",
+      "dependencies": [],
+      "createdAt": "2026-01-12T13:14:46.900Z",
+      "updatedAt": "2026-01-12T13:27:34.149Z",
+      "relatedFiles": [
+        {
+          "path": "app/(protected)/groups/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "그룹 목록 페이지 메인 파일"
+        },
+        {
+          "path": "components/common/group-card.tsx",
+          "type": "REFERENCE",
+          "description": "재사용할 GroupCard 컴포넌트"
+        },
+        {
+          "path": "app/(protected)/dashboard/_components/empty-group-state.tsx",
+          "type": "REFERENCE",
+          "description": "재사용할 EmptyGroupState 컴포넌트"
+        },
+        {
+          "path": "lib/mocks/groups.ts",
+          "type": "REFERENCE",
+          "description": "더미 데이터 함수"
+        }
+      ],
+      "implementationGuide": "1. /app/(protected)/groups/page.tsx 파일 수정\\n2. getMockGroupCardsForUser(MOCK_USER_IDS.USER_1) 호출로 더미 데이터 가져오기\\n3. 그룹이 없을 때 EmptyGroupState 컴포넌트 표시 (대시보드에서 import)\\n4. 그룹 목록을 grid로 렌더링 (grid-cols-1 gap-4)\\n5. GroupCard onClick시 /groups/[id]로 이동\\n6. 우측 하단 플로팅 버튼 추가 (Link to /groups/new, Plus 아이콘)\\n\\nPseudocode:\\n```\\nimport GroupCard from common\\nimport EmptyGroupState from dashboard\\nimport getMockGroupCardsForUser from mocks\\n\\nIF groups.length === 0:\\n  RENDER EmptyGroupState\\nELSE:\\n  RENDER Header '내 그룹'\\n  RENDER Grid of GroupCard\\n  RENDER FloatingButton (Plus icon, link to /groups/new)\\n```",
+      "verificationCriteria": "1. 그룹 목록이 카드 형태로 정상 표시됨\\n2. 그룹 카드 클릭 시 상세 페이지로 이동\\n3. 그룹이 없을 때 EmptyGroupState 표시됨\\n4. 플로팅 버튼이 우측 하단에 표시되고 클릭 시 그룹 생성 페이지로 이동\\n5. 모바일 퍼스트 레이아웃 적용됨\\n6. TypeScript 타입 오류 없음",
+      "analysisResult": "Task 010: 그룹 관련 페이지 UI 구현 - 하루모아 앱의 그룹 기능 UI를 더미 데이터로 완성. 기존 GroupCard, MissionCard, StatChart 컴포넌트 재사용. shadcn/ui 기반 모바일 퍼스트 디자인.",
+      "summary": "그룹 목록 페이지 UI 구현 완료. getMockGroupCardsForUser로 더미 데이터 조회, GroupCard 컴포넌트 재사용으로 카드 목록 렌더링, 그룹이 없을 때 EmptyGroupState 표시, 우측 하단 플로팅 버튼(Plus 아이콘)으로 /groups/new 이동 기능 구현. TypeScript 타입 체크 통과.",
+      "completedAt": "2026-01-12T13:27:34.148Z"
+    },
+    {
+      "id": "19b54b96-db79-4e10-981c-a63178d424c1",
+      "name": "그룹 생성 페이지 UI 구현",
+      "description": "새 그룹을 생성하는 폼 페이지 UI 구현. react-hook-form과 Zod 스키마(createGroupSchema)를 사용한 폼 검증. 그룹 이름, 설명, 관계 유형 입력 필드 포함.",
+      "notes": "RadioGroup은 shadcn/ui에서 추가 설치 필요할 수 있음. Heart, Home, Users, MoreHorizontal 아이콘 사용.",
+      "status": "completed",
+      "dependencies": [],
+      "createdAt": "2026-01-12T13:14:46.900Z",
+      "updatedAt": "2026-01-12T13:31:48.111Z",
+      "relatedFiles": [
+        {
+          "path": "app/(protected)/groups/new/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "그룹 생성 페이지 메인 파일"
+        },
+        {
+          "path": "lib/validations/group.ts",
+          "type": "REFERENCE",
+          "description": "Zod 검증 스키마"
+        },
+        {
+          "path": "lib/types/enums.ts",
+          "type": "REFERENCE",
+          "description": "RelationshipType enum 및 라벨"
+        }
+      ],
+      "implementationGuide": "1. /app/(protected)/groups/new/page.tsx 파일 수정 ('use client' 지시어 필요)\\n2. react-hook-form + @hookform/resolvers/zod 설정\\n3. createGroupSchema 사용 (lib/validations/group.ts)\\n4. 헤더: 뒤로가기 버튼 (ChevronLeft) + 타이틀 '새 그룹 만들기'\\n5. 폼 필드:\\n   - Input: 그룹 이름 (required, placeholder '예: 우리 가족')\\n   - Textarea: 그룹 설명 (optional, placeholder '그룹을 소개해주세요')\\n   - RadioGroup: 관계 유형 (커플/가족/친구/기타, 각각 아이콘 포함)\\n6. Submit 버튼 '그룹 만들기'\\n7. onSubmit: console.log 후 /groups로 이동 (mock)\\n\\nPseudocode:\\n```\\n'use client'\\nimport useForm from react-hook-form\\nimport zodResolver\\nimport createGroupSchema\\n\\nconst form = useForm({ resolver: zodResolver(createGroupSchema) })\\n\\nRENDER:\\n  Header with back button\\n  Form:\\n    Input name\\n    Textarea description\\n    RadioGroup relationship_type (4 options with icons)\\n  Button submit\\n```",
+      "verificationCriteria": "1. 폼 필드가 모두 정상 표시됨\\n2. 필수 필드(이름) 비어있을 때 에러 메시지 표시\\n3. 관계 유형 선택 UI가 아이콘과 함께 표시됨\\n4. 뒤로가기 버튼 동작함\\n5. Submit 시 콘솔에 데이터 출력\\n6. 모바일 퍼스트 레이아웃 적용됨\\n7. TypeScript 타입 오류 없음",
+      "analysisResult": "Task 010: 그룹 관련 페이지 UI 구현 - 하루모아 앱의 그룹 기능 UI를 더미 데이터로 완성. 기존 GroupCard, MissionCard, StatChart 컴포넌트 재사용. shadcn/ui 기반 모바일 퍼스트 디자인.",
+      "summary": "그룹 생성 페이지 UI 구현 완료. react-hook-form + Zod 검증(createGroupSchema) 적용, 폼 필드(그룹 이름, 설명, 관계 유형 RadioGroup) 구현, 헤더에 뒤로가기 버튼 추가, Submit 시 콘솔 출력 후 /groups 이동. shadcn/ui radio-group, form, textarea 컴포넌트 추가 설치. TypeScript 타입 체크 통과.",
+      "completedAt": "2026-01-12T13:31:48.111Z"
+    },
+    {
+      "id": "f332a5cc-8093-4dce-8219-392a28474730",
+      "name": "그룹 상세 페이지 UI 구현",
+      "description": "그룹의 상세 정보를 표시하는 페이지 UI 구현. 그룹 정보, 멤버 목록, 주간 달성률 차트, 미션 목록 섹션 포함. _components 폴더에 하위 컴포넌트 분리.",
+      "notes": "StatChart는 components/common에서 import. MissionCard도 재사용. 초대 버튼 클릭 시 InviteShareModal 오픈 (다음 태스크에서 구현).",
+      "status": "completed",
+      "dependencies": [
+        {
+          "taskId": "23eba043-fc28-47ad-95af-ee88de27bf66"
+        }
+      ],
+      "createdAt": "2026-01-12T13:14:46.900Z",
+      "updatedAt": "2026-01-12T13:35:35.135Z",
+      "relatedFiles": [
+        {
+          "path": "app/(protected)/groups/[id]/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "그룹 상세 페이지 메인 파일"
+        },
+        {
+          "path": "app/(protected)/groups/_components/index.ts",
+          "type": "CREATE",
+          "description": "barrel export 파일"
+        },
+        {
+          "path": "app/(protected)/groups/_components/group-header.tsx",
+          "type": "CREATE",
+          "description": "그룹 헤더 컴포넌트"
+        },
+        {
+          "path": "app/(protected)/groups/_components/member-section.tsx",
+          "type": "CREATE",
+          "description": "멤버 섹션 컴포넌트"
+        },
+        {
+          "path": "app/(protected)/groups/_components/weekly-stats-section.tsx",
+          "type": "CREATE",
+          "description": "주간 통계 섹션"
+        },
+        {
+          "path": "app/(protected)/groups/_components/mission-list-section.tsx",
+          "type": "CREATE",
+          "description": "미션 목록 섹션"
+        },
+        {
+          "path": "components/common/stat-chart.tsx",
+          "type": "REFERENCE",
+          "description": "재사용할 StatChart"
+        },
+        {
+          "path": "components/common/mission-card.tsx",
+          "type": "REFERENCE",
+          "description": "재사용할 MissionCard"
+        },
+        {
+          "path": "lib/mocks/groups.ts",
+          "type": "REFERENCE",
+          "description": "그룹 더미 데이터"
+        },
+        {
+          "path": "lib/mocks/missions.ts",
+          "type": "REFERENCE",
+          "description": "미션 더미 데이터"
+        }
+      ],
+      "implementationGuide": "1. /app/(protected)/groups/[id]/page.tsx 수정\\n2. /app/(protected)/groups/_components/ 폴더 생성 및 하위 컴포넌트 작성\\n3. 컴포넌트 구조:\\n   - index.ts (barrel export)\\n   - group-header.tsx (뒤로가기, 그룹명, 설정 메뉴)\\n   - member-section.tsx (Avatar 그리드, 초대 버튼)\\n   - weekly-stats-section.tsx (StatChart 래퍼)\\n   - mission-list-section.tsx (MissionCard 목록)\\n4. 더미 데이터 함수 사용:\\n   - getMockGroupById(params.id)\\n   - getMockMembersForGroup(params.id)\\n   - getMockMissionsForGroup(params.id)\\n5. 주간 달성률 데이터는 하드코딩 (월~일 7일)\\n\\nPseudocode:\\n```\\nFETCH group = getMockGroupById(id)\\nFETCH members = getMockMembersForGroup(id)\\nFETCH missions = getMockMissionsForGroup(id)\\n\\nRENDER:\\n  GroupHeader (name, back button, settings menu)\\n  Card: 그룹 정보 (description, relationship_type badge)\\n  MemberSection (Avatar grid, invite button -> opens modal)\\n  WeeklyStatsSection (StatChart)\\n  MissionListSection (MissionCard grid)\\n```",
+      "verificationCriteria": "1. 그룹 정보가 올바르게 표시됨\\n2. 멤버 아바타가 그리드로 표시됨\\n3. 주간 달성률 차트가 정상 렌더링됨\\n4. 미션 목록이 MissionCard로 표시됨\\n5. 뒤로가기 버튼이 그룹 목록으로 이동\\n6. 모바일 퍼스트 레이아웃 적용됨\\n7. TypeScript 타입 오류 없음",
+      "analysisResult": "Task 010: 그룹 관련 페이지 UI 구현 - 하루모아 앱의 그룹 기능 UI를 더미 데이터로 완성. 기존 GroupCard, MissionCard, StatChart 컴포넌트 재사용. shadcn/ui 기반 모바일 퍼스트 디자인.",
+      "summary": "그룹 상세 페이지 UI 구현 완료. _components 폴더에 GroupHeader, MemberSection, WeeklyStatsSection, MissionListSection 컴포넌트 분리. getMockGroupById, getMockMembersForGroup, getMockMissionsForGroup으로 더미 데이터 로드. StatChart, MissionCard 컴포넌트 재사용. 주간 달성률 하드코딩 데이터 적용. TypeScript 타입 체크 통과.",
+      "completedAt": "2026-01-12T13:35:35.135Z"
+    },
+    {
+      "id": "087a4d5d-7499-4e50-9def-53e304d06417",
+      "name": "초대 링크 공유 모달 구현",
+      "description": "그룹 초대 링크를 생성하고 공유하는 모달 컴포넌트 구현. Dialog 컴포넌트 사용. 링크 복사 및 Web Share API 지원.",
+      "notes": "Dialog 컴포넌트가 없으면 npx shadcn@latest add dialog 실행 필요. 복사 성공 시 toast 또는 버튼 텍스트 변경으로 피드백.",
+      "status": "completed",
+      "dependencies": [
+        {
+          "taskId": "f332a5cc-8093-4dce-8219-392a28474730"
+        }
+      ],
+      "createdAt": "2026-01-12T13:14:46.900Z",
+      "updatedAt": "2026-01-12T13:38:14.865Z",
+      "relatedFiles": [
+        {
+          "path": "app/(protected)/groups/_components/invite-share-modal.tsx",
+          "type": "CREATE",
+          "description": "초대 공유 모달 컴포넌트"
+        },
+        {
+          "path": "app/(protected)/groups/_components/index.ts",
+          "type": "TO_MODIFY",
+          "description": "export 추가"
+        },
+        {
+          "path": "app/(protected)/groups/_components/member-section.tsx",
+          "type": "TO_MODIFY",
+          "description": "모달 트리거 연결"
+        },
+        {
+          "path": "lib/mocks/groups.ts",
+          "type": "REFERENCE",
+          "description": "getMockInviteForGroup 함수"
+        }
+      ],
+      "implementationGuide": "1. /app/(protected)/groups/_components/invite-share-modal.tsx 생성 ('use client')\\n2. shadcn/ui Dialog 컴포넌트 사용\\n3. Props: groupId, isOpen, onOpenChange\\n4. 초대 링크 생성: getMockInviteForGroup(groupId)\\n5. 링크 URL 구성: window.location.origin + '/invite/' + token\\n6. 복사 버튼: navigator.clipboard.writeText()\\n7. 공유 버튼 (optional): navigator.share() 지원 시만 표시\\n8. 만료 안내: '이 링크는 7일 후 만료됩니다'\\n9. index.ts에 export 추가\\n10. 그룹 상세 페이지의 멤버 섹션에서 모달 연결\\n\\nPseudocode:\\n```\\n'use client'\\nimport Dialog from shadcn\\nimport getMockInviteForGroup\\n\\nconst invite = getMockInviteForGroup(groupId)\\nconst inviteUrl = origin + '/invite/' + invite.token\\n\\nRENDER Dialog:\\n  Title: '그룹 초대하기'\\n  Description: '링크를 공유하여 그룹에 초대하세요'\\n  Input (readonly): inviteUrl\\n  Button: 복사하기 (Copy icon)\\n  Button: 공유하기 (Share2 icon, if navigator.share supported)\\n  Text: '7일 후 만료'\\n```",
+      "verificationCriteria": "1. 모달이 정상적으로 열리고 닫힘\\n2. 초대 링크가 올바르게 표시됨\\n3. 복사 버튼 클릭 시 클립보드에 복사됨\\n4. 복사 성공 피드백 표시됨\\n5. 만료 안내 텍스트 표시됨\\n6. TypeScript 타입 오류 없음",
+      "analysisResult": "Task 010: 그룹 관련 페이지 UI 구현 - 하루모아 앱의 그룹 기능 UI를 더미 데이터로 완성. 기존 GroupCard, MissionCard, StatChart 컴포넌트 재사용. shadcn/ui 기반 모바일 퍼스트 디자인.",
+      "summary": "초대 링크 공유 모달 구현 완료. shadcn/ui Dialog 컴포넌트 활용, getMockInviteForGroup으로 초대 토큰 조회, 링크 복사(navigator.clipboard.writeText) 및 Web Share API 공유 기능 구현. 복사 성공 시 체크마크 아이콘 피드백, 만료 안내 텍스트 표시. 그룹 상세 페이지의 MemberSection에서 모달 연결 완료. TypeScript 타입 체크 통과.",
+      "completedAt": "2026-01-12T13:38:14.864Z"
+    },
+    {
+      "id": "f6c902d6-37a8-4193-b403-68b18e9ac07b",
+      "name": "초대 링크 접속 페이지 UI 구현",
+      "description": "초대 링크로 접속 시 표시되는 페이지 UI 구현. 그룹 미리보기 정보와 가입 버튼 표시. 유효하지 않은 토큰에 대한 에러 상태 처리.",
+      "notes": "이 페이지는 /app/invite/ 경로에 있으므로 (protected) 레이아웃 밖에 있음. 센터 정렬 레이아웃 사용.",
+      "status": "completed",
+      "dependencies": [],
+      "createdAt": "2026-01-12T13:14:46.900Z",
+      "updatedAt": "2026-01-12T13:35:35.225Z",
+      "relatedFiles": [
+        {
+          "path": "app/invite/[token]/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "초대 접속 페이지 메인 파일"
+        },
+        {
+          "path": "lib/mocks/groups.ts",
+          "type": "REFERENCE",
+          "description": "MOCK_GROUP_INVITES, getMockGroupById 등"
+        }
+      ],
+      "implementationGuide": "1. /app/invite/[token]/page.tsx 수정\\n2. params.token으로 초대 정보 조회 (MOCK_GROUP_INVITES에서 검색)\\n3. 유효하지 않은 토큰: 에러 UI (AlertCircle 아이콘, '유효하지 않은 초대 링크')\\n4. 만료된 토큰: 에러 UI ('만료된 초대 링크입니다')\\n5. 유효한 토큰: 그룹 미리보기 카드\\n   - 그룹 이름, 설명\\n   - 관계 유형 Badge\\n   - 멤버 수\\n   - '그룹 참여하기' 버튼 (mock: 클릭 시 /groups로 이동)\\n\\nPseudocode:\\n```\\nFIND invite from MOCK_GROUP_INVITES where token === params.token\\n\\nIF not found:\\n  RENDER Error: '유효하지 않은 초대 링크'\\nELIF expired:\\n  RENDER Error: '만료된 초대 링크'\\nELSE:\\n  FETCH group = getMockGroupById(invite.group_id)\\n  FETCH members = getMockMembersForGroup(group.id)\\n  RENDER:\\n    Card:\\n      Group name, description\\n      RelationshipType badge\\n      Member count\\n    Button: '그룹 참여하기'\\n```",
+      "verificationCriteria": "1. 유효한 토큰으로 접속 시 그룹 정보 표시됨\\n2. 유효하지 않은 토큰으로 접속 시 에러 메시지 표시됨\\n3. 그룹 참여하기 버튼이 표시되고 클릭 가능\\n4. 센터 정렬 레이아웃으로 표시됨\\n5. TypeScript 타입 오류 없음",
+      "analysisResult": "Task 010: 그룹 관련 페이지 UI 구현 - 하루모아 앱의 그룹 기능 UI를 더미 데이터로 완성. 기존 GroupCard, MissionCard, StatChart 컴포넌트 재사용. shadcn/ui 기반 모바일 퍼스트 디자인.",
+      "summary": "초대 링크 접속 페이지 UI 구현 완료. MOCK_GROUP_INVITES에서 토큰 조회, 유효하지 않은 토큰/만료된 토큰 에러 UI 구현, 유효한 토큰 시 그룹 미리보기 카드(이름, 설명, 관계 유형 Badge, 멤버 수) 및 '그룹 참여하기' 버튼 구현. 센터 정렬 레이아웃 적용. TypeScript 타입 체크 통과.",
+      "completedAt": "2026-01-12T13:35:35.224Z"
+    }
+  ]
+}

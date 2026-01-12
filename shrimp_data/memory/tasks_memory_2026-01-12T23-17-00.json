@@ -1,0 +1,253 @@
+{
+  "tasks": [
+    {
+      "id": "19ac0a28-5f0a-441b-ac7b-3bb039f3292a",
+      "name": "미션 섹션 컴포넌트 생성",
+      "description": "미션 페이지에서 사용할 섹션 컴포넌트들을 생성합니다. MissionHeader(뒤로가기+제목+수정/삭제 메뉴), MissionInfoCard(미션 정보 표시), MonthlyCalendarSection(인증일 하이라이트 캘린더), VerificationFeedSection(인증 피드 목록) 컴포넌트를 구현합니다.",
+      "notes": "기존 그룹 _components 패턴과 동일한 구조로 생성. Calendar 컴포넌트의 modifiers prop을 활용하여 인증일 표시.",
+      "status": "completed",
+      "dependencies": [],
+      "createdAt": "2026-01-12T13:44:53.457Z",
+      "updatedAt": "2026-01-12T13:52:00.701Z",
+      "relatedFiles": [
+        {
+          "path": "app/(protected)/groups/_components/group-header.tsx",
+          "type": "REFERENCE",
+          "description": "헤더 컴포넌트 패턴 참조"
+        },
+        {
+          "path": "components/ui/calendar.tsx",
+          "type": "REFERENCE",
+          "description": "캘린더 컴포넌트 활용"
+        },
+        {
+          "path": "components/common/verification-feed.tsx",
+          "type": "REFERENCE",
+          "description": "인증 피드 컴포넌트 재사용"
+        },
+        {
+          "path": "app/(protected)/missions/_components/index.ts",
+          "type": "CREATE",
+          "description": "barrel export 파일"
+        },
+        {
+          "path": "app/(protected)/missions/_components/mission-header.tsx",
+          "type": "CREATE",
+          "description": "미션 헤더 컴포넌트"
+        },
+        {
+          "path": "app/(protected)/missions/_components/mission-info-card.tsx",
+          "type": "CREATE",
+          "description": "미션 정보 카드"
+        },
+        {
+          "path": "app/(protected)/missions/_components/monthly-calendar-section.tsx",
+          "type": "CREATE",
+          "description": "월간 캘린더 섹션"
+        },
+        {
+          "path": "app/(protected)/missions/_components/verification-feed-section.tsx",
+          "type": "CREATE",
+          "description": "인증 피드 섹션"
+        }
+      ],
+      "implementationGuide": "1. app/(protected)/missions/_components/ 폴더 생성\\n2. mission-header.tsx: GroupHeader 패턴 참조, DropdownMenu로 수정/삭제 옵션 추가\\n3. mission-info-card.tsx: Card 컴포넌트로 미션 설명, 반복 유형, 인증 타입 표시\\n4. monthly-calendar-section.tsx: Calendar 컴포넌트에 modifiers로 인증일 하이라이트\\n5. verification-feed-section.tsx: VerificationFeed 컴포넌트 리스트 렌더링\\n6. index.ts: barrel export 파일 생성",
+      "verificationCriteria": "1. 모든 컴포넌트가 TypeScript 타입 오류 없이 컴파일됨\\n2. 기존 그룹 _components 폴더 구조와 일관성 유지\\n3. Calendar 컴포넌트에 인증일 하이라이트가 표시됨\\n4. VerificationFeed 컴포넌트가 정상 렌더링됨",
+      "analysisResult": "Task 011: 미션 관련 페이지 UI 구현. 하루모아 앱의 미션 생성, 미션 상세(인증 피드+월간 캘린더), 미션 인증(사진/텍스트/체크리스트), 미션 수정/삭제 UI를 더미 데이터로 구현합니다. 기존 공통 컴포넌트(MissionCard, VerificationFeed, Calendar)를 최대한 재사용하고, 그룹 페이지의 _components 패턴을 따릅니다.",
+      "summary": "미션 섹션 컴포넌트 5개(MissionHeader, MissionInfoCard, MonthlyCalendarSection, VerificationFeedSection, barrel export) 모두 생성 완료. TypeScript 타입 체크 통과, 기존 그룹 _components 패턴과 일관된 구조로 구현됨.",
+      "completedAt": "2026-01-12T13:52:00.700Z"
+    },
+    {
+      "id": "20e360d4-bb5d-439b-b46d-d261936b31ab",
+      "name": "미션 상세 페이지 구현",
+      "description": "미션 상세 페이지(/missions/[id])를 구현합니다. 미션 정보, 인증 피드, 월간 캘린더를 표시하고, 수정/삭제 기능 UI를 포함합니다.",
+      "notes": "그룹 상세 페이지(groups/[id]/page.tsx) 패턴을 참조하여 구현. 섹션 컴포넌트들을 조합하여 페이지 구성.",
+      "status": "completed",
+      "dependencies": [
+        {
+          "taskId": "19ac0a28-5f0a-441b-ac7b-3bb039f3292a"
+        }
+      ],
+      "createdAt": "2026-01-12T13:44:53.457Z",
+      "updatedAt": "2026-01-12T13:59:41.554Z",
+      "relatedFiles": [
+        {
+          "path": "app/(protected)/groups/[id]/page.tsx",
+          "type": "REFERENCE",
+          "description": "상세 페이지 패턴 참조"
+        },
+        {
+          "path": "lib/mocks/missions.ts",
+          "type": "REFERENCE",
+          "description": "더미 미션 데이터"
+        },
+        {
+          "path": "lib/mocks/verifications.ts",
+          "type": "REFERENCE",
+          "description": "더미 인증 데이터"
+        },
+        {
+          "path": "app/(protected)/missions/[id]/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "미션 상세 페이지 구현"
+        }
+      ],
+      "implementationGuide": "1. useParams()로 missionId 추출\\n2. useState + useEffect로 더미 데이터 로드 (getMockMissionById, getMockVerificationsForMission)\\n3. MissionHeader: 미션 제목, 수정/삭제 DropdownMenu\\n4. MissionInfoCard: 미션 설명, 반복 유형(RepeatType), 인증 타입(VerificationType) 뱃지 표시\\n5. MonthlyCalendarSection: 인증일 하이라이트 캘린더\\n6. VerificationFeedSection: 해당 미션의 인증 피드 목록\\n7. 하단 FAB: 인증하기 버튼 (verify 페이지로 이동)\\n8. 삭제 시 AlertDialog로 확인",
+      "verificationCriteria": "1. /missions/[id] 경로에서 미션 상세 정보가 표시됨\\n2. 월간 캘린더에 인증일이 하이라이트됨\\n3. 인증 피드가 시간순으로 표시됨\\n4. 수정/삭제 드롭다운 메뉴가 동작함\\n5. 인증하기 FAB 버튼이 verify 페이지로 이동함",
+      "analysisResult": "Task 011: 미션 관련 페이지 UI 구현. 하루모아 앱의 미션 생성, 미션 상세(인증 피드+월간 캘린더), 미션 인증(사진/텍스트/체크리스트), 미션 수정/삭제 UI를 더미 데이터로 구현합니다. 기존 공통 컴포넌트(MissionCard, VerificationFeed, Calendar)를 최대한 재사용하고, 그룹 페이지의 _components 패턴을 따릅니다.",
+      "summary": "미션 상세 페이지(/missions/[id]) 구현 완료. MissionHeader, MissionInfoCard, MonthlyCalendarSection, VerificationFeedSection 컴포넌트 조합. 수정/삭제 DropdownMenu + AlertDialog, 인증하기 FAB 버튼 구현. 빌드 및 타입체크 통과.",
+      "completedAt": "2026-01-12T13:59:41.552Z"
+    },
+    {
+      "id": "e755c2a5-f82b-43c5-a065-01a398a9c3dc",
+      "name": "미션 생성 페이지 구현",
+      "description": "미션 생성 페이지(/missions/new)를 구현합니다. react-hook-form + zod를 사용하여 미션 제목, 설명, 반복 주기, 인증 타입을 입력받습니다.",
+      "notes": "그룹 생성 페이지(groups/new/page.tsx) 패턴을 참조. DAY_LABELS enum을 사용하여 요일 표시.",
+      "status": "completed",
+      "dependencies": [],
+      "createdAt": "2026-01-12T13:44:53.457Z",
+      "updatedAt": "2026-01-12T13:52:01.831Z",
+      "relatedFiles": [
+        {
+          "path": "app/(protected)/groups/new/page.tsx",
+          "type": "REFERENCE",
+          "description": "폼 페이지 패턴 참조"
+        },
+        {
+          "path": "lib/validations/mission.ts",
+          "type": "REFERENCE",
+          "description": "미션 생성 스키마"
+        },
+        {
+          "path": "lib/types/enums.ts",
+          "type": "REFERENCE",
+          "description": "RepeatType, VerificationType, DAY_LABELS"
+        },
+        {
+          "path": "app/(protected)/missions/new/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "미션 생성 페이지 구현"
+        }
+      ],
+      "implementationGuide": "1. URL 쿼리스트링에서 groupId 추출 (searchParams)\\n2. react-hook-form + zodResolver(createMissionSchema) 초기화\\n3. 폼 필드 구성:\\n   - title: Input (필수)\\n   - description: Textarea (선택)\\n   - repeat_type: RadioGroup (매일/특정요일)\\n   - repeat_days: ToggleGroup (특정요일 선택 시만 표시, 월~일)\\n   - verification_type: RadioGroup (사진/텍스트/체크리스트)\\n4. 제출 시 console.log 후 그룹 상세(/groups/[groupId])로 리다이렉트\\n5. 헤더: 뒤로가기 버튼 + '새 미션 만들기' 제목",
+      "verificationCriteria": "1. /missions/new?groupId=xxx 경로에서 폼이 표시됨\\n2. 반복 유형을 '특정 요일'로 선택 시 요일 선택 UI가 표시됨\\n3. 필수 필드(제목, 반복유형, 인증타입) 미입력 시 에러 메시지 표시\\n4. 제출 시 콘솔에 데이터가 로그되고 그룹 상세로 리다이렉트됨",
+      "analysisResult": "Task 011: 미션 관련 페이지 UI 구현. 하루모아 앱의 미션 생성, 미션 상세(인증 피드+월간 캘린더), 미션 인증(사진/텍스트/체크리스트), 미션 수정/삭제 UI를 더미 데이터로 구현합니다. 기존 공통 컴포넌트(MissionCard, VerificationFeed, Calendar)를 최대한 재사용하고, 그룹 페이지의 _components 패턴을 따릅니다.",
+      "summary": "미션 생성 페이지(/missions/new) 구현 완료. react-hook-form + zod 사용, 반복 유형/요일 선택/인증 타입 폼 필드 구현. Toggle/ToggleGroup 컴포넌트 추가 설치. 빌드 및 타입 체크 통과.",
+      "completedAt": "2026-01-12T13:52:01.693Z"
+    },
+    {
+      "id": "b9c39311-381d-4e1e-abba-3ac6128f5c67",
+      "name": "미션 인증 폼 컴포넌트 생성",
+      "description": "인증 타입별 폼 컴포넌트를 생성합니다. PhotoVerificationForm(사진 업로드), TextVerificationForm(텍스트 입력), ChecklistVerificationForm(체크리스트 토글)을 구현합니다.",
+      "notes": "기존 VerificationFeed 컴포넌트의 체크리스트 렌더링 로직 참조. 이미지 미리보기는 프로필 설정 페이지 패턴 참조 가능.",
+      "status": "completed",
+      "dependencies": [],
+      "createdAt": "2026-01-12T13:44:53.457Z",
+      "updatedAt": "2026-01-12T13:52:03.277Z",
+      "relatedFiles": [
+        {
+          "path": "components/common/verification-feed.tsx",
+          "type": "REFERENCE",
+          "description": "체크리스트 렌더링 참조"
+        },
+        {
+          "path": "lib/validations/verification.ts",
+          "type": "REFERENCE",
+          "description": "인증 스키마"
+        },
+        {
+          "path": "app/(protected)/missions/_components/photo-verification-form.tsx",
+          "type": "CREATE",
+          "description": "사진 인증 폼"
+        },
+        {
+          "path": "app/(protected)/missions/_components/text-verification-form.tsx",
+          "type": "CREATE",
+          "description": "텍스트 인증 폼"
+        },
+        {
+          "path": "app/(protected)/missions/_components/checklist-verification-form.tsx",
+          "type": "CREATE",
+          "description": "체크리스트 인증 폼"
+        }
+      ],
+      "implementationGuide": "1. photo-verification-form.tsx:\\n   - 이미지 업로드 input (accept='image/*')\\n   - URL.createObjectURL로 미리보기\\n   - 이미지 선택 시 미리보기 표시\\n2. text-verification-form.tsx:\\n   - Textarea로 텍스트 입력\\n   - 최대 1000자 제한 표시\\n3. checklist-verification-form.tsx:\\n   - 미션의 기본 체크리스트 아이템 표시\\n   - Checkbox 토글로 완료 여부 체크\\n4. 각 폼은 onSubmit prop으로 제출 핸들러 받음",
+      "verificationCriteria": "1. 사진 폼: 이미지 선택 시 미리보기가 표시됨\\n2. 텍스트 폼: 1000자 제한이 작동함\\n3. 체크리스트 폼: 체크박스 토글이 작동함\\n4. 각 폼의 제출 버튼이 onSubmit을 호출함",
+      "analysisResult": "Task 011: 미션 관련 페이지 UI 구현. 하루모아 앱의 미션 생성, 미션 상세(인증 피드+월간 캘린더), 미션 인증(사진/텍스트/체크리스트), 미션 수정/삭제 UI를 더미 데이터로 구현합니다. 기존 공통 컴포넌트(MissionCard, VerificationFeed, Calendar)를 최대한 재사용하고, 그룹 페이지의 _components 패턴을 따릅니다.",
+      "summary": "인증 폼 컴포넌트 3개(PhotoVerificationForm, TextVerificationForm, ChecklistVerificationForm) 생성 완료. 사진 미리보기, 1000자 제한, 체크리스트 토글 기능 구현. 테스트 페이지와 가이드 문서도 함께 생성.",
+      "completedAt": "2026-01-12T13:52:03.137Z"
+    },
+    {
+      "id": "24b7a64a-ba0a-4641-9fb9-4a52d3534289",
+      "name": "미션 인증 페이지 구현",
+      "description": "미션 인증 페이지(/missions/[id]/verify)를 구현합니다. 미션의 인증 타입에 따라 적절한 폼을 렌더링합니다.",
+      "notes": "인증 타입별 폼 컴포넌트를 조건부 렌더링. 오늘 인증 여부는 더미 데이터로 시뮬레이션.",
+      "status": "completed",
+      "dependencies": [
+        {
+          "taskId": "b9c39311-381d-4e1e-abba-3ac6128f5c67"
+        }
+      ],
+      "createdAt": "2026-01-12T13:44:53.457Z",
+      "updatedAt": "2026-01-12T13:59:49.574Z",
+      "relatedFiles": [
+        {
+          "path": "lib/mocks/missions.ts",
+          "type": "REFERENCE",
+          "description": "미션 데이터 조회"
+        },
+        {
+          "path": "lib/mocks/verifications.ts",
+          "type": "REFERENCE",
+          "description": "오늘 인증 확인"
+        },
+        {
+          "path": "app/(protected)/missions/[id]/verify/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "미션 인증 페이지 구현"
+        }
+      ],
+      "implementationGuide": "1. useParams()로 missionId 추출\\n2. getMockMissionById로 미션 데이터 로드\\n3. mission.verification_type에 따라 폼 분기:\\n   - photo: PhotoVerificationForm\\n   - text: TextVerificationForm\\n   - checklist: ChecklistVerificationForm\\n4. 헤더: 뒤로가기 + 미션 제목 + '인증하기'\\n5. 제출 시 console.log 후 미션 상세(/missions/[id])로 리다이렉트\\n6. 이미 오늘 인증한 경우 안내 메시지 표시 (getMockTodayVerification 활용)",
+      "verificationCriteria": "1. /missions/[id]/verify 경로에서 인증 타입에 맞는 폼이 표시됨\\n2. 사진 미션: 이미지 업로드 UI 표시\\n3. 텍스트 미션: 텍스트 입력 UI 표시\\n4. 체크리스트 미션: 체크리스트 UI 표시\\n5. 제출 시 미션 상세 페이지로 리다이렉트됨",
+      "analysisResult": "Task 011: 미션 관련 페이지 UI 구현. 하루모아 앱의 미션 생성, 미션 상세(인증 피드+월간 캘린더), 미션 인증(사진/텍스트/체크리스트), 미션 수정/삭제 UI를 더미 데이터로 구현합니다. 기존 공통 컴포넌트(MissionCard, VerificationFeed, Calendar)를 최대한 재사용하고, 그룹 페이지의 _components 패턴을 따릅니다.",
+      "summary": "미션 인증 페이지(/missions/[id]/verify) 구현 완료. verification_type에 따라 PhotoVerificationForm/TextVerificationForm/ChecklistVerificationForm 조건부 렌더링. 오늘 인증 여부 확인 및 안내 메시지 표시. 빌드 및 타입체크 통과.",
+      "completedAt": "2026-01-12T13:59:49.574Z"
+    },
+    {
+      "id": "e9e14f87-9cb9-4426-87c3-272847cb8588",
+      "name": "미션 수정 페이지 구현",
+      "description": "미션 수정 페이지(/missions/[id]/edit)를 구현합니다. 기존 미션 데이터를 폼에 로드하고 수정할 수 있게 합니다.",
+      "notes": "미션 생성 페이지 로직을 재사용. updateMissionSchema 활용. group_id는 수정 불가.",
+      "status": "completed",
+      "dependencies": [
+        {
+          "taskId": "e755c2a5-f82b-43c5-a065-01a398a9c3dc"
+        }
+      ],
+      "createdAt": "2026-01-12T13:44:53.457Z",
+      "updatedAt": "2026-01-12T13:59:56.913Z",
+      "relatedFiles": [
+        {
+          "path": "app/(protected)/missions/new/page.tsx",
+          "type": "REFERENCE",
+          "description": "폼 UI 패턴 참조"
+        },
+        {
+          "path": "lib/validations/mission.ts",
+          "type": "REFERENCE",
+          "description": "updateMissionSchema"
+        },
+        {
+          "path": "app/(protected)/missions/[id]/edit/page.tsx",
+          "type": "CREATE",
+          "description": "미션 수정 페이지"
+        }
+      ],
+      "implementationGuide": "1. app/(protected)/missions/[id]/edit/page.tsx 생성\\n2. useParams()로 missionId 추출\\n3. getMockMissionById로 기존 미션 데이터 로드\\n4. react-hook-form defaultValues에 기존 데이터 설정\\n5. 미션 생성 페이지와 동일한 폼 UI (group_id 필드 제외)\\n6. 제출 시 console.log 후 미션 상세(/missions/[id])로 리다이렉트\\n7. 헤더: 뒤로가기 + '미션 수정'",
+      "verificationCriteria": "1. /missions/[id]/edit 경로에서 기존 미션 데이터가 폼에 로드됨\\n2. 수정 후 제출 시 콘솔에 변경 데이터가 로그됨\\n3. 제출 후 미션 상세 페이지로 리다이렉트됨",
+      "analysisResult": "Task 011: 미션 관련 페이지 UI 구현. 하루모아 앱의 미션 생성, 미션 상세(인증 피드+월간 캘린더), 미션 인증(사진/텍스트/체크리스트), 미션 수정/삭제 UI를 더미 데이터로 구현합니다. 기존 공통 컴포넌트(MissionCard, VerificationFeed, Calendar)를 최대한 재사용하고, 그룹 페이지의 _components 패턴을 따릅니다.",
+      "summary": "미션 수정 페이지(/missions/[id]/edit) 구현 완료. react-hook-form + zod 기반 폼, getMockMissionById로 기존 데이터 로드, defaultValues 설정. 미션 생성 페이지 UI 패턴 재사용, group_id 필드 제외. 빌드 및 타입체크 통과.",
+      "completedAt": "2026-01-12T13:59:56.912Z"
+    }
+  ]
+}
