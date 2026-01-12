@@ -54,9 +54,14 @@ export default function SettingsPage() {
     setIsDeleteAccountDialogOpen(false);
   };
 
+  // 표시할 이름 결정 (닉네임이 없으면 이메일 앞부분 사용)
+  const displayName =
+    currentUser.nickname || currentUser.email.split("@")[0] || "사용자";
+
   // 닉네임의 첫 글자 추출 (Avatar Fallback용)
-  const getInitial = (nickname: string) => {
-    return nickname.charAt(0).toUpperCase();
+  const getInitial = (name: string) => {
+    if (!name || name.length === 0) return "U";
+    return name.charAt(0).toUpperCase();
   };
 
   return (
@@ -83,16 +88,16 @@ export default function SettingsPage() {
               <Avatar className="size-16">
                 <AvatarImage
                   src={currentUser.profile_image_url ?? undefined}
-                  alt={currentUser.nickname ?? undefined}
+                  alt={displayName}
                 />
                 <AvatarFallback className="text-lg">
-                  {getInitial(currentUser.nickname ?? "")}
+                  {getInitial(displayName)}
                 </AvatarFallback>
               </Avatar>
 
               {/* 닉네임 및 이메일 */}
               <div className="flex-1 space-y-1">
-                <p className="font-medium">{currentUser.nickname}</p>
+                <p className="font-medium">{displayName}</p>
                 <p className="text-sm text-muted-foreground">
                   {currentUser.email}
                 </p>

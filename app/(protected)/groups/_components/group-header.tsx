@@ -57,13 +57,17 @@ export function GroupHeader({
               <Settings className="mr-2 h-4 w-4" />
               그룹 설정
             </DropdownMenuItem>
-            {/* eslint-disable-next-line no-console */}
-            <DropdownMenuItem onClick={() => console.log("알림 설정")}>
+            <DropdownMenuItem
+              onClick={() => {
+                // TODO: 알림 설정 기능 구현
+              }}
+            >
               알림 설정
             </DropdownMenuItem>
-            {/* eslint-disable-next-line no-console */}
             <DropdownMenuItem
-              onClick={() => console.log("나가기")}
+              onClick={() => {
+                // TODO: 그룹 나가기 기능 구현
+              }}
               className="text-destructive"
             >
               그룹 나가기

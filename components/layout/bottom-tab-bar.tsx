@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { BarChart3, Home, Settings, ShieldCheck, Users } from "lucide-react";
 
+import { TAB_BAR_HEIGHT } from "@/lib/constants/layout";
 import { cn } from "@/lib/utils";
 
 // 탭 아이템 정의
@@ -64,8 +65,10 @@ export function BottomTabBar({ className }: BottomTabBarProps) {
         "pb-safe",
         className
       )}
+      style={{ height: TAB_BAR_HEIGHT }}
+      aria-label="하단 탭 메뉴"
     >
-      <div className="mx-auto flex h-16 max-w-lg items-center justify-around px-2">
+      <div className="mx-auto flex h-full max-w-lg items-center justify-around px-2">
         {tabs.map((tab) => {
           const active = isActive(tab.href);
           const Icon = tab.icon;

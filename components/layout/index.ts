@@ -2,3 +2,4 @@
 export * from "./app-frame";
 export * from "./header";
 export * from "./bottom-tab-bar";
+export * from "./page-header";

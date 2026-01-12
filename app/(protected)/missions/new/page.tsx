@@ -6,9 +6,10 @@ import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Camera, CheckSquare, ChevronLeft, FileText } from "lucide-react";
+import { Camera, CheckSquare, FileText } from "lucide-react";
 import { useForm } from "react-hook-form";
 
+import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -89,19 +90,7 @@ export default function NewMissionPage() {
   return (
     <div className="flex min-h-screen flex-col">
       {/* 헤더 */}
-      <header className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="flex h-14 items-center gap-4 px-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => router.back()}
-            aria-label="뒤로가기"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
-          <h1 className="text-lg font-semibold">새 미션 만들기</h1>
-        </div>
-      </header>
+      <PageHeader title="새 미션 만들기" />
 
       {/* 메인 컨텐츠 */}
       <main className="flex-1 p-4">

@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 
 import { useParams, useRouter } from "next/navigation";
 
-import { ChevronLeft } from "lucide-react";
-
 import { ChecklistVerificationForm } from "@/app/(protected)/missions/_components/checklist-verification-form";
 import { PhotoVerificationForm } from "@/app/(protected)/missions/_components/photo-verification-form";
 import { TextVerificationForm } from "@/app/(protected)/missions/_components/text-verification-form";
+import { LoadingState } from "@/components/common/loading-state";
+import { NotFoundState } from "@/components/common/not-found-state";
+import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { MOCK_USER_IDS } from "@/lib/mocks/helpers";
@@ -30,6 +31,7 @@ export default function MissionVerifyPage() {
   const currentUserId = MOCK_USER_IDS.USER_1;
 
   const [mission, setMission] = useState<Mission | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [todayVerification, setTodayVerification] = useState(false);
 
@@ -40,15 +42,15 @@ export default function MissionVerifyPage() {
 
     setMission(missionData || null);
     setTodayVerification(!!todayVerif);
+    setIsLoading(false);
   }, [missionId, currentUserId]);
 
   // 사진 인증 제출 핸들러
-  const handlePhotoSubmit = async (imageFile: File) => {
+  const handlePhotoSubmit = async (_imageFile: File) => {
     setIsSubmitting(true);
 
     // TODO: 실제 API 호출
-    // eslint-disable-next-line no-console
-    console.log("사진 인증 제출:", { missionId, imageFile });
+    // 인증 로직 구현 예정
 
     // 시뮬레이션: 1초 대기
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -60,12 +62,11 @@ export default function MissionVerifyPage() {
   };
 
   // 텍스트 인증 제출 핸들러
-  const handleTextSubmit = async (textContent: string) => {
+  const handleTextSubmit = async (_textContent: string) => {
     setIsSubmitting(true);
 
     // TODO: 실제 API 호출
-    // eslint-disable-next-line no-console
-    console.log("텍스트 인증 제출:", { missionId, textContent });
+    // 인증 로직 구현 예정
 
     // 시뮬레이션: 1초 대기
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -78,13 +79,12 @@ export default function MissionVerifyPage() {
 
   // 체크리스트 인증 제출 핸들러
   const handleChecklistSubmit = async (
-    items: Array<{ id: string; label: string; checked: boolean }>
+    _items: Array<{ id: string; label: string; checked: boolean }>
   ) => {
     setIsSubmitting(true);
 
     // TODO: 실제 API 호출
-    // eslint-disable-next-line no-console
-    console.log("체크리스트 인증 제출:", { missionId, items });
+    // 인증 로직 구현 예정
 
     // 시뮬레이션: 1초 대기
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -95,12 +95,20 @@ export default function MissionVerifyPage() {
     router.push(`/missions/${missionId}`);
   };
 
-  // 로딩 또는 미션이 없는 경우
+  // 로딩 상태
+  if (isLoading) {
+    return <LoadingState message="미션 정보를 불러오는 중..." />;
+  }
+
+  // 미션이 없는 경우
   if (!mission) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="text-muted-foreground">미션을 찾을 수 없습니다.</p>
-      </div>
+      <NotFoundState
+        title="미션을 찾을 수 없습니다"
+        message="존재하지 않거나 삭제된 미션입니다."
+        actionLabel="뒤로 가기"
+        onAction={() => router.back()}
+      />
     );
   }
 
@@ -109,22 +117,7 @@ export default function MissionVerifyPage() {
     return (
       <div className="min-h-screen bg-background">
         {/* 헤더 */}
-        <header className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-          <div className="flex h-14 items-center gap-4 px-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => router.back()}
-              aria-label="뒤로가기"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-            <h1 className="flex-1 text-center text-lg font-semibold">
-              {mission.title}
-            </h1>
-            <div className="w-10" /> {/* 중앙 정렬용 빈 공간 */}
-          </div>
-        </header>
+        <PageHeader title={mission.title} />
 
         {/* 이미 인증 완료 메시지 */}
         <main className="container mx-auto p-4">
@@ -201,22 +194,7 @@ export default function MissionVerifyPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* 헤더 */}
-      <header className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="flex h-14 items-center gap-4 px-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => router.back()}
-            aria-label="뒤로가기"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
-          <h1 className="flex-1 text-center text-lg font-semibold">
-            {mission.title}
-          </h1>
-          <div className="w-10" /> {/* 중앙 정렬용 빈 공간 */}
-        </div>
-      </header>
+      <PageHeader title={mission.title} />
 
       {/* 메인 콘텐츠 */}
       <main className="container mx-auto p-4">

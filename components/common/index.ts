@@ -7,3 +7,8 @@ export { MissionCard } from "./mission-card";
 export { StatChart } from "./stat-chart";
 export { StreakBadge } from "./streak-badge";
 export { VerificationFeed } from "./verification-feed";
+
+// 상태 컴포넌트
+export { LoadingState } from "./loading-state";
+export { ErrorState } from "./error-state";
+export { NotFoundState } from "./not-found-state";

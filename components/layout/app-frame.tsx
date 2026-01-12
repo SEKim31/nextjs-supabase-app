@@ -1,3 +1,4 @@
+import { MOBILE_FRAME_WIDTH } from "@/lib/constants/layout";
 import { cn } from "@/lib/utils";
 
 interface AppFrameProps {
@@ -10,7 +11,7 @@ interface AppFrameProps {
  *
  * 모바일 퍼스트 레이아웃의 핵심 컴포넌트입니다.
  * - 모바일: 전체 너비 사용
- * - 데스크톱: 430px 고정 너비 컨테이너를 중앙에 배치하고 그라데이션 배경 적용
+ * - 데스크톱: 고정 너비 컨테이너를 중앙에 배치하고 그라데이션 배경 적용
  */
 export function AppFrame({ children, className }: AppFrameProps) {
   return (
@@ -26,8 +27,8 @@ export function AppFrame({ children, className }: AppFrameProps) {
         className={cn(
           // 모바일: 전체 너비
           "relative mx-auto w-full",
-          // 데스크톱: 430px 고정 너비, 그림자 효과
-          "lg:max-w-[430px] lg:shadow-2xl lg:shadow-black/10",
+          // 데스크톱: 고정 너비, 그림자 효과
+          `lg:max-w-[${MOBILE_FRAME_WIDTH}px] lg:shadow-2xl lg:shadow-black/10`,
           className
         )}
       >
