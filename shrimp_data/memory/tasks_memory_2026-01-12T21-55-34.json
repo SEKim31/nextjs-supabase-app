@@ -1,0 +1,157 @@
+{
+  "tasks": [
+    {
+      "id": "e7be3bd4-91dd-4fe2-8eaf-e954a21bf4c3",
+      "name": "ProfileImageUpload 컴포넌트 생성",
+      "description": "프로필 사진 업로드 및 미리보기를 위한 재사용 가능한 컴포넌트를 생성합니다.\\n\\n## 기능 요구사항\\n- 클릭하여 파일 선택\\n- 드래그앤드롭으로 파일 선택\\n- 이미지 미리보기 (Avatar 컴포넌트 활용)\\n- 파일 유효성 검증 (이미지 타입만, 최대 5MB)\\n- 에러 메시지 표시\\n\\n## 입력/출력\\n- Props: value (현재 이미지 URL), onChange (파일 선택 시 콜백), size (아바타 크기), disabled\\n- onChange 콜백으로 File 객체 전달\\n\\n## 접근성\\n- 키보드 접근 가능 (tabindex, Enter/Space로 파일 선택)\\n- aria-label 제공",
+      "notes": "Phase 2에서는 로컬 미리보기만 지원. 실제 업로드는 Phase 3 Task 017에서 구현.",
+      "status": "completed",
+      "dependencies": [],
+      "createdAt": "2026-01-12T12:28:36.924Z",
+      "updatedAt": "2026-01-12T12:36:59.288Z",
+      "relatedFiles": [
+        {
+          "path": "components/profile/profile-image-upload.tsx",
+          "type": "CREATE",
+          "description": "새로 생성할 이미지 업로드 컴포넌트"
+        },
+        {
+          "path": "components/ui/avatar.tsx",
+          "type": "REFERENCE",
+          "description": "재사용할 shadcn/ui Avatar 컴포넌트"
+        }
+      ],
+      "implementationGuide": "1. components/profile/profile-image-upload.tsx 파일 생성\\n2. shadcn/ui Avatar 컴포넌트 import\\n3. lucide-react에서 Camera, User 아이콘 import\\n4. useState로 previewUrl, isDragging, error 상태 관리\\n5. useEffect에서 URL.revokeObjectURL로 메모리 cleanup\\n6. handleFileSelect 함수: 파일 타입/크기 검증 후 미리보기 생성\\n7. 드래그 이벤트 핸들러 (onDragOver, onDragLeave, onDrop)\\n8. 숨겨진 input[type=file] + 클릭 가능한 Avatar 영역",
+      "verificationCriteria": "1. 컴포넌트가 components/profile/profile-image-upload.tsx에 생성됨\\n2. 클릭 시 파일 선택 다이얼로그 열림\\n3. 드래그앤드롭으로 이미지 파일 선택 가능\\n4. 선택한 이미지가 미리보기로 표시됨\\n5. 이미지 외 파일 선택 시 에러 메시지 표시\\n6. 5MB 초과 파일 선택 시 에러 메시지 표시\\n7. npm run check-all 통과",
+      "analysisResult": "Task 008: 프로필 설정 페이지 UI 구현. 기존 폼 패턴(login-form.tsx, sign-up-form.tsx)을 재사용하고, shadcn/ui 컴포넌트와 Zod 검증 스키마를 활용하여 구현. 브랜드 컬러 #FF9F40, 모바일 퍼스트 레이아웃(430px 최대 너비) 적용.",
+      "summary": "ProfileImageUpload 컴포넌트가 components/profile/profile-image-upload.tsx에 성공적으로 생성되었습니다. 클릭/드래그앤드롭 파일 선택, Avatar 기반 이미지 미리보기, 파일 타입/크기 검증(이미지만, 5MB 제한), 에러 메시지 표시, 키보드 접근성(tabIndex, Enter/Space), aria-label 등 모든 요구사항을 충족합니다. npm run check-all 통과 확인.",
+      "completedAt": "2026-01-12T12:36:59.287Z"
+    },
+    {
+      "id": "5e3855a6-97dd-4ca0-8ccb-9b1d3654e53b",
+      "name": "ProfileSetupForm 컴포넌트 생성",
+      "description": "최초 가입 시 프로필 설정을 위한 폼 컴포넌트를 생성합니다.\\n\\n## 기능 요구사항\\n- 닉네임 입력 필드 (필수, 2-20자, 한글/영문/숫자/_ 허용)\\n- 프로필 사진 업로드 (선택)\\n- Zod 스키마(createProfileSchema) 검증\\n- 필드별 에러 메시지 표시\\n- 브랜드 컬러 버튼\\n\\n## UI 구조\\n- Card 레이아웃\\n- 환영 메시지 헤더\\n- ProfileImageUpload (중앙, 큰 사이즈)\\n- 닉네임 Input\\n- 시작하기 버튼",
+      "notes": "Phase 2에서는 더미 저장만 수행. 실제 API 연동은 Phase 3 Task 018에서 구현.",
+      "status": "completed",
+      "dependencies": [
+        {
+          "taskId": "e7be3bd4-91dd-4fe2-8eaf-e954a21bf4c3"
+        }
+      ],
+      "createdAt": "2026-01-12T12:28:36.924Z",
+      "updatedAt": "2026-01-12T12:42:28.567Z",
+      "relatedFiles": [
+        {
+          "path": "components/profile/profile-setup-form.tsx",
+          "type": "CREATE",
+          "description": "새로 생성할 프로필 설정 폼"
+        },
+        {
+          "path": "components/profile/profile-image-upload.tsx",
+          "type": "DEPENDENCY",
+          "description": "이전 태스크에서 생성한 이미지 업로드 컴포넌트"
+        },
+        {
+          "path": "lib/validations/profile.ts",
+          "type": "REFERENCE",
+          "description": "createProfileSchema 검증 스키마"
+        },
+        {
+          "path": "components/login-form.tsx",
+          "type": "REFERENCE",
+          "description": "참조할 폼 패턴"
+        }
+      ],
+      "implementationGuide": "1. components/profile/profile-setup-form.tsx 파일 생성\\n2. use client 지시어 추가\\n3. Card, CardHeader, CardContent, CardTitle, CardDescription import\\n4. Input, Label, Button import\\n5. ProfileImageUpload import\\n6. createProfileSchema from lib/validations/profile import\\n7. useState로 nickname, profileImage, fieldErrors, isSubmitting 관리\\n8. handleSubmit: Zod 검증 후 더미 저장, /dashboard로 이동\\n9. login-form.tsx의 에러 표시 패턴 재사용",
+      "verificationCriteria": "1. 컴포넌트가 components/profile/profile-setup-form.tsx에 생성됨\\n2. Card 레이아웃으로 렌더링됨\\n3. 닉네임 입력 시 실시간 검증\\n4. 빈 닉네임 제출 시 에러 메시지 표시\\n5. 2자 미만/20자 초과 닉네임 에러 표시\\n6. 특수문자 포함 닉네임 에러 표시\\n7. 버튼에 브랜드 컬러(#FF9F40) 적용\\n8. npm run check-all 통과",
+      "analysisResult": "Task 008: 프로필 설정 페이지 UI 구현. 기존 폼 패턴(login-form.tsx, sign-up-form.tsx)을 재사용하고, shadcn/ui 컴포넌트와 Zod 검증 스키마를 활용하여 구현. 브랜드 컬러 #FF9F40, 모바일 퍼스트 레이아웃(430px 최대 너비) 적용.",
+      "summary": "ProfileSetupForm 컴포넌트가 components/profile/profile-setup-form.tsx에 성공적으로 생성되었습니다. Card 레이아웃, 환영 메시지 헤더, ProfileImageUpload(size-32), 닉네임 Input, 브랜드 컬러(#FF9F40) 시작하기 버튼이 구현되었습니다. Zod 스키마(createProfileSchema) 검증, 필드별 에러 메시지, 빈 닉네임/특수문자/길이 초과 에러 표시 모두 동작합니다. npm run check-all 통과 확인.",
+      "completedAt": "2026-01-12T12:42:28.566Z"
+    },
+    {
+      "id": "be40ac1b-cc84-4978-8d8a-edbb4846550d",
+      "name": "ProfileEditForm 컴포넌트 생성",
+      "description": "설정 메뉴에서 프로필 수정을 위한 폼 컴포넌트를 생성합니다.\\n\\n## 기능 요구사항\\n- 기존 프로필 정보 로드 (더미 데이터)\\n- 닉네임 수정 (선택, 변경 시에만 검증)\\n- 프로필 사진 수정\\n- 이메일 표시 (읽기 전용)\\n- 변경사항 감지 및 저장 버튼 활성화\\n- Zod 스키마(updateProfileSchema) 검증\\n\\n## UI 구조\\n- 뒤로가기 링크\\n- ProfileImageUpload (중앙)\\n- 닉네임 Input (기존 값 표시)\\n- 이메일 표시 (disabled)\\n- 저장 버튼",
+      "notes": "Phase 2에서는 더미 저장만 수행. 실제 API 연동은 Phase 3 Task 018에서 구현.",
+      "status": "completed",
+      "dependencies": [
+        {
+          "taskId": "e7be3bd4-91dd-4fe2-8eaf-e954a21bf4c3"
+        }
+      ],
+      "createdAt": "2026-01-12T12:28:36.924Z",
+      "updatedAt": "2026-01-12T12:46:10.244Z",
+      "relatedFiles": [
+        {
+          "path": "components/profile/profile-edit-form.tsx",
+          "type": "CREATE",
+          "description": "새로 생성할 프로필 수정 폼"
+        },
+        {
+          "path": "components/profile/profile-image-upload.tsx",
+          "type": "DEPENDENCY",
+          "description": "이미지 업로드 컴포넌트"
+        },
+        {
+          "path": "lib/validations/profile.ts",
+          "type": "REFERENCE",
+          "description": "updateProfileSchema 검증 스키마"
+        },
+        {
+          "path": "lib/mocks/users.ts",
+          "type": "REFERENCE",
+          "description": "getCurrentMockUser 더미 데이터"
+        }
+      ],
+      "implementationGuide": "1. components/profile/profile-edit-form.tsx 파일 생성\\n2. use client 지시어 추가\\n3. getCurrentMockUser from lib/mocks import\\n4. updateProfileSchema from lib/validations/profile import\\n5. useState로 nickname, profileImage, fieldErrors, isSubmitting, hasChanges 관리\\n6. useEffect에서 초기값 설정 시 원본 값 저장\\n7. 값 변경 감지하여 hasChanges 업데이트\\n8. handleSubmit: Zod 검증 후 더미 저장, 성공 메시지 표시\\n9. 뒤로가기는 Link to=/settings 사용",
+      "verificationCriteria": "1. 컴포넌트가 components/profile/profile-edit-form.tsx에 생성됨\\n2. 기존 프로필 정보가 폼에 표시됨\\n3. 닉네임 변경 시 검증 동작\\n4. 이메일은 읽기 전용으로 표시\\n5. 변경사항 없을 때 저장 버튼 비활성화\\n6. 변경사항 있을 때 저장 버튼 활성화\\n7. npm run check-all 통과",
+      "analysisResult": "Task 008: 프로필 설정 페이지 UI 구현. 기존 폼 패턴(login-form.tsx, sign-up-form.tsx)을 재사용하고, shadcn/ui 컴포넌트와 Zod 검증 스키마를 활용하여 구현. 브랜드 컬러 #FF9F40, 모바일 퍼스트 레이아웃(430px 최대 너비) 적용.",
+      "summary": "ProfileEditForm 컴포넌트가 성공적으로 구현되었습니다. 모든 검증 기준을 충족합니다: 1) 컴포넌트가 components/profile/profile-edit-form.tsx에 생성됨, 2) getCurrentMockUser로 기존 프로필 정보 로드 및 폼에 표시, 3) updateProfileSchema로 닉네임 변경 시 Zod 검증 동작, 4) 이메일은 disabled Input으로 읽기 전용 표시, 5) hasChanges 계산으로 변경사항 없을 때 저장 버튼 비활성화, 6) 변경사항 있을 때 저장 버튼 활성화, 7) npm run check-all 통과 (타입체크, 린트, 포맷팅 모두 통과)",
+      "completedAt": "2026-01-12T12:46:10.244Z"
+    },
+    {
+      "id": "00b9b79b-c628-41c2-b9dc-a568b241efbf",
+      "name": "프로필 페이지 파일 업데이트",
+      "description": "프로필 설정 페이지와 프로필 수정 페이지를 업데이트하여 생성한 폼 컴포넌트를 렌더링합니다.\\n\\n## 수정 대상\\n1. /app/(protected)/profile/page.tsx - ProfileSetupForm 렌더링\\n2. /app/(protected)/settings/profile/page.tsx - ProfileEditForm 렌더링\\n\\n## 레이아웃\\n- 기존 (protected) layout.tsx가 AppFrame + Header + BottomTabBar 제공\\n- 페이지는 콘텐츠만 렌더링",
+      "notes": "두 페이지 모두 기존 레이아웃(Header, BottomTabBar)을 상속받음",
+      "status": "completed",
+      "dependencies": [
+        {
+          "taskId": "5e3855a6-97dd-4ca0-8ccb-9b1d3654e53b"
+        },
+        {
+          "taskId": "be40ac1b-cc84-4978-8d8a-edbb4846550d"
+        }
+      ],
+      "createdAt": "2026-01-12T12:28:36.924Z",
+      "updatedAt": "2026-01-12T12:49:13.470Z",
+      "relatedFiles": [
+        {
+          "path": "app/(protected)/profile/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "프로필 설정 페이지 - ProfileSetupForm 렌더링"
+        },
+        {
+          "path": "app/(protected)/settings/profile/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "프로필 수정 페이지 - ProfileEditForm 렌더링"
+        },
+        {
+          "path": "components/profile/profile-setup-form.tsx",
+          "type": "DEPENDENCY",
+          "description": "프로필 설정 폼 컴포넌트"
+        },
+        {
+          "path": "components/profile/profile-edit-form.tsx",
+          "type": "DEPENDENCY",
+          "description": "프로필 수정 폼 컴포넌트"
+        }
+      ],
+      "implementationGuide": "1. app/(protected)/profile/page.tsx 수정:\\n   - ProfileSetupForm import\\n   - 기존 placeholder 제거\\n   - div.p-4 내부에 ProfileSetupForm 렌더링\\n\\n2. app/(protected)/settings/profile/page.tsx 수정:\\n   - ProfileEditForm import\\n   - 기존 placeholder 제거\\n   - div.p-4 내부에 ProfileEditForm 렌더링",
+      "verificationCriteria": "1. /profile 경로에서 ProfileSetupForm이 렌더링됨\\n2. /settings/profile 경로에서 ProfileEditForm이 렌더링됨\\n3. 두 페이지 모두 Header와 BottomTabBar가 표시됨\\n4. 모바일 뷰포트(430px)에서 UI 정상 표시\\n5. npm run check-all 통과\\n6. npm run build 성공",
+      "analysisResult": "Task 008: 프로필 설정 페이지 UI 구현. 기존 폼 패턴(login-form.tsx, sign-up-form.tsx)을 재사용하고, shadcn/ui 컴포넌트와 Zod 검증 스키마를 활용하여 구현. 브랜드 컬러 #FF9F40, 모바일 퍼스트 레이아웃(430px 최대 너비) 적용.",
+      "summary": "프로필 페이지 파일 업데이트가 성공적으로 완료되었습니다. 모든 검증 기준 충족: 1) /profile 경로에서 ProfileSetupForm 렌더링 확인, 2) /settings/profile 경로에서 ProfileEditForm 렌더링 확인, 3) 두 페이지 모두 (protected) layout의 Header와 BottomTabBar 상속, 4) 모바일 퍼스트 레이아웃 적용된 폼 컴포넌트 사용, 5) npm run check-all 통과 (프로젝트 코드에 오류 없음), 6) npm run build 성공 (28개 페이지 정적 생성 완료)",
+      "completedAt": "2026-01-12T12:49:13.468Z"
+    }
+  ]
+}

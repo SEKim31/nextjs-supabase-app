@@ -1,0 +1,136 @@
+{
+  "tasks": [
+    {
+      "id": "c7c69f47-d4b4-476e-88df-d0c678112a2d",
+      "name": "인증 페이지 공통 레이아웃 생성",
+      "description": "인증 관련 페이지(로그인, 회원가입, 비밀번호 찾기 등)에 공통으로 적용될 모바일 퍼스트 레이아웃을 생성합니다.\\n\\n## 구현 내용\\n- `/app/auth/layout.tsx` 파일 생성\\n- 430px 최대 너비 컨테이너 중앙 정렬\\n- 데스크톱에서 그라데이션 배경 효과\\n- Safe Area 대응 padding\\n\\n## 입력\\n- 기존 AppFrame 컴포넌트 패턴 참조\\n\\n## 출력\\n- 모든 /auth/* 경로에 자동 적용되는 레이아웃",
+      "notes": "기존 AppFrame 컴포넌트를 직접 사용하지 않는 이유: AppFrame은 하단 탭바와 함께 사용되는 protected 레이아웃용이며, 인증 페이지는 더 단순한 레이아웃이 필요함",
+      "status": "completed",
+      "dependencies": [],
+      "createdAt": "2026-01-11T15:44:32.240Z",
+      "updatedAt": "2026-01-11T15:48:00.576Z",
+      "relatedFiles": [
+        {
+          "path": "components/layout/app-frame.tsx",
+          "type": "REFERENCE",
+          "description": "모바일 퍼스트 레이아웃 패턴 참조"
+        },
+        {
+          "path": "app/auth/layout.tsx",
+          "type": "CREATE",
+          "description": "인증 페이지 공통 레이아웃"
+        }
+      ],
+      "implementationGuide": "1. /app/auth/layout.tsx 파일 생성\\n2. AppFrame 컴포넌트의 스타일 패턴 참조\\n3. children을 중앙 정렬된 컨테이너로 감싸기\\n\\npseudocode:\\n```\\nfunction AuthLayout({ children }):\\n  return (\\n    <div className=\"모바일퍼스트배경\">\\n      <div className=\"중앙정렬컨테이너 max-w-[430px]\">\\n        {children}\\n      </div>\\n    </div>\\n  )\\n```",
+      "verificationCriteria": "1. /auth/login, /auth/sign-up 페이지에서 레이아웃이 적용되는지 확인\\n2. 모바일(430px 이하)에서 전체 너비 사용 확인\\n3. 데스크톱에서 430px 컨테이너 중앙 정렬 확인\\n4. 그라데이션 배경 효과 확인",
+      "analysisResult": "Task 007: 비로그인 페이지 UI 구현의 목표는 하루모아 앱의 랜딩, 로그인, 회원가입 페이지를 모바일 퍼스트 디자인으로 완성하는 것입니다.\\n\\n현재 상태:\\n- 랜딩 페이지: 이미 완성됨 (추가 작업 불필요)\\n- 로그인/회원가입 페이지: 기본 구현 완료, 모바일 퍼스트 레이아웃 및 Zod 검증 연동 필요\\n\\n기술 스택: Next.js 15 App Router, TypeScript, Tailwind CSS, shadcn/ui, Zod\\n브랜드 컬러: Primary #FF9F40, Secondary #4ECDC4",
+      "summary": "인증 페이지 공통 레이아웃이 성공적으로 구현되었습니다. /app/auth/layout.tsx 파일이 생성되어 모든 /auth/* 경로에 자동 적용됩니다. 모바일에서는 전체 너비, 데스크톱에서는 430px 컨테이너 중앙 정렬, 브랜드 컬러(#FF9F40, #4ECDC4) 그라데이션 배경 효과, Safe Area 대응이 모두 구현되었습니다.",
+      "completedAt": "2026-01-11T15:48:00.574Z"
+    },
+    {
+      "id": "cf274c18-9196-4ab8-bed9-2eff81911791",
+      "name": "LoginForm Zod 스키마 연동 및 스타일 개선",
+      "description": "로그인 폼에 Zod 스키마 검증을 연동하고 브랜드 스타일 및 접근성을 개선합니다.\\n\\n## 구현 내용\\n- loginSchema를 활용한 폼 검증\\n- 필드별 에러 메시지 표시\\n- 브랜드 컬러(#FF9F40) 버튼 적용\\n- 접근성 속성 추가 (aria-invalid, role=alert)\\n\\n## 입력\\n- 기존 LoginForm 컴포넌트\\n- lib/validations/auth.ts의 loginSchema\\n\\n## 출력\\n- 개선된 LoginForm 컴포넌트",
+      "notes": "기존 에러 처리 로직(API 에러)은 유지하면서 클라이언트 검증 추가",
+      "status": "completed",
+      "dependencies": [
+        {
+          "taskId": "c7c69f47-d4b4-476e-88df-d0c678112a2d"
+        }
+      ],
+      "createdAt": "2026-01-11T15:44:32.240Z",
+      "updatedAt": "2026-01-12T12:14:46.304Z",
+      "relatedFiles": [
+        {
+          "path": "components/login-form.tsx",
+          "type": "TO_MODIFY",
+          "description": "로그인 폼 컴포넌트 수정"
+        },
+        {
+          "path": "lib/validations/auth.ts",
+          "type": "REFERENCE",
+          "description": "Zod 스키마 참조",
+          "lineStart": 24,
+          "lineEnd": 29
+        }
+      ],
+      "implementationGuide": "1. loginSchema import\\n2. handleLogin에서 safeParse 호출\\n3. 필드별 에러 상태 관리\\n4. 버튼 className에 브랜드 컬러 적용\\n\\npseudocode:\\n```\\nfunction LoginForm():\\n  const [fieldErrors, setFieldErrors] = useState({})\\n  \\n  function handleLogin(e):\\n    const result = loginSchema.safeParse({ email, password })\\n    if (!result.success):\\n      setFieldErrors(result.error.flatten().fieldErrors)\\n      return\\n    // 기존 Supabase 로그인 로직\\n  \\n  return (\\n    <form>\\n      <Input aria-invalid={!!fieldErrors.email} />\\n      {fieldErrors.email && <p role=\"alert\">{fieldErrors.email}</p>}\\n      <Button className=\"bg-brand-primary\">로그인</Button>\\n    </form>\\n  )\\n```",
+      "verificationCriteria": "1. 빈 이메일/비밀번호 제출 시 Zod 에러 메시지 표시\\n2. 유효하지 않은 이메일 형식 입력 시 에러 표시\\n3. 로그인 버튼이 브랜드 컬러(#FF9F40)로 표시\\n4. 에러 메시지에 role=alert 속성 확인\\n5. 기존 Supabase 로그인 기능 정상 동작",
+      "analysisResult": "Task 007: 비로그인 페이지 UI 구현의 목표는 하루모아 앱의 랜딩, 로그인, 회원가입 페이지를 모바일 퍼스트 디자인으로 완성하는 것입니다.\\n\\n현재 상태:\\n- 랜딩 페이지: 이미 완성됨 (추가 작업 불필요)\\n- 로그인/회원가입 페이지: 기본 구현 완료, 모바일 퍼스트 레이아웃 및 Zod 검증 연동 필요\\n\\n기술 스택: Next.js 15 App Router, TypeScript, Tailwind CSS, shadcn/ui, Zod\\n브랜드 컬러: Primary #FF9F40, Secondary #4ECDC4",
+      "summary": "LoginForm에 Zod 스키마 검증을 연동하고 브랜드 스타일 및 접근성을 개선 완료. loginSchema를 활용한 클라이언트 측 폼 검증 추가, 필드별 에러 메시지 표시(email-error, password-error), 브랜드 컬러(#FF9F40) 버튼 적용, 접근성 속성(aria-invalid, aria-describedby, role=alert) 추가. TypeScript, ESLint, 빌드 모두 통과.",
+      "completedAt": "2026-01-12T12:14:46.303Z"
+    },
+    {
+      "id": "2804eace-2300-43d6-b92e-4e01ccb2b877",
+      "name": "SignUpForm Zod 스키마 연동 및 스타일 개선",
+      "description": "회원가입 폼에 Zod 스키마 검증을 연동하고 브랜드 스타일 및 접근성을 개선합니다.\\n\\n## 구현 내용\\n- signUpSchema를 활용한 폼 검증\\n- 필드별 에러 메시지 표시 (이메일, 비밀번호, 비밀번호 확인)\\n- 브랜드 컬러(#FF9F40) 버튼 적용\\n- 접근성 속성 추가\\n\\n## 입력\\n- 기존 SignUpForm 컴포넌트\\n- lib/validations/auth.ts의 signUpSchema\\n\\n## 출력\\n- 개선된 SignUpForm 컴포넌트",
+      "notes": "signUpSchema는 비밀번호 일치 검증을 포함하므로 기존 수동 비교 코드 제거 가능",
+      "status": "completed",
+      "dependencies": [
+        {
+          "taskId": "c7c69f47-d4b4-476e-88df-d0c678112a2d"
+        }
+      ],
+      "createdAt": "2026-01-11T15:44:32.240Z",
+      "updatedAt": "2026-01-12T12:17:27.488Z",
+      "relatedFiles": [
+        {
+          "path": "components/sign-up-form.tsx",
+          "type": "TO_MODIFY",
+          "description": "회원가입 폼 컴포넌트 수정"
+        },
+        {
+          "path": "lib/validations/auth.ts",
+          "type": "REFERENCE",
+          "description": "Zod 스키마 참조",
+          "lineStart": 34,
+          "lineEnd": 45
+        }
+      ],
+      "implementationGuide": "1. signUpSchema import\\n2. handleSignUp에서 safeParse 호출\\n3. 필드별 에러 상태 관리\\n4. 기존 수동 비밀번호 비교 로직 제거 (Zod가 처리)\\n5. 버튼 className에 브랜드 컬러 적용\\n\\npseudocode:\\n```\\nfunction SignUpForm():\\n  const [fieldErrors, setFieldErrors] = useState({})\\n  \\n  function handleSignUp(e):\\n    const result = signUpSchema.safeParse({ email, password, confirmPassword })\\n    if (!result.success):\\n      setFieldErrors(result.error.flatten().fieldErrors)\\n      return\\n    // 기존 Supabase 회원가입 로직\\n  \\n  return (\\n    <form>\\n      <Input aria-invalid={!!fieldErrors.email} />\\n      {fieldErrors.email && <p role=\"alert\">{fieldErrors.email}</p>}\\n      <Button className=\"bg-brand-primary\">회원가입</Button>\\n    </form>\\n  )\\n```",
+      "verificationCriteria": "1. 빈 필드 제출 시 각 필드별 Zod 에러 메시지 표시\\n2. 비밀번호 6자 미만 입력 시 에러 표시\\n3. 비밀번호 불일치 시 confirmPassword 필드에 에러 표시\\n4. 회원가입 버튼이 브랜드 컬러로 표시\\n5. 기존 Supabase 회원가입 기능 정상 동작\\n6. 약관 동의 체크박스 기능 유지",
+      "analysisResult": "Task 007: 비로그인 페이지 UI 구현의 목표는 하루모아 앱의 랜딩, 로그인, 회원가입 페이지를 모바일 퍼스트 디자인으로 완성하는 것입니다.\\n\\n현재 상태:\\n- 랜딩 페이지: 이미 완성됨 (추가 작업 불필요)\\n- 로그인/회원가입 페이지: 기본 구현 완료, 모바일 퍼스트 레이아웃 및 Zod 검증 연동 필요\\n\\n기술 스택: Next.js 15 App Router, TypeScript, Tailwind CSS, shadcn/ui, Zod\\n브랜드 컬러: Primary #FF9F40, Secondary #4ECDC4",
+      "summary": "SignUpForm에 Zod 스키마 검증을 연동하고 브랜드 스타일 및 접근성 개선 완료. signUpSchema를 활용한 클라이언트 측 폼 검증 추가, 필드별 에러 메시지 표시(email, password, confirmPassword), 브랜드 컬러(#FF9F40) 버튼 적용, 접근성 속성(aria-invalid, aria-describedby, role=alert) 추가. 기존 수동 비밀번호 비교 로직 제거하고 Zod로 대체. 약관 동의 체크박스 기능 유지. TypeScript, ESLint, 빌드 모두 통과.",
+      "completedAt": "2026-01-12T12:17:27.487Z"
+    },
+    {
+      "id": "f7a0a009-c89c-411a-b755-fdc9ef21376a",
+      "name": "인증 페이지 통합 테스트 및 최종 검증",
+      "description": "모든 인증 페이지 UI 개선사항을 통합 테스트하고 ROADMAP 요구사항 충족을 검증합니다.\\n\\n## 검증 항목\\n- 모바일 퍼스트 레이아웃 적용 확인\\n- Zod 폼 검증 동작 확인\\n- 브랜드 스타일 일관성 확인\\n- 접근성 속성 확인\\n- 기존 기능(Google OAuth 등) 정상 동작 확인",
+      "notes": "Playwright MCP를 사용하여 브라우저에서 실제 동작 확인 권장",
+      "status": "completed",
+      "dependencies": [
+        {
+          "taskId": "cf274c18-9196-4ab8-bed9-2eff81911791"
+        },
+        {
+          "taskId": "2804eace-2300-43d6-b92e-4e01ccb2b877"
+        }
+      ],
+      "createdAt": "2026-01-11T15:44:32.240Z",
+      "updatedAt": "2026-01-12T12:21:10.594Z",
+      "relatedFiles": [
+        {
+          "path": "app/auth/layout.tsx",
+          "type": "REFERENCE",
+          "description": "인증 레이아웃 확인"
+        },
+        {
+          "path": "components/login-form.tsx",
+          "type": "REFERENCE",
+          "description": "로그인 폼 확인"
+        },
+        {
+          "path": "components/sign-up-form.tsx",
+          "type": "REFERENCE",
+          "description": "회원가입 폼 확인"
+        }
+      ],
+      "implementationGuide": "1. npm run dev로 개발 서버 실행\\n2. /auth/login 페이지 접속하여 확인\\n   - 모바일 뷰포트에서 전체 너비 확인\\n   - 데스크톱에서 430px 중앙 정렬 확인\\n   - 빈 폼 제출하여 Zod 에러 확인\\n   - 브랜드 컬러 버튼 확인\\n3. /auth/sign-up 페이지 동일 확인\\n4. npm run check-all로 코드 품질 검사\\n5. npm run build로 빌드 성공 확인",
+      "verificationCriteria": "1. npm run check-all 통과\\n2. npm run build 성공\\n3. 로그인 페이지 모바일 퍼스트 레이아웃 적용 확인\\n4. 회원가입 페이지 모바일 퍼스트 레이아웃 적용 확인\\n5. Zod 검증 에러 메시지 한국어로 표시\\n6. 브랜드 컬러(#FF9F40) 버튼 색상 확인\\n7. Google OAuth 버튼 정상 동작",
+      "analysisResult": "Task 007: 비로그인 페이지 UI 구현의 목표는 하루모아 앱의 랜딩, 로그인, 회원가입 페이지를 모바일 퍼스트 디자인으로 완성하는 것입니다.\\n\\n현재 상태:\\n- 랜딩 페이지: 이미 완성됨 (추가 작업 불필요)\\n- 로그인/회원가입 페이지: 기본 구현 완료, 모바일 퍼스트 레이아웃 및 Zod 검증 연동 필요\\n\\n기술 스택: Next.js 15 App Router, TypeScript, Tailwind CSS, shadcn/ui, Zod\\n브랜드 컬러: Primary #FF9F40, Secondary #4ECDC4",
+      "summary": "인증 페이지 통합 테스트 및 최종 검증 완료. 1) npm run check-all 통과 (TypeScript, ESLint, Prettier), 2) npm run build 성공 (27페이지 생성), 3) 로그인 페이지: Zod 검증 동작 확인 (빈 필드, 이메일 형식), 에러 메시지 role=alert 적용, 브랜드 컬러 버튼, Google OAuth 버튼 존재, 4) 회원가입 페이지: Zod 검증 동작 확인 (빈 필드, 비밀번호 6자 이상, 비밀번호 불일치), 에러 메시지 role=alert 적용, 브랜드 컬러(#FF9F40) 버튼, 약관 동의 체크박스 정상 동작. 모바일 퍼스트 레이아웃 및 브랜드 스타일 일관성 확인.",
+      "completedAt": "2026-01-12T12:21:10.591Z"
+    }
+  ]
+}
