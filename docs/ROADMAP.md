@@ -178,18 +178,19 @@
 > **목표**: Supabase 연동 및 인증 시스템 완성
 > **참고**: Phase 2 일부와 병렬 진행 가능
 
-- **Task 014: Supabase 데이터베이스 스키마 생성** - 우선순위
-  - users 테이블 생성 (Auth 연동)
-  - groups 테이블 생성
-  - group_members 테이블 생성 (복합 인덱스)
-  - group_invites 테이블 생성
-  - missions 테이블 생성
-  - verifications 테이블 생성
-  - cheers 테이블 생성
-  - notifications 테이블 생성
-  - 외래 키 관계 및 인덱스 설정
+- **Task 014: Supabase 데이터베이스 스키마 생성** ✅ - 완료
+  - ✅ users 테이블 생성 (Auth 연동)
+  - ✅ groups 테이블 생성
+  - ✅ group_members 테이블 생성 (복합 인덱스)
+  - ✅ group_invites 테이블 생성
+  - ✅ missions 테이블 생성
+  - ✅ verifications 테이블 생성
+  - ✅ cheers 테이블 생성
+  - ✅ notifications 테이블 생성
+  - ✅ 외래 키 관계 및 인덱스 설정
+  - ✅ TypeScript 타입 생성 (lib/supabase/database.types.ts)
   - **관련 기능**: 전체
-  - **산출물**: Supabase Migration 파일
+  - **산출물**: Supabase Migration 파일, TypeScript 타입 정의
 
 - **Task 015: Row Level Security (RLS) 정책 설정**
   - users: 본인 데이터만 접근
@@ -559,7 +560,7 @@ Task 001 (라우팅)
 
 ---
 
-**문서 버전**: v1.4
-**최종 업데이트**: 2026-01-12
-**진행 상황**: Phase 1-2 완료, Phase 3 대기 중 (13/29 Tasks 완료)
+**문서 버전**: v1.5
+**최종 업데이트**: 2026-01-13
+**진행 상황**: Phase 1-2 완료, Phase 3 진행 중 (14/29 Tasks 완료)
 **작성자**: Claude Code
