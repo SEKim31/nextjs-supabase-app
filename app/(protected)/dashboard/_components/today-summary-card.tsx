@@ -59,7 +59,7 @@ export function TodaySummaryCard({
         <div className="flex items-baseline justify-between">
           <div className="flex items-baseline gap-1">
             <span className="text-3xl font-bold">{completedCount}</span>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-muted-foreground text-sm">
               / {totalCount}
             </span>
           </div>
@@ -73,7 +73,7 @@ export function TodaySummaryCard({
             🎉 오늘의 모든 미션을 완료했어요!
           </p>
         ) : (
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             {totalCount - completedCount}개의 미션이 남았어요
           </p>
         )}

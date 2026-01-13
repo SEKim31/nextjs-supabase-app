@@ -70,7 +70,7 @@ export function TextVerificationForm({
             className={cn(
               "text-xs",
               remainingCharacters < 100
-                ? "font-semibold text-destructive"
+                ? "text-destructive font-semibold"
                 : "text-muted-foreground"
             )}
           >
@@ -88,7 +88,7 @@ export function TextVerificationForm({
           maxLength={MAX_CHARACTERS}
         />
 
-        <p className="text-xs text-muted-foreground">
+        <p className="text-muted-foreground text-xs">
           미션 수행 내용을 자세히 작성하면 다른 사람들에게 더 많은 응원을 받을
           수 있어요!
         </p>

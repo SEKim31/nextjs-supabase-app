@@ -115,7 +115,7 @@ export default function MissionVerifyPage() {
   // 오늘 이미 인증한 경우
   if (todayVerification) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="bg-background min-h-screen">
         {/* 헤더 */}
         <PageHeader title={mission.title} />
 
@@ -128,7 +128,7 @@ export default function MissionVerifyPage() {
                 <h2 className="mt-4 text-lg font-semibold">
                   오늘 인증을 완료했습니다!
                 </h2>
-                <p className="mt-2 text-sm text-muted-foreground">
+                <p className="text-muted-foreground mt-2 text-sm">
                   내일 다시 인증해주세요.
                 </p>
               </div>
@@ -184,7 +184,7 @@ export default function MissionVerifyPage() {
 
       default:
         return (
-          <p className="text-center text-muted-foreground">
+          <p className="text-muted-foreground text-center">
             지원하지 않는 인증 타입입니다.
           </p>
         );
@@ -192,7 +192,7 @@ export default function MissionVerifyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       {/* 헤더 */}
       <PageHeader title={mission.title} />
 
@@ -200,7 +200,7 @@ export default function MissionVerifyPage() {
       <main className="container mx-auto p-4">
         <div className="mb-4">
           <h2 className="text-xl font-bold">인증하기</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="text-muted-foreground mt-1 text-sm">
             {mission.description || "오늘의 미션을 완료하고 인증해보세요!"}
           </p>
         </div>

@@ -22,12 +22,12 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="bg-background flex min-h-screen items-center justify-center px-4">
       <div className="w-full max-w-md space-y-6 text-center">
         {/* 에러 아이콘 */}
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-destructive/10">
+        <div className="bg-destructive/10 mx-auto flex h-16 w-16 items-center justify-center rounded-full">
           <svg
-            className="h-8 w-8 text-destructive"
+            className="text-destructive h-8 w-8"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -43,10 +43,10 @@ export default function Error({
 
         {/* 에러 메시지 */}
         <div className="space-y-2">
-          <h2 className="text-2xl font-bold text-foreground">
+          <h2 className="text-foreground text-2xl font-bold">
             문제가 발생했습니다
           </h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             예상치 못한 오류가 발생했습니다.
             <br />
             잠시 후 다시 시도해주세요.
@@ -55,8 +55,8 @@ export default function Error({
 
         {/* 에러 상세 정보 (개발 환경에서만 표시) */}
         {process.env.NODE_ENV === "development" && (
-          <div className="rounded-lg bg-muted p-4 text-left">
-            <p className="break-all font-mono text-xs text-muted-foreground">
+          <div className="bg-muted rounded-lg p-4 text-left">
+            <p className="text-muted-foreground font-mono text-xs break-all">
               {error.message}
             </p>
           </div>

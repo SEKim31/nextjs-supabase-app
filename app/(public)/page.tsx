@@ -12,10 +12,10 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col">
       {/* 헤더 */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-sm">
         <div className="container flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-brand-primary">
+            <span className="text-brand-primary text-2xl font-bold">
               하루모아
             </span>
           </Link>
@@ -40,7 +40,7 @@ export default function Home() {
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
             습관을 함께, <span className="text-brand-primary">하루모아</span>
           </h1>
-          <p className="mx-auto max-w-[700px] text-lg text-muted-foreground md:text-xl">
+          <p className="text-muted-foreground mx-auto max-w-[700px] text-lg md:text-xl">
             혼자서는 어려운 습관 만들기, 이제 친구들과 함께해보세요.
             <br />
             매일의 작은 실천이 모여 큰 변화를 만듭니다.
@@ -67,17 +67,17 @@ export default function Home() {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             하루모아의 특별한 기능
           </h2>
-          <p className="mx-auto mt-4 max-w-[600px] text-muted-foreground md:text-lg">
+          <p className="text-muted-foreground mx-auto mt-4 max-w-[600px] md:text-lg">
             함께하는 습관 만들기를 위한 모든 것
           </p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
           {/* 기능 카드 1: 그룹 습관 */}
-          <Card className="border-2 transition-all hover:border-brand-primary hover:shadow-lg">
+          <Card className="hover:border-brand-primary border-2 transition-all hover:shadow-lg">
             <CardHeader>
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-brand-primary/10">
-                <Users className="h-7 w-7 text-brand-primary" />
+              <div className="bg-brand-primary/10 mb-4 flex h-14 w-14 items-center justify-center rounded-lg">
+                <Users className="text-brand-primary h-7 w-7" />
               </div>
               <CardTitle className="text-2xl">그룹 습관 만들기</CardTitle>
             </CardHeader>
@@ -90,10 +90,10 @@ export default function Home() {
           </Card>
 
           {/* 기능 카드 2: 데일리 인증 */}
-          <Card className="border-2 transition-all hover:border-brand-primary hover:shadow-lg">
+          <Card className="hover:border-brand-primary border-2 transition-all hover:shadow-lg">
             <CardHeader>
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-brand-primary/10">
-                <Camera className="h-7 w-7 text-brand-primary" />
+              <div className="bg-brand-primary/10 mb-4 flex h-14 w-14 items-center justify-center rounded-lg">
+                <Camera className="text-brand-primary h-7 w-7" />
               </div>
               <CardTitle className="text-2xl">데일리 인증</CardTitle>
             </CardHeader>
@@ -106,10 +106,10 @@ export default function Home() {
           </Card>
 
           {/* 기능 카드 3: 응원 시스템 */}
-          <Card className="border-2 transition-all hover:border-brand-primary hover:shadow-lg">
+          <Card className="hover:border-brand-primary border-2 transition-all hover:shadow-lg">
             <CardHeader>
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-brand-primary/10">
-                <Heart className="h-7 w-7 text-brand-primary" />
+              <div className="bg-brand-primary/10 mb-4 flex h-14 w-14 items-center justify-center rounded-lg">
+                <Heart className="text-brand-primary h-7 w-7" />
               </div>
               <CardTitle className="text-2xl">응원하고 격려하기</CardTitle>
             </CardHeader>
@@ -124,12 +124,12 @@ export default function Home() {
       </section>
 
       {/* CTA 섹션 */}
-      <section className="border-t bg-muted/50">
+      <section className="bg-muted/50 border-t">
         <div className="container flex flex-col items-center justify-center space-y-6 py-20 text-center md:py-32">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             지금 바로 시작하세요
           </h2>
-          <p className="max-w-[600px] text-muted-foreground md:text-lg">
+          <p className="text-muted-foreground max-w-[600px] md:text-lg">
             하루모아와 함께 습관을 만들고, 목표를 달성하세요.
             <br />
             가입은 무료이며, 바로 시작할 수 있습니다.
@@ -147,7 +147,7 @@ export default function Home() {
       {/* 푸터 */}
       <footer className="border-t">
         <div className="container flex flex-col items-center justify-between gap-4 py-8 md:flex-row">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             © 2026 하루모아. All rights reserved.
           </p>
           <Suspense fallback={<div className="h-9 w-9" />}>

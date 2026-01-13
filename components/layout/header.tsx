@@ -15,13 +15,13 @@ export function Header({ className }: HeaderProps) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 flex h-14 w-full items-center justify-between border-b bg-background px-4",
+        "bg-background sticky top-0 z-50 flex h-14 w-full items-center justify-between border-b px-4",
         className
       )}
     >
       {/* 로고 */}
       <Link href="/dashboard" className="flex items-center gap-2">
-        <span className="text-xl font-bold text-primary">하루모아</span>
+        <span className="text-primary text-xl font-bold">하루모아</span>
       </Link>
 
       {/* 알림 아이콘 */}

@@ -130,7 +130,7 @@ export default function NewGroupPage() {
                             />
                             <Label
                               htmlFor={value}
-                              className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                              className="border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 p-4"
                             >
                               <Icon className="h-6 w-6" />
                               <span className="text-sm font-medium">

@@ -62,7 +62,7 @@ export function MissionCard({
           </Badge>
         </div>
         {mission.description && (
-          <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+          <p className="text-muted-foreground mt-1 line-clamp-2 text-sm">
             {mission.description}
           </p>
         )}
@@ -70,14 +70,14 @@ export function MissionCard({
       <CardContent>
         {isCompletedToday ? (
           <div className="flex items-center justify-center py-2">
-            <Badge className="bg-brand-primary text-white hover:bg-brand-primary/90">
+            <Badge className="bg-brand-primary hover:bg-brand-primary/90 text-white">
               ✓ 오늘 인증 완료
             </Badge>
           </div>
         ) : (
           <Button
             onClick={onVerify}
-            className="w-full bg-brand-primary text-white hover:bg-brand-primary/90"
+            className="bg-brand-primary hover:bg-brand-primary/90 w-full text-white"
           >
             <Icon className="mr-2 h-4 w-4" />
             인증하기

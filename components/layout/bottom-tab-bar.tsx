@@ -60,7 +60,7 @@ export function BottomTabBar({ className }: BottomTabBarProps) {
   return (
     <nav
       className={cn(
-        "fixed bottom-0 left-0 right-0 z-50 border-t bg-background",
+        "bg-background fixed right-0 bottom-0 left-0 z-50 border-t",
         // Safe Area 대응: 하단 여백 추가 (iOS 홈바 등)
         "pb-safe",
         className
@@ -94,7 +94,7 @@ export function BottomTabBar({ className }: BottomTabBarProps) {
               {/* 강조 탭에는 배경 원형 추가 */}
               {tab.emphasis && active && (
                 <div className="absolute inset-0 -z-10 flex items-center justify-center">
-                  <div className="h-10 w-10 rounded-full bg-brand-primary/10" />
+                  <div className="bg-brand-primary/10 h-10 w-10 rounded-full" />
                 </div>
               )}
               <Icon

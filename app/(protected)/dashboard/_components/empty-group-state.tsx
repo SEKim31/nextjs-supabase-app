@@ -20,8 +20,8 @@ export function EmptyGroupState() {
     <div className="flex min-h-[60vh] items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-            <Users className="h-8 w-8 text-muted-foreground" />
+          <div className="bg-muted mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+            <Users className="text-muted-foreground h-8 w-8" />
           </div>
           <CardTitle className="text-2xl">아직 그룹이 없어요</CardTitle>
           <CardDescription className="text-base">
@@ -41,12 +41,12 @@ export function EmptyGroupState() {
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">
+              <span className="bg-background text-muted-foreground px-2">
                 또는
               </span>
             </div>
           </div>
-          <p className="text-center text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-center text-sm">
             친구에게 받은 초대 링크로
             <br />
             그룹에 참여할 수 있어요

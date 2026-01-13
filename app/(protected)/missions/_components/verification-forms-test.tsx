@@ -69,7 +69,7 @@ export function VerificationFormsTest() {
     <div className="mx-auto max-w-2xl space-y-6 p-6">
       <div>
         <h1 className="text-2xl font-bold">인증 폼 테스트</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="text-muted-foreground mt-2 text-sm">
           세 가지 인증 타입의 폼을 테스트할 수 있습니다.
         </p>
       </div>
@@ -91,7 +91,7 @@ export function VerificationFormsTest() {
           </div>
           <div className="rounded-lg border border-dashed p-4">
             <h3 className="mb-2 text-sm font-semibold">테스트 기준</h3>
-            <ul className="space-y-1 text-xs text-muted-foreground">
+            <ul className="text-muted-foreground space-y-1 text-xs">
               <li>✓ 이미지 선택 시 미리보기 표시</li>
               <li>✓ 10MB 초과 파일 업로드 차단</li>
               <li>✓ 이미지 파일만 업로드 가능</li>
@@ -111,7 +111,7 @@ export function VerificationFormsTest() {
           </div>
           <div className="rounded-lg border border-dashed p-4">
             <h3 className="mb-2 text-sm font-semibold">테스트 기준</h3>
-            <ul className="space-y-1 text-xs text-muted-foreground">
+            <ul className="text-muted-foreground space-y-1 text-xs">
               <li>✓ 1000자 제한이 작동</li>
               <li>✓ 남은 글자 수 표시</li>
               <li>✓ 100자 미만일 때 경고 색상</li>
@@ -132,7 +132,7 @@ export function VerificationFormsTest() {
           </div>
           <div className="rounded-lg border border-dashed p-4">
             <h3 className="mb-2 text-sm font-semibold">테스트 기준</h3>
-            <ul className="space-y-1 text-xs text-muted-foreground">
+            <ul className="text-muted-foreground space-y-1 text-xs">
               <li>✓ 체크박스 토글 작동</li>
               <li>✓ 완료된 항목 수 표시</li>
               <li>✓ 체크된 항목 스타일 변경</li>

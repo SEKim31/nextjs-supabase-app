@@ -67,7 +67,7 @@ export function MonthlyCalendarSection({
             day: cn(
               "relative",
               // 인증된 날짜 스타일
-              "[&[data-verified='true']]:bg-brand-primary/20 [&[data-verified='true']]:font-bold [&[data-verified='true']]:text-brand-primary"
+              "data-[verified='true']:bg-brand-primary/20 data-[verified='true']:text-brand-primary data-[verified='true']:font-bold"
             ),
           }}
           components={{
@@ -81,7 +81,7 @@ export function MonthlyCalendarSection({
                   className={cn(
                     props.className,
                     isVerified &&
-                      "bg-brand-primary/20 font-bold text-brand-primary hover:bg-brand-primary/30"
+                      "bg-brand-primary/20 text-brand-primary hover:bg-brand-primary/30 font-bold"
                   )}
                 >
                   {day.date.getDate()}
@@ -93,9 +93,9 @@ export function MonthlyCalendarSection({
         />
 
         {/* 인증 통계 */}
-        <div className="mt-4 flex items-center justify-center gap-4 text-sm text-muted-foreground">
+        <div className="text-muted-foreground mt-4 flex items-center justify-center gap-4 text-sm">
           <div className="flex items-center gap-2">
-            <div className="h-3 w-3 rounded-sm bg-brand-primary/20" />
+            <div className="bg-brand-primary/20 h-3 w-3 rounded-sm" />
             <span>인증 완료: {verificationDates.length}일</span>
           </div>
         </div>

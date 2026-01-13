@@ -26,9 +26,9 @@ export function TodayOverviewCard({
       </CardHeader>
       <CardContent className="space-y-4">
         {/* 완료 미션 수 표시 */}
-        <div className="text-sm text-muted-foreground">
+        <div className="text-muted-foreground text-sm">
           완료된 미션{" "}
-          <span className="font-semibold text-foreground">
+          <span className="text-foreground font-semibold">
             {completedMissions}개
           </span>{" "}
           / 전체 {totalMissions}개

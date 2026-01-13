@@ -43,7 +43,7 @@ export function DashboardHeader({
       <h1 className="text-2xl font-bold">
         {userName ? `${userName}님, ${greeting}! 👋` : `${greeting}! 👋`}
       </h1>
-      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+      <div className="text-muted-foreground flex items-center gap-2 text-sm">
         <Calendar className="h-4 w-4" />
         <span>{displayDate}</span>
       </div>

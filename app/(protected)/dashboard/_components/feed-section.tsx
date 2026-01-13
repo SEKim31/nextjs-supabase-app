@@ -67,10 +67,10 @@ function FeedCard({
               <AvatarFallback>{feed.userName[0]}</AvatarFallback>
             </Avatar>
             <div>
-              <p className="text-sm font-medium leading-none">
+              <p className="text-sm leading-none font-medium">
                 {feed.userName}
               </p>
-              <p className="mt-1 text-xs text-muted-foreground">
+              <p className="text-muted-foreground mt-1 text-xs">
                 {feed.timeAgo}
               </p>
             </div>
@@ -86,15 +86,15 @@ function FeedCard({
             {feed.missionTitle}
           </Badge>
           {feed.verificationType === "photo" && (
-            <span className="text-xs text-muted-foreground">📷 사진 인증</span>
+            <span className="text-muted-foreground text-xs">📷 사진 인증</span>
           )}
           {feed.verificationType === "text" && (
-            <span className="text-xs text-muted-foreground">
+            <span className="text-muted-foreground text-xs">
               ✍️ 텍스트 인증
             </span>
           )}
           {feed.verificationType === "check" && (
-            <span className="text-xs text-muted-foreground">✅ 완료 인증</span>
+            <span className="text-muted-foreground text-xs">✅ 완료 인증</span>
           )}
         </div>
 
@@ -145,17 +145,17 @@ function FeedSkeleton() {
     <Card>
       <CardHeader className="pb-3">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 animate-pulse rounded-full bg-muted" />
+          <div className="bg-muted h-10 w-10 animate-pulse rounded-full" />
           <div className="space-y-2">
-            <div className="h-4 w-24 animate-pulse rounded bg-muted" />
-            <div className="h-3 w-16 animate-pulse rounded bg-muted" />
+            <div className="bg-muted h-4 w-24 animate-pulse rounded" />
+            <div className="bg-muted h-3 w-16 animate-pulse rounded" />
           </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
-        <div className="h-4 w-32 animate-pulse rounded bg-muted" />
-        <div className="aspect-square w-full animate-pulse rounded-lg bg-muted" />
-        <div className="h-8 w-24 animate-pulse rounded bg-muted" />
+        <div className="bg-muted h-4 w-32 animate-pulse rounded" />
+        <div className="bg-muted aspect-square w-full animate-pulse rounded-lg" />
+        <div className="bg-muted h-8 w-24 animate-pulse rounded" />
       </CardContent>
     </Card>
   );
@@ -172,7 +172,7 @@ export function FeedSection({ feeds, onCheer, isLoading }: FeedSectionProps) {
       <div className="space-y-4 px-4">
         <div>
           <h2 className="text-lg font-semibold">최근 활동</h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             그룹원들의 인증을 응원하세요
           </p>
         </div>
@@ -191,7 +191,7 @@ export function FeedSection({ feeds, onCheer, isLoading }: FeedSectionProps) {
       <div className="space-y-4 px-4">
         <div>
           <h2 className="text-lg font-semibold">최근 활동</h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             그룹원들의 인증을 응원하세요
           </p>
         </div>
@@ -209,7 +209,7 @@ export function FeedSection({ feeds, onCheer, isLoading }: FeedSectionProps) {
     <div className="space-y-4 px-4">
       <div>
         <h2 className="text-lg font-semibold">최근 활동</h2>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           그룹원들의 인증을 응원하세요
         </p>
       </div>

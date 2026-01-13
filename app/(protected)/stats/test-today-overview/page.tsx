@@ -45,7 +45,7 @@ export default function TestTodayOverviewPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {testCases.map((testCase, index) => (
           <div key={index} className="space-y-2">
-            <h2 className="text-lg font-semibold text-muted-foreground">
+            <h2 className="text-muted-foreground text-lg font-semibold">
               {testCase.title}
             </h2>
             <TodayOverviewCard

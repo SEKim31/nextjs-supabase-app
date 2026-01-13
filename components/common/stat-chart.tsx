@@ -52,7 +52,7 @@ export function StatChart({
             >
               {/* 값 표시 (막대 위) */}
               {percentage > 0 && (
-                <span className="text-xs font-semibold text-muted-foreground">
+                <span className="text-muted-foreground text-xs font-semibold">
                   {percentage}%
                 </span>
               )}
@@ -84,7 +84,7 @@ export function StatChart({
         <div className="mt-2 flex items-center justify-around gap-2 px-2">
           {data.map((item, index) => (
             <div key={index} className="flex-1 text-center">
-              <span className="text-xs text-muted-foreground">
+              <span className="text-muted-foreground text-xs">
                 {item.label}
               </span>
             </div>
@@ -93,17 +93,17 @@ export function StatChart({
       )}
 
       {/* 범례 */}
-      <div className="mt-4 flex items-center justify-center gap-4 text-xs text-muted-foreground">
+      <div className="text-muted-foreground mt-4 flex items-center justify-center gap-4 text-xs">
         <div className="flex items-center gap-1.5">
-          <div className="h-3 w-3 rounded-sm bg-brand-primary" />
+          <div className="bg-brand-primary h-3 w-3 rounded-sm" />
           <span>100%</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="h-3 w-3 rounded-sm bg-brand-secondary" />
+          <div className="bg-brand-secondary h-3 w-3 rounded-sm" />
           <span>70% 이상</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="h-3 w-3 rounded-sm bg-muted-foreground/40" />
+          <div className="bg-muted-foreground/40 h-3 w-3 rounded-sm" />
           <span>70% 미만</span>
         </div>
       </div>

@@ -54,14 +54,14 @@ export function GroupCard({ group, onClick, className }: GroupCardProps) {
           </Badge>
         </div>
         {group.description && (
-          <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+          <p className="text-muted-foreground mt-1 line-clamp-2 text-sm">
             {group.description}
           </p>
         )}
       </CardHeader>
       <CardContent className="space-y-3">
         {/* 멤버 수 */}
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+        <div className="text-muted-foreground flex items-center gap-2 text-sm">
           <UsersIcon className="h-4 w-4" />
           <span>{group.member_count}명</span>
         </div>
@@ -70,7 +70,7 @@ export function GroupCard({ group, onClick, className }: GroupCardProps) {
         <div className="space-y-2">
           <div className="flex items-center justify-between text-sm">
             <span className="text-muted-foreground">오늘의 달성률</span>
-            <span className="font-semibold text-brand-primary">
+            <span className="text-brand-primary font-semibold">
               {completionRate}%
             </span>
           </div>

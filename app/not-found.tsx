@@ -13,15 +13,15 @@ export default function NotFound() {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="bg-background flex min-h-screen items-center justify-center px-4">
       <div className="w-full max-w-md space-y-6 text-center">
         {/* 404 텍스트 */}
         <div className="space-y-2">
-          <h1 className="text-8xl font-bold text-primary">404</h1>
-          <h2 className="text-2xl font-bold text-foreground">
+          <h1 className="text-primary text-8xl font-bold">404</h1>
+          <h2 className="text-foreground text-2xl font-bold">
             페이지를 찾을 수 없습니다
           </h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             요청하신 페이지가 존재하지 않거나,
             <br />
             이동되었을 수 있습니다.
@@ -29,9 +29,9 @@ export default function NotFound() {
         </div>
 
         {/* 일러스트레이션 (선택적) */}
-        <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-muted">
+        <div className="bg-muted mx-auto flex h-32 w-32 items-center justify-center rounded-full">
           <svg
-            className="h-16 w-16 text-muted-foreground"
+            className="text-muted-foreground h-16 w-16"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

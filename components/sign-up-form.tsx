@@ -105,7 +105,7 @@ export function SignUpForm({
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-card px-2 text-muted-foreground">
+              <span className="bg-card text-muted-foreground px-2">
                 또는 이메일로 가입
               </span>
             </div>
@@ -130,7 +130,7 @@ export function SignUpForm({
                   <p
                     id="email-error"
                     role="alert"
-                    className="text-sm text-destructive"
+                    className="text-destructive text-sm"
                   >
                     {fieldErrors.email[0]}
                   </p>
@@ -154,7 +154,7 @@ export function SignUpForm({
                   <p
                     id="password-error"
                     role="alert"
-                    className="text-sm text-destructive"
+                    className="text-destructive text-sm"
                   >
                     {fieldErrors.password[0]}
                   </p>
@@ -180,7 +180,7 @@ export function SignUpForm({
                   <p
                     id="confirm-password-error"
                     role="alert"
-                    className="text-sm text-destructive"
+                    className="text-destructive text-sm"
                   >
                     {fieldErrors.confirmPassword[0]}
                   </p>
@@ -196,13 +196,13 @@ export function SignUpForm({
                 />
                 <Label
                   htmlFor="terms"
-                  className="text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  className="text-sm leading-none font-normal peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   서비스 이용약관 및 개인정보처리방침에 동의합니다
                 </Label>
               </div>
               {error && (
-                <p role="alert" className="text-sm text-destructive">
+                <p role="alert" className="text-destructive text-sm">
                   {error}
                 </p>
               )}

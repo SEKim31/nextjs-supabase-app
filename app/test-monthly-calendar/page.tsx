@@ -13,10 +13,10 @@ export default function TestMonthlyCalendarPage() {
     <div className="container mx-auto space-y-6 p-8">
       <div>
         <h1 className="text-3xl font-bold">월간 캘린더 컴포넌트 테스트</h1>
-        <p className="mt-2 text-muted-foreground">
+        <p className="text-muted-foreground mt-2">
           인증된 날짜가 하이라이트로 표시됩니다.
         </p>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <p className="text-muted-foreground mt-1 text-sm">
           총 {verificationDates.length}개의 인증 날짜
         </p>
       </div>

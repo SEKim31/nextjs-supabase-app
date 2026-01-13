@@ -75,7 +75,7 @@ export function MissionInfoCard({
         {/* 미션 설명 */}
         {description && (
           <div>
-            <h3 className="mb-2 text-sm font-medium text-muted-foreground">
+            <h3 className="text-muted-foreground mb-2 text-sm font-medium">
               설명
             </h3>
             <p className="text-sm leading-relaxed">{description}</p>
@@ -84,7 +84,7 @@ export function MissionInfoCard({
 
         {/* 반복 유형 */}
         <div>
-          <h3 className="mb-2 text-sm font-medium text-muted-foreground">
+          <h3 className="text-muted-foreground mb-2 text-sm font-medium">
             반복
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -96,11 +96,11 @@ export function MissionInfoCard({
 
         {/* 인증 타입 */}
         <div>
-          <h3 className="mb-2 text-sm font-medium text-muted-foreground">
+          <h3 className="text-muted-foreground mb-2 text-sm font-medium">
             인증 방법
           </h3>
           <div className="flex items-center gap-2">
-            <VerificationIcon className="h-4 w-4 text-muted-foreground" />
+            <VerificationIcon className="text-muted-foreground h-4 w-4" />
             <span className="text-sm">
               {VERIFICATION_LABELS[verificationType]}
             </span>

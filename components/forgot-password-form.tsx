@@ -55,7 +55,7 @@ export function ForgotPasswordForm({
             <CardDescription>비밀번호 재설정 안내를 보냈습니다</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               이메일과 비밀번호로 가입하셨다면 비밀번호 재설정 이메일을 받으실
               수 있습니다.
             </p>

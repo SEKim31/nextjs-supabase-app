@@ -15,11 +15,11 @@ interface AppFrameProps {
  */
 export function AppFrame({ children, className }: AppFrameProps) {
   return (
-    <div className="relative min-h-screen w-full bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="from-background via-background to-muted/20 relative min-h-screen w-full bg-linear-to-br">
       {/* 데스크톱에서만 보이는 장식 요소 */}
       <div className="pointer-events-none absolute inset-0 hidden lg:block">
-        <div className="absolute left-1/4 top-1/4 h-72 w-72 rounded-full bg-brand-primary/5 blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-brand-secondary/5 blur-3xl" />
+        <div className="bg-brand-primary/5 absolute top-1/4 left-1/4 h-72 w-72 rounded-full blur-3xl" />
+        <div className="bg-brand-secondary/5 absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full blur-3xl" />
       </div>
 
       {/* 메인 컨테이너 */}
@@ -33,7 +33,7 @@ export function AppFrame({ children, className }: AppFrameProps) {
         )}
       >
         {/* 앱 콘텐츠 영역 */}
-        <div className="relative min-h-screen bg-background lg:border-x">
+        <div className="bg-background relative min-h-screen lg:border-x">
           {children}
         </div>
       </div>

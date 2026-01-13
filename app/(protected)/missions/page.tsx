@@ -77,11 +77,11 @@ export default function MissionsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-background pb-24">
+    <div className="bg-background min-h-screen pb-24">
       {/* 헤더 */}
-      <header className="sticky top-0 z-50 border-b bg-background px-4 py-4">
+      <header className="bg-background sticky top-0 z-50 border-b px-4 py-4">
         <h1 className="text-xl font-bold">오늘의 미션</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <p className="text-muted-foreground mt-1 text-sm">
           {completedCount}/{totalCount} 완료 · 오늘도 화이팅!
         </p>
       </header>
@@ -92,22 +92,22 @@ export default function MissionsPage() {
           ([groupName, groupMissions], idx) => (
             <section key={groupName} className="space-y-3">
               {idx > 0 && <Separator />}
-              <h2 className="text-sm font-medium text-muted-foreground">
+              <h2 className="text-muted-foreground text-sm font-medium">
                 {groupName}
               </h2>
               <div className="space-y-2">
                 {groupMissions.map((mission) => (
                   <Link key={mission.id} href={`/missions/${mission.id}`}>
-                    <Card className="transition-colors hover:bg-accent">
+                    <Card className="hover:bg-accent transition-colors">
                       <CardContent className="flex items-center justify-between p-4">
                         <div className="flex items-start gap-3">
                           {mission.isCompleted ? (
-                            <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
+                            <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
                           ) : (
-                            <Circle className="mt-0.5 h-5 w-5 flex-shrink-0 text-muted-foreground" />
+                            <Circle className="text-muted-foreground mt-0.5 h-5 w-5 shrink-0" />
                           )}
                           <div className="space-y-1">
-                            <h3 className="font-medium leading-none">
+                            <h3 className="leading-none font-medium">
                               {mission.title}
                             </h3>
                             <div className="flex items-center gap-2">
@@ -117,7 +117,7 @@ export default function MissionsPage() {
                             </div>
                           </div>
                         </div>
-                        <ChevronRight className="h-5 w-5 text-muted-foreground" />
+                        <ChevronRight className="text-muted-foreground h-5 w-5" />
                       </CardContent>
                     </Card>
                   </Link>
@@ -129,7 +129,7 @@ export default function MissionsPage() {
       </main>
 
       {/* 새 미션 만들기 FAB */}
-      <div className="fixed bottom-24 right-4">
+      <div className="fixed right-4 bottom-24">
         <Button size="lg" className="h-14 w-14 rounded-full shadow-lg" asChild>
           <Link href="/missions/new">
             <Plus className="h-6 w-6" />

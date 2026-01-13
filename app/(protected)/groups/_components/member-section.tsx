@@ -51,7 +51,7 @@ export function MemberSection({ members, onInvite }: MemberSectionProps) {
                   {member.user.nickname?.charAt(0) || "?"}
                 </AvatarFallback>
               </Avatar>
-              <span className="line-clamp-1 text-center text-xs text-muted-foreground">
+              <span className="text-muted-foreground line-clamp-1 text-center text-xs">
                 {member.user.nickname || "사용자"}
               </span>
             </div>

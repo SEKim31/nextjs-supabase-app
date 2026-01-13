@@ -129,7 +129,7 @@ export function InviteShareModal({
           )}
 
           {/* 만료 안내 텍스트 */}
-          <p className="text-center text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-center text-sm">
             이 링크는 7일 후 만료됩니다
           </p>
         </div>

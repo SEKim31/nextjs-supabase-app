@@ -160,7 +160,7 @@ export default function NewMissionPage() {
                             />
                             <Label
                               htmlFor={`repeat-${value}`}
-                              className="flex cursor-pointer items-center justify-center rounded-lg border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                              className="border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary flex cursor-pointer items-center justify-center rounded-lg border-2 p-4"
                             >
                               <span className="text-sm font-medium">
                                 {label}
@@ -199,7 +199,7 @@ export default function NewMissionPage() {
                             key={day}
                             value={String(day)}
                             aria-label={DAY_LABELS[day]}
-                            className="h-10 w-full data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+                            className="data-[state=on]:bg-primary data-[state=on]:text-primary-foreground h-10 w-full"
                           >
                             {DAY_LABELS[day]}
                           </ToggleGroupItem>
@@ -238,7 +238,7 @@ export default function NewMissionPage() {
                             />
                             <Label
                               htmlFor={`verification-${value}`}
-                              className="flex cursor-pointer items-center gap-3 rounded-lg border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                              className="border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary flex cursor-pointer items-center gap-3 rounded-lg border-2 p-4"
                             >
                               <Icon className="h-5 w-5" />
                               <span className="text-sm font-medium">

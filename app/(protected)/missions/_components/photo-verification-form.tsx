@@ -110,7 +110,7 @@ export function PhotoVerificationForm({
               type="button"
               variant="destructive"
               size="icon"
-              className="absolute right-2 top-2"
+              className="absolute top-2 right-2"
               onClick={handleRemoveImage}
               disabled={isLoading}
             >
@@ -122,13 +122,13 @@ export function PhotoVerificationForm({
           <div
             onClick={handleSelectAreaClick}
             className={cn(
-              "flex aspect-video w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed transition-colors hover:border-brand-primary hover:bg-accent",
+              "hover:border-brand-primary hover:bg-accent flex aspect-video w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed transition-colors",
               isLoading && "pointer-events-none opacity-50"
             )}
           >
-            <ImageIcon className="mb-2 h-12 w-12 text-muted-foreground" />
-            <p className="text-sm text-muted-foreground">클릭하여 사진 선택</p>
-            <p className="mt-1 text-xs text-muted-foreground">
+            <ImageIcon className="text-muted-foreground mb-2 h-12 w-12" />
+            <p className="text-muted-foreground text-sm">클릭하여 사진 선택</p>
+            <p className="text-muted-foreground mt-1 text-xs">
               최대 10MB (JPG, PNG, GIF)
             </p>
           </div>

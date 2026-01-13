@@ -127,19 +127,19 @@ export function ProfileSetupForm({
                   <p
                     id="nickname-error"
                     role="alert"
-                    className="text-sm text-destructive"
+                    className="text-destructive text-sm"
                   >
                     {fieldErrors.nickname[0]}
                   </p>
                 )}
-                <p className="text-xs text-muted-foreground">
+                <p className="text-muted-foreground text-xs">
                   한글, 영문, 숫자, 밑줄(_)만 사용 가능합니다
                 </p>
               </div>
 
               {/* 전체 에러 메시지 */}
               {error && (
-                <p role="alert" className="text-sm text-destructive">
+                <p role="alert" className="text-destructive text-sm">
                   {error}
                 </p>
               )}

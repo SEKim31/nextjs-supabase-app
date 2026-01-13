@@ -144,7 +144,7 @@ export function ProfileEditForm({
           {/* 뒤로가기 링크 */}
           <Link
             href="/settings"
-            className="mb-2 inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground mb-2 inline-flex items-center gap-1 text-sm transition-colors"
           >
             <ChevronLeft className="size-4" />
             <span>설정으로 돌아가기</span>
@@ -185,12 +185,12 @@ export function ProfileEditForm({
                   <p
                     id="nickname-error"
                     role="alert"
-                    className="text-sm text-destructive"
+                    className="text-destructive text-sm"
                   >
                     {fieldErrors.nickname[0]}
                   </p>
                 )}
-                <p className="text-xs text-muted-foreground">
+                <p className="text-muted-foreground text-xs">
                   한글, 영문, 숫자, 밑줄(_)만 사용 가능합니다
                 </p>
               </div>
@@ -206,14 +206,14 @@ export function ProfileEditForm({
                   className="cursor-not-allowed opacity-60"
                   readOnly
                 />
-                <p className="text-xs text-muted-foreground">
+                <p className="text-muted-foreground text-xs">
                   이메일은 변경할 수 없습니다
                 </p>
               </div>
 
               {/* 전체 에러 메시지 */}
               {error && (
-                <p role="alert" className="text-sm text-destructive">
+                <p role="alert" className="text-destructive text-sm">
                   {error}
                 </p>
               )}
@@ -229,7 +229,7 @@ export function ProfileEditForm({
 
               {/* 변경사항 안내 */}
               {!hasChanges && (
-                <p className="text-center text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-center text-sm">
                   변경사항이 없습니다
                 </p>
               )}

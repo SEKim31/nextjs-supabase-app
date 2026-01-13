@@ -92,7 +92,7 @@ export function LoginForm({
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-card px-2 text-muted-foreground">또는</span>
+              <span className="bg-card text-muted-foreground px-2">또는</span>
             </div>
           </div>
 
@@ -115,7 +115,7 @@ export function LoginForm({
                   <p
                     id="email-error"
                     role="alert"
-                    className="text-sm text-destructive"
+                    className="text-destructive text-sm"
                   >
                     {fieldErrors.email[0]}
                   </p>
@@ -145,14 +145,14 @@ export function LoginForm({
                   <p
                     id="password-error"
                     role="alert"
-                    className="text-sm text-destructive"
+                    className="text-destructive text-sm"
                   >
                     {fieldErrors.password[0]}
                   </p>
                 )}
               </div>
               {error && (
-                <p role="alert" className="text-sm text-destructive">
+                <p role="alert" className="text-destructive text-sm">
                   {error}
                 </p>
               )}

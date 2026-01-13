@@ -35,7 +35,7 @@ export default function TestGroupStatsPublicPage() {
         <CardContent>
           <div className="grid grid-cols-1 gap-3">
             {groupStats.map((group) => (
-              <Card key={group.groupId} className="shadow-sm">
+              <Card key={group.groupId} className="shadow-xs">
                 <CardContent className="pt-6">
                   {/* 그룹 이름 */}
                   <h3 className="mb-3 text-base font-semibold">
@@ -43,10 +43,10 @@ export default function TestGroupStatsPublicPage() {
                   </h3>
 
                   {/* 통계 정보 */}
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <div className="text-muted-foreground flex items-center gap-4 text-sm">
                     {/* 총 인증 수 */}
                     <div className="flex items-center gap-1.5">
-                      <CheckCircle className="h-4 w-4 text-primary" />
+                      <CheckCircle className="text-primary h-4 w-4" />
                       <span>
                         총 인증 수: <strong>{group.totalVerifications}</strong>
                         회
@@ -76,7 +76,7 @@ export default function TestGroupStatsPublicPage() {
             <CardTitle>그룹별 통계</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="py-8 text-center text-muted-foreground">
+            <p className="text-muted-foreground py-8 text-center">
               아직 그룹이 없습니다
             </p>
           </CardContent>

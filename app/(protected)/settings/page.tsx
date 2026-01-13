@@ -66,13 +66,13 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="bg-background min-h-screen pb-20">
       {/* 메인 콘텐츠 */}
       <main className="container mx-auto space-y-6 p-4">
         {/* 페이지 제목 */}
         <div className="space-y-1">
           <h1 className="text-2xl font-bold">설정</h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             프로필과 계정을 관리하세요
           </p>
         </div>
@@ -99,7 +99,7 @@ export default function SettingsPage() {
               {/* 닉네임 및 이메일 */}
               <div className="flex-1 space-y-1">
                 <p className="font-medium">{displayName}</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   {currentUser.email}
                 </p>
               </div>
@@ -116,11 +116,11 @@ export default function SettingsPage() {
             {/* 프로필 수정 */}
             <Link
               href="/settings/profile"
-              className="flex items-center gap-3 px-6 py-4 transition-colors hover:bg-muted"
+              className="hover:bg-muted flex items-center gap-3 px-6 py-4 transition-colors"
             >
-              <User className="size-5 text-muted-foreground" />
+              <User className="text-muted-foreground size-5" />
               <span className="flex-1 font-medium">프로필 수정</span>
-              <ChevronRight className="size-5 text-muted-foreground" />
+              <ChevronRight className="text-muted-foreground size-5" />
             </Link>
 
             <Separator />
@@ -128,18 +128,18 @@ export default function SettingsPage() {
             {/* 알림 설정 */}
             <Link
               href="/settings/notifications"
-              className="flex items-center gap-3 px-6 py-4 transition-colors hover:bg-muted"
+              className="hover:bg-muted flex items-center gap-3 px-6 py-4 transition-colors"
             >
-              <Bell className="size-5 text-muted-foreground" />
+              <Bell className="text-muted-foreground size-5" />
               <span className="flex-1 font-medium">알림 설정</span>
-              <ChevronRight className="size-5 text-muted-foreground" />
+              <ChevronRight className="text-muted-foreground size-5" />
             </Link>
 
             <Separator />
 
             {/* 테마 변경 */}
             <div className="flex items-center gap-3 px-6 py-4">
-              <Palette className="size-5 text-muted-foreground" />
+              <Palette className="text-muted-foreground size-5" />
               <span className="flex-1 font-medium">테마 변경</span>
               <ThemeSwitcher />
             </div>
@@ -156,11 +156,11 @@ export default function SettingsPage() {
             <button
               type="button"
               onClick={() => setIsLogoutDialogOpen(true)}
-              className="flex w-full items-center gap-3 px-6 py-4 text-left transition-colors hover:bg-muted"
+              className="hover:bg-muted flex w-full items-center gap-3 px-6 py-4 text-left transition-colors"
             >
-              <LogOut className="size-5 text-muted-foreground" />
+              <LogOut className="text-muted-foreground size-5" />
               <span className="flex-1 font-medium">로그아웃</span>
-              <ChevronRight className="size-5 text-muted-foreground" />
+              <ChevronRight className="text-muted-foreground size-5" />
             </button>
 
             <Separator />
@@ -169,13 +169,13 @@ export default function SettingsPage() {
             <button
               type="button"
               onClick={() => setIsDeleteAccountDialogOpen(true)}
-              className="flex w-full items-center gap-3 px-6 py-4 text-left transition-colors hover:bg-muted"
+              className="hover:bg-muted flex w-full items-center gap-3 px-6 py-4 text-left transition-colors"
             >
-              <UserX className="size-5 text-destructive" />
-              <span className="flex-1 font-medium text-destructive">
+              <UserX className="text-destructive size-5" />
+              <span className="text-destructive flex-1 font-medium">
                 계정 탈퇴
               </span>
-              <ChevronRight className="size-5 text-muted-foreground" />
+              <ChevronRight className="text-muted-foreground size-5" />
             </button>
           </CardContent>
         </Card>

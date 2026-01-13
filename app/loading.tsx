@@ -4,13 +4,13 @@
  */
 export default function Loading() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
+    <div className="bg-background flex min-h-screen items-center justify-center">
       <div className="flex flex-col items-center space-y-4">
         {/* 스피너 애니메이션 */}
-        <div className="h-12 w-12 animate-spin rounded-full border-4 border-muted border-t-primary" />
+        <div className="border-muted border-t-primary h-12 w-12 animate-spin rounded-full border-4" />
 
         {/* 로딩 텍스트 */}
-        <p className="text-sm text-muted-foreground">로딩 중...</p>
+        <p className="text-muted-foreground text-sm">로딩 중...</p>
       </div>
     </div>
   );

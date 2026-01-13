@@ -67,7 +67,7 @@ export default function GroupDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       {/* 헤더 */}
       <GroupHeader groupName={group.name} />
 
@@ -81,14 +81,14 @@ export default function GroupDetailPage() {
           <CardContent className="space-y-3">
             {/* 그룹 설명 */}
             {group.description && (
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 {group.description}
               </p>
             )}
 
             {/* 관계 유형 뱃지 */}
             <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground">관계 유형:</span>
+              <span className="text-muted-foreground text-xs">관계 유형:</span>
               <Badge variant="secondary">
                 {RELATIONSHIP_LABELS[group.relationship_type]}
               </Badge>

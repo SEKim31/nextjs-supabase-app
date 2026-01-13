@@ -32,7 +32,7 @@ export default function GroupsPage() {
       {/* 헤더 */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold">내 그룹</h1>
-        <p className="mt-1 text-muted-foreground">
+        <p className="text-muted-foreground mt-1">
           참여 중인 그룹을 확인하고 관리하세요
         </p>
       </div>
@@ -52,7 +52,7 @@ export default function GroupsPage() {
       <Button
         asChild
         size="lg"
-        className="fixed bottom-6 right-6 h-14 w-14 rounded-full p-0 shadow-lg"
+        className="fixed right-6 bottom-6 h-14 w-14 rounded-full p-0 shadow-lg"
       >
         <Link href="/groups/new">
           <Plus className="h-6 w-6" />

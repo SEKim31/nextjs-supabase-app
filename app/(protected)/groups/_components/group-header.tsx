@@ -28,7 +28,7 @@ export function GroupHeader({
   backUrl = "/groups",
 }: GroupHeaderProps) {
   return (
-    <header className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-10 backdrop-blur-sm">
       <div className="flex items-center justify-between border-b px-4 py-3">
         {/* 뒤로가기 버튼 */}
         <Button variant="ghost" size="icon" asChild className="shrink-0">

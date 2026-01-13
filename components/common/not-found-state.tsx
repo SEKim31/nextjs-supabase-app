@@ -67,8 +67,8 @@ export function NotFoundState({
     >
       <Card className="max-w-md">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-muted">
-            <FileQuestion className="h-6 w-6 text-muted-foreground" />
+          <div className="bg-muted mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+            <FileQuestion className="text-muted-foreground h-6 w-6" />
           </div>
           <CardTitle>{title}</CardTitle>
           <CardDescription>{message}</CardDescription>

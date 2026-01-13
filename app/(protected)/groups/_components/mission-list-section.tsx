@@ -22,10 +22,10 @@ export function MissionListSection({ missions }: MissionListSectionProps) {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col items-center justify-center py-8 text-center">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               아직 생성된 미션이 없습니다.
             </p>
-            <p className="mt-1 text-xs text-muted-foreground">
+            <p className="text-muted-foreground mt-1 text-xs">
               새로운 미션을 생성해보세요!
             </p>
           </div>

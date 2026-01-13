@@ -69,7 +69,7 @@ export function VerificationFeed({
           </Avatar>
           <div className="min-w-0 flex-1">
             <p className="text-sm font-semibold">{displayName}</p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               {formatRelativeTime(verification.verified_at)}
             </p>
           </div>
@@ -79,7 +79,7 @@ export function VerificationFeed({
       <CardContent className="space-y-3">
         {/* 사진 인증 */}
         {verification.image_url && (
-          <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
+          <div className="bg-muted relative aspect-video w-full overflow-hidden rounded-lg">
             <Image
               src={verification.image_url}
               alt="인증 사진"
@@ -92,8 +92,8 @@ export function VerificationFeed({
 
         {/* 텍스트 인증 */}
         {verification.text_content && (
-          <div className="rounded-lg bg-muted p-3">
-            <p className="whitespace-pre-wrap text-sm">
+          <div className="bg-muted rounded-lg p-3">
+            <p className="text-sm whitespace-pre-wrap">
               {verification.text_content}
             </p>
           </div>
@@ -123,7 +123,7 @@ export function VerificationFeed({
                     {item.label}
                   </span>
                   {item.checked && (
-                    <Check className="ml-auto h-4 w-4 text-brand-primary" />
+                    <Check className="text-brand-primary ml-auto h-4 w-4" />
                   )}
                 </div>
               ))}

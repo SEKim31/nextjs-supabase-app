@@ -39,8 +39,8 @@ export function LoadingState({
         className
       )}
     >
-      <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-      {message && <p className="text-sm text-muted-foreground">{message}</p>}
+      <Loader2 className="text-muted-foreground h-8 w-8 animate-spin" />
+      {message && <p className="text-muted-foreground text-sm">{message}</p>}
     </div>
   );
 }

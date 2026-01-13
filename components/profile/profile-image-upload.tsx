@@ -141,7 +141,7 @@ export function ProfileImageUpload({
         aria-label="프로필 이미지 업로드"
         aria-disabled={disabled}
         className={cn(
-          "focus:ring-brand group relative cursor-pointer rounded-full transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2",
+          "focus:ring-brand group relative cursor-pointer rounded-full transition-opacity focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
           disabled && "cursor-not-allowed opacity-50",
           isDragging && "ring-brand ring-2 ring-offset-2"
         )}
@@ -156,7 +156,7 @@ export function ProfileImageUpload({
             <AvatarImage src={previewUrl} alt="프로필 이미지" />
           ) : null}
           <AvatarFallback>
-            <User className="size-1/2 text-muted-foreground" />
+            <User className="text-muted-foreground size-1/2" />
           </AvatarFallback>
         </Avatar>
 
@@ -185,7 +185,7 @@ export function ProfileImageUpload({
       {/* 에러 메시지 */}
       {error && (
         <p
-          className="max-w-xs text-center text-sm text-destructive"
+          className="text-destructive max-w-xs text-center text-sm"
           role="alert"
         >
           {error}
@@ -194,7 +194,7 @@ export function ProfileImageUpload({
 
       {/* 안내 텍스트 */}
       {!error && !disabled && (
-        <p className="max-w-xs text-center text-xs text-muted-foreground">
+        <p className="text-muted-foreground max-w-xs text-center text-xs">
           클릭 또는 드래그하여 이미지 업로드
           <br />
           (최대 5MB, JPEG/PNG/WebP/GIF)

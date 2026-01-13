@@ -105,7 +105,7 @@ export default function EditMissionPage() {
   return (
     <div className="flex min-h-screen flex-col">
       {/* 헤더 */}
-      <header className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-10 border-b backdrop-blur-sm">
         <div className="flex h-14 items-center gap-4 px-4">
           <Button
             variant="ghost"
@@ -187,7 +187,7 @@ export default function EditMissionPage() {
                             />
                             <Label
                               htmlFor={`repeat-${value}`}
-                              className="flex cursor-pointer items-center justify-center rounded-lg border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                              className="border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary flex cursor-pointer items-center justify-center rounded-lg border-2 p-4"
                             >
                               <span className="text-sm font-medium">
                                 {label}
@@ -226,7 +226,7 @@ export default function EditMissionPage() {
                             key={day}
                             value={String(day)}
                             aria-label={DAY_LABELS[day]}
-                            className="h-10 w-full data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+                            className="data-[state=on]:bg-primary data-[state=on]:text-primary-foreground h-10 w-full"
                           >
                             {DAY_LABELS[day]}
                           </ToggleGroupItem>
@@ -265,7 +265,7 @@ export default function EditMissionPage() {
                             />
                             <Label
                               htmlFor={`verification-${value}`}
-                              className="flex cursor-pointer items-center gap-3 rounded-lg border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                              className="border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary flex cursor-pointer items-center gap-3 rounded-lg border-2 p-4"
                             >
                               <Icon className="h-5 w-5" />
                               <span className="text-sm font-medium">

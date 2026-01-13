@@ -38,17 +38,17 @@ export function StreakSection({
           {isZeroStreak ? (
             // 스트릭이 0인 경우 격려 메시지
             <div className="flex flex-col items-center space-y-2 text-center">
-              <div className="rounded-full bg-muted p-4">
-                <Flame className="h-8 w-8 text-muted-foreground" />
+              <div className="bg-muted rounded-full p-4">
+                <Flame className="text-muted-foreground h-8 w-8" />
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 오늘부터 시작해보세요!
               </p>
             </div>
           ) : (
             // 스트릭이 있는 경우 배지 표시
             <>
-              <p className="text-sm font-medium text-muted-foreground">
+              <p className="text-muted-foreground text-sm font-medium">
                 현재 연속 달성
               </p>
               <StreakBadge streak={currentStreak} size="lg" showLabel={false} />
@@ -62,10 +62,10 @@ export function StreakSection({
           <div
             className={cn(
               "flex flex-col items-center space-y-2 rounded-lg border p-4",
-              "transition-colors hover:bg-muted/50"
+              "hover:bg-muted/50 transition-colors"
             )}
           >
-            <div className="flex items-center gap-1.5 text-muted-foreground">
+            <div className="text-muted-foreground flex items-center gap-1.5">
               <Award className="h-4 w-4" />
               <span className="text-xs font-medium">최장 기록</span>
             </div>
@@ -76,10 +76,10 @@ export function StreakSection({
           <div
             className={cn(
               "flex flex-col items-center space-y-2 rounded-lg border p-4",
-              "transition-colors hover:bg-muted/50"
+              "hover:bg-muted/50 transition-colors"
             )}
           >
-            <div className="flex items-center gap-1.5 text-muted-foreground">
+            <div className="text-muted-foreground flex items-center gap-1.5">
               <TrendingUp className="h-4 w-4" />
               <span className="text-xs font-medium">총 인증</span>
             </div>

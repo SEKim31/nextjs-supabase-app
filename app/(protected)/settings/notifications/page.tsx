@@ -34,7 +34,7 @@ export default function NotificationSettingsPage() {
 
       {/* 메인 콘텐츠 */}
       <div className="flex flex-col gap-6 p-4">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           받고 싶은 알림을 선택하세요
         </p>
 
@@ -49,10 +49,10 @@ export default function NotificationSettingsPage() {
           <CardContent>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Bell className="size-5 text-muted-foreground" />
+                <Bell className="text-muted-foreground size-5" />
                 <div className="flex-1">
                   <p className="font-medium">전체 푸시 알림</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-muted-foreground text-sm">
                     모든 알림 활성화
                   </p>
                 </div>
@@ -82,10 +82,10 @@ export default function NotificationSettingsPage() {
                 )}
               >
                 <div className="flex items-center gap-3">
-                  <Sparkles className="size-5 text-muted-foreground" />
+                  <Sparkles className="text-muted-foreground size-5" />
                   <div className="flex-1">
                     <p className="font-medium">응원 알림</p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       그룹원의 응원 메시지
                     </p>
                   </div>
@@ -106,10 +106,10 @@ export default function NotificationSettingsPage() {
                 )}
               >
                 <div className="flex items-center gap-3">
-                  <Bell className="size-5 text-muted-foreground" />
+                  <Bell className="text-muted-foreground size-5" />
                   <div className="flex-1">
                     <p className="font-medium">미션 리마인더</p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       미션 시작 시간 알림
                     </p>
                   </div>
@@ -130,10 +130,10 @@ export default function NotificationSettingsPage() {
                 )}
               >
                 <div className="flex items-center gap-3">
-                  <Users className="size-5 text-muted-foreground" />
+                  <Users className="text-muted-foreground size-5" />
                   <div className="flex-1">
                     <p className="font-medium">그룹 활동</p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       그룹 초대 및 활동 알림
                     </p>
                   </div>
@@ -150,7 +150,7 @@ export default function NotificationSettingsPage() {
         </Card>
 
         {/* 안내 메시지 */}
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-center text-sm">
           실제 푸시 알림 기능은 추후 업데이트 예정입니다
         </p>
       </div>

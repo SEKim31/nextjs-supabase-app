@@ -109,7 +109,7 @@ export default function MissionDetailPage() {
   const verificationDates = verifications.map((v) => v.verified_at);
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="bg-background min-h-screen pb-20">
       {/* 헤더 */}
       <MissionHeader
         missionTitle={mission.title}
@@ -140,7 +140,7 @@ export default function MissionDetailPage() {
       </main>
 
       {/* 하단 FAB: 인증하기 버튼 */}
-      <div className="fixed bottom-6 right-6">
+      <div className="fixed right-6 bottom-6">
         <Button size="lg" className="h-14 w-14 rounded-full shadow-lg" asChild>
           <Link href={`/missions/${missionId}/verify`}>
             <Plus className="h-6 w-6" />

@@ -78,7 +78,7 @@ export function ChecklistVerificationForm({
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <Label>체크리스트</Label>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-muted-foreground text-xs">
             {completedCount}/{totalCount} 완료
           </span>
         </div>
@@ -86,7 +86,7 @@ export function ChecklistVerificationForm({
         {/* 체크리스트 항목들 */}
         <div className="space-y-2 rounded-lg border p-4">
           {items.length === 0 ? (
-            <p className="text-center text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-center text-sm">
               체크리스트 항목이 없습니다.
             </p>
           ) : (
@@ -94,7 +94,7 @@ export function ChecklistVerificationForm({
               <div
                 key={item.id}
                 className={cn(
-                  "flex items-center gap-3 rounded-md p-2 transition-colors hover:bg-accent",
+                  "hover:bg-accent flex items-center gap-3 rounded-md p-2 transition-colors",
                   isLoading && "pointer-events-none opacity-50"
                 )}
               >
@@ -119,7 +119,7 @@ export function ChecklistVerificationForm({
                   {item.label}
                 </label>
                 {item.checked && (
-                  <Check className="h-4 w-4 text-brand-primary" />
+                  <Check className="text-brand-primary h-4 w-4" />
                 )}
               </div>
             ))
@@ -128,7 +128,7 @@ export function ChecklistVerificationForm({
 
         {/* 안내 메시지 */}
         {items.length > 0 && (
-          <p className="text-xs text-muted-foreground">
+          <p className="text-muted-foreground text-xs">
             오늘 완료한 항목을 체크해주세요. 모든 항목을 완료하지 않아도 인증할
             수 있습니다.
           </p>

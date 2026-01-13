@@ -11,7 +11,7 @@ export default function TestWeeklyChartPage() {
     <div className="space-y-6 p-4">
       <div>
         <h1 className="text-2xl font-bold">주간 달성률 차트 테스트</h1>
-        <p className="mt-2 text-muted-foreground">
+        <p className="text-muted-foreground mt-2">
           WeeklyChartSection 컴포넌트 동작 확인
         </p>
       </div>

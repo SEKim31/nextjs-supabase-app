@@ -82,7 +82,7 @@ export function GoogleLoginButton({
         {isLoading ? "로딩 중..." : "Google로 계속하기"}
       </Button>
       {error && (
-        <p className="mt-2 text-center text-sm text-destructive">{error}</p>
+        <p className="text-destructive mt-2 text-center text-sm">{error}</p>
       )}
     </div>
   );

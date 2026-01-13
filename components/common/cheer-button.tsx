@@ -37,7 +37,7 @@ export function CheerButton({
       className={cn(
         "gap-2 transition-all",
         isActive &&
-          "border-brand-primary bg-brand-primary text-white hover:bg-brand-primary/90",
+          "border-brand-primary bg-brand-primary hover:bg-brand-primary/90 text-white",
         className
       )}
     >

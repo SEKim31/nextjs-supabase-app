@@ -38,7 +38,7 @@ export function WeeklyChartSection({ groupStats }: WeeklyChartSectionProps) {
           <CardTitle>주간 달성률</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-center text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-center text-sm">
             참여 중인 그룹이 없습니다.
           </p>
         </CardContent>
@@ -81,14 +81,14 @@ export function WeeklyChartSection({ groupStats }: WeeklyChartSectionProps) {
               {/* 추가 통계 정보 */}
               <div className="mt-6 flex items-center justify-around border-t pt-4 text-center">
                 <div>
-                  <p className="text-sm text-muted-foreground">총 인증</p>
+                  <p className="text-muted-foreground text-sm">총 인증</p>
                   <p className="text-2xl font-bold">
                     {group.totalVerifications}
                   </p>
                 </div>
-                <div className="h-10 w-px bg-border" />
+                <div className="bg-border h-10 w-px" />
                 <div>
-                  <p className="text-sm text-muted-foreground">총 응원</p>
+                  <p className="text-muted-foreground text-sm">총 응원</p>
                   <p className="text-2xl font-bold">{group.totalCheers}</p>
                 </div>
               </div>

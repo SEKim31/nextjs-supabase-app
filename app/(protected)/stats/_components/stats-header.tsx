@@ -16,7 +16,7 @@ export function StatsHeader({
   return (
     <div className="space-y-1 px-4 py-6">
       <h1 className="text-2xl font-bold">{title}</h1>
-      {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
+      {subtitle && <p className="text-muted-foreground text-sm">{subtitle}</p>}
     </div>
   );
 }

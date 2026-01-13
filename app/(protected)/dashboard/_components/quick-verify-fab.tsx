@@ -21,7 +21,7 @@ interface QuickVerifyFabProps {
 export function QuickVerifyFab({ onClick, className }: QuickVerifyFabProps) {
   const baseClassName = cn(
     // 고정 위치: 우측 하단
-    "fixed bottom-20 right-4 z-50",
+    "fixed right-4 bottom-20 z-50",
     // Safe Area 대응 (iOS 홈바 등)
     "mb-safe",
     // 크기 및 스타일

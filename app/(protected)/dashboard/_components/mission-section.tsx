@@ -38,18 +38,18 @@ interface MissionSectionProps {
 function MissionCard({ mission }: { mission: Mission }) {
   return (
     <Link href={`/missions/${mission.id}`}>
-      <Card className="transition-colors hover:bg-accent">
+      <Card className="hover:bg-accent transition-colors">
         <CardContent className="flex items-center justify-between p-4">
           <div className="flex items-start gap-3">
             {mission.isCompleted ? (
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
+              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
             ) : (
-              <Circle className="mt-0.5 h-5 w-5 flex-shrink-0 text-muted-foreground" />
+              <Circle className="text-muted-foreground mt-0.5 h-5 w-5 shrink-0" />
             )}
             <div className="space-y-1">
-              <h4 className="font-medium leading-none">{mission.title}</h4>
+              <h4 className="leading-none font-medium">{mission.title}</h4>
               <div className="flex items-center gap-2">
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   {mission.groupName}
                 </p>
                 <Badge variant="secondary" className="text-xs">
@@ -58,7 +58,7 @@ function MissionCard({ mission }: { mission: Mission }) {
               </div>
             </div>
           </div>
-          <ChevronRight className="h-5 w-5 text-muted-foreground" />
+          <ChevronRight className="text-muted-foreground h-5 w-5" />
         </CardContent>
       </Card>
     </Link>
@@ -73,10 +73,10 @@ function MissionSkeleton() {
     <Card>
       <CardContent className="p-4">
         <div className="flex items-center gap-3">
-          <div className="h-5 w-5 animate-pulse rounded-full bg-muted" />
+          <div className="bg-muted h-5 w-5 animate-pulse rounded-full" />
           <div className="flex-1 space-y-2">
-            <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
-            <div className="h-3 w-1/2 animate-pulse rounded bg-muted" />
+            <div className="bg-muted h-4 w-3/4 animate-pulse rounded" />
+            <div className="bg-muted h-3 w-1/2 animate-pulse rounded" />
           </div>
         </div>
       </CardContent>
@@ -95,7 +95,7 @@ export function MissionSection({ missions, isLoading }: MissionSectionProps) {
       <div className="space-y-4 px-4">
         <div>
           <h2 className="text-lg font-semibold">오늘의 미션</h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             완료하지 않은 미션을 확인하세요
           </p>
         </div>
@@ -114,7 +114,7 @@ export function MissionSection({ missions, isLoading }: MissionSectionProps) {
       <div className="space-y-4 px-4">
         <div>
           <h2 className="text-lg font-semibold">오늘의 미션</h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             완료하지 않은 미션을 확인하세요
           </p>
         </div>
@@ -146,7 +146,7 @@ export function MissionSection({ missions, isLoading }: MissionSectionProps) {
     <div className="space-y-6 px-4">
       <div>
         <h2 className="text-lg font-semibold">오늘의 미션</h2>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           완료하지 않은 미션을 확인하세요
         </p>
       </div>
@@ -155,7 +155,7 @@ export function MissionSection({ missions, isLoading }: MissionSectionProps) {
         ([groupName, groupMissions], idx) => (
           <div key={groupName} className="space-y-3">
             {idx > 0 && <Separator />}
-            <h3 className="text-sm font-medium text-muted-foreground">
+            <h3 className="text-muted-foreground text-sm font-medium">
               {groupName}
             </h3>
             <div className="space-y-2">

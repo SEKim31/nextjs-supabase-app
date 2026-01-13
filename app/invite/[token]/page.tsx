@@ -75,8 +75,8 @@ export default async function InvitePage({
       <div className="flex min-h-screen items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-destructive/10">
-              <AlertCircle className="h-6 w-6 text-destructive" />
+            <div className="bg-destructive/10 mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+              <AlertCircle className="text-destructive h-6 w-6" />
             </div>
             <CardTitle>유효하지 않은 초대 링크</CardTitle>
             <CardDescription>
@@ -103,8 +103,8 @@ export default async function InvitePage({
       <div className="flex min-h-screen items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-destructive/10">
-              <AlertCircle className="h-6 w-6 text-destructive" />
+            <div className="bg-destructive/10 mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+              <AlertCircle className="text-destructive h-6 w-6" />
             </div>
             <CardTitle>만료된 초대 링크</CardTitle>
             <CardDescription>
@@ -131,8 +131,8 @@ export default async function InvitePage({
       <div className="flex min-h-screen items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-destructive/10">
-              <AlertCircle className="h-6 w-6 text-destructive" />
+            <div className="bg-destructive/10 mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+              <AlertCircle className="text-destructive h-6 w-6" />
             </div>
             <CardTitle>그룹을 찾을 수 없습니다</CardTitle>
             <CardDescription>
@@ -173,7 +173,7 @@ export default async function InvitePage({
           </div>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <div className="text-muted-foreground flex items-center gap-2 text-sm">
             <Users className="h-4 w-4" />
             <span>{memberCount}명의 멤버</span>
           </div>
@@ -182,7 +182,7 @@ export default async function InvitePage({
           <Button asChild className="w-full" size="lg">
             <Link href="/groups">그룹 참여하기</Link>
           </Button>
-          <p className="text-center text-xs text-muted-foreground">
+          <p className="text-muted-foreground text-center text-xs">
             그룹에 참여하면 멤버들과 함께 습관을 공유하고 응원할 수 있습니다.
           </p>
         </CardFooter>

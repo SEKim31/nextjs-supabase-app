@@ -34,10 +34,10 @@ export function VerificationFeedSection({
         </CardHeader>
         <CardContent>
           <div className="flex flex-col items-center justify-center py-12 text-center">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               아직 인증 기록이 없습니다.
             </p>
-            <p className="mt-2 text-xs text-muted-foreground">
+            <p className="text-muted-foreground mt-2 text-xs">
               첫 번째 인증을 시작해보세요!
             </p>
           </div>
