@@ -4,8 +4,9 @@ import { useState } from "react";
 
 import Link from "next/link";
 
-import { Bell, ChevronRight, LogOut, User, UserX } from "lucide-react";
+import { Bell, ChevronRight, LogOut, Palette, User, UserX } from "lucide-react";
 
+import { ThemeSwitcher } from "@/components/theme-switcher";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -133,6 +134,15 @@ export default function SettingsPage() {
               <span className="flex-1 font-medium">알림 설정</span>
               <ChevronRight className="size-5 text-muted-foreground" />
             </Link>
+
+            <Separator />
+
+            {/* 테마 변경 */}
+            <div className="flex items-center gap-3 px-6 py-4">
+              <Palette className="size-5 text-muted-foreground" />
+              <span className="flex-1 font-medium">테마 변경</span>
+              <ThemeSwitcher />
+            </div>
           </CardContent>
         </Card>
 
