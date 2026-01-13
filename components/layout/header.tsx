@@ -26,7 +26,7 @@ export function Header({ className }: HeaderProps) {
 
       {/* 알림 아이콘 */}
       <Button variant="ghost" size="icon" className="relative" asChild>
-        <Link href="/notifications">
+        <Link href="/settings/notifications">
           <Bell className="h-5 w-5" />
           <span className="sr-only">알림</span>
         </Link>

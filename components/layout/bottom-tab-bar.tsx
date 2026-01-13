@@ -23,7 +23,7 @@ const tabs = [
     emphasis: false,
   },
   {
-    href: "/certifications",
+    href: "/missions",
     icon: ShieldCheck,
     label: "인증",
     emphasis: true, // 강조 스타일
